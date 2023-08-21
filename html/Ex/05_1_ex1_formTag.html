@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend>기본사항</legend>
+            <!-- form : 정보를 제출하기 위하여 범위를 지정하는 역할 -->
+            <label for="id">ID : </label>
+            <input type="text" name="id" id="id" maxlength="5" placeholder="아이디를 입력해주세요.">
+            <!-- input id값 중복사용 불가 -->
+            <!-- maxlength : 글자입력 수 제한 -->
+            <!-- placeholder : 유저에게 안내역할 -->
+            <br>
+            <label for="pw">PW : </label>
+            <input type="password" name="pw" id="pw" required>
+            <br>
+            <label for="txta">기타 : </label>
+            <textarea name="txta" id="txta" cols="10" rows="10"></textarea>
+            <!-- cols : 열, rows : 행 -->
+            <br>
+            <label for="pocketmon">pocketmon : </label>
+            <select name="pocketmon" id="pocketmon">
+                <option value="0">피카츄</option>
+                <option value="1">라이츄</option>
+                <option value="2">파이리</option>
+            </select>
+            <!-- select : 드롭다운 목록 설정 -->
+            <!-- 히든설정시 돌아오는 값은 value값으로 0, 1, 2로 돌아옴 -->
+        </fieldset>
+        <!-- password : 비밀번호 입력시 점으로 표기 -->
+        <!-- required : 공백시 입력요청 안내 -->
+        <br>
+        <label for="email">email : </label>
+        <input type="email" name="email" id="email" readonly value="셋팅값">
+        <!-- readonly : 유저의 수정 금지 -->
+        <!-- readonly value : 셋팅값 읽기만 가능 -->
+        <br>
+        <label for="number">number : </label>
+        <input type="number" name="number" id="number" min="0" max="5">
+        <!-- min : 최소 표기 0, max : 최대 표기 5 -->
+        <br>
+        <label for="range">range : </label>
+        <input type="range" name="range" id="range" min="0" max="10">
+        <!-- range : 범위조절 -->
+        <br>
+        <label for="date">date : </label>
+        <input type="date" name="date" id="date">
+        <!-- date : 달력 -->
+        <br>
+        <label for="banana">바나나 : </label>
+        <input type="checkbox" id="banana" name="chk_fruit">
+        <!-- name : input태그 이름(중복 상관없음), 동일 name 설정시 하나의 묶음 값으로 돌아옴 -->
+        <!-- checkbox : 체크(체크박스) 여러개 선택 가능 -->
+        <label for="sb">딸기 : </label>
+        <input type="checkbox" id="sb" name="chk_fruit">
+        <label for="wm">수박 : </label>
+        <input type="checkbox" id="wm" name="chk_fruit">
+        <br>
+        <br>
+        <label for="zz">짜장면 : </label>
+        <input type="radio" id="zz" name="foods">
+        <label for="ta">탕수육 : </label>
+        <input type="radio" id="ta" name="foods">
+        <!-- radio : 체크(동그란 버튼) 한개만 선택 가능 -->
+
+        <br>
+        <input type="submit">
+        <!-- submit : 제출버튼 활성화 -->
+        <input type="reset">
+        <!-- reset : 초기화버튼 활성화 -->
+        <!-- css 사용할 때 불편 : input  -->
+        <br>
+        <br>
+        <button type="submit">전송</button>
+        <button type="reset">초기화</button>
+        <button type="button">버튼</button>
+        <!-- css 사용할 때 편리 : button  -->
+        <br>
+        <input type="hidden" value="히든" name="hidden">
+        <!-- hidden : value 값 설정 필수 -->
+        <!-- 밸류 값으로 돌아옴 -->
+
+    </form>
+</body>
+
+</html>

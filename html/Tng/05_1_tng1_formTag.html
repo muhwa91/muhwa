@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>회원가입을 환영합니다</h1>
+    <form action="">
+        <fieldset>
+            <legend>사용자 정보</legend>
+            <ul>
+                <li><label for="id">아이디</label>
+                    <input type="text" name="id" id="id" required minlength="4" maxlength="10"
+                        placeholder="4자 ~ 10자 사이, 공백없이">
+                </li>
+                <li><label for="email">이메일</label>
+                    <input type="email" name="email" id="email">
+                </li>
+                <li><label for="pw1">비밀번호</label>
+                    <input type="password" name="pw1" id="pw1" required placeholder="문자와 숫자, 특수 기호 포함">
+                </li>
+                <li><label for="pw2">비밀번호 확인</label>
+                    <input type="password" name="pw2" id="pw2" required>
+                </li>
+                <li><label for="Access to the subscription">가입 경로</label>
+                    <select name="Access to the subscription" id="Access to the subscription">
+                        <option value="0">블로그</option>
+                        <option value="1">지인소개</option>
+                        <option value="2" selected>기타</option>
+                    </select>
+                </li>
+                <li>메모
+                    <label for="memo"></label>
+                    <textarea name="memo" id="memo" cols="25" rows="10" placeholder="남길 말씀이 있다면여기에"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>이벤트와 새로운 소식</legend>
+            <input type="radio" id="Receive Mail" name="mails">
+            <label for="Receive Mail">메일 수신</label>
+            <input type="radio" id="Don't receive mail" name="mails" checked>
+            <label for="Don't receive mail">메일 수신 안 함</label>
+        </fieldset>
+        <button type="submit">가입하기</button>
+        <button type="reset">취소</button>
+    </form>
+
+</body>
+
+</html>
