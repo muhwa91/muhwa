@@ -1,0 +1,26 @@
+ul {
+    list-style-type: none;
+}
+
+li {
+    line-height: 2rem;
+}
+
+.p1 {
+    color : #ad3000;
+    font-size: 1.2rem; 
+    font-weight : 600;       
+}
+/* <span class="p1">에서 
+<span class="p3"> 으로 변경 해서 옵션 변경 가능*/
+
+.p2 {
+    width: 450px;
+    border: 1px solid #000;
+}
+/* <div class="container"> 로 사용하자 */
+
+body {
+    font-size: 16px;
+}
+

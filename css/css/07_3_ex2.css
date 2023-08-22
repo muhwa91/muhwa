@@ -1,0 +1,31 @@
+.deco {
+    text-decoration: none;
+    text-decoration: underline;
+    text-decoration: line-through;
+}
+
+.height {
+    line-height: 2em;
+}
+
+.left {
+    text-align: left;
+}
+/* 좌정렬 */
+
+.right {
+    text-align: right;
+}
+/* 우정렬 */
+
+.center {
+    background-color: cadetblue;
+    /* 배경색 */
+    width: 300px;
+    /* 블럭 레벨 요소의 width 설정 */
+    height: 300px;
+    /* 블럭 레벨 요소의 height 설정 */
+    line-height: 300px;
+    /*  */
+    text-align: center;
+}

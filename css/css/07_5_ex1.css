@@ -1,0 +1,16 @@
+table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    caption-side: bottom;
+    /* border-spacing: 20px; */
+}
+/* border : 선 굵기, 실선(solid), 선 색 */
+/* border-collapse: collapse(선 공백 없애기) */
+/* caption-side: bottom;(표 제목 아래로 이동) */
+/* border-spacing: 20px; (표 사이 여백) */
+
+th, td {
+    border: 1px dotted #000;
+    width: 100px;
+}
+/* dotted : 점선 */

@@ -1,0 +1,23 @@
+#h1-id {
+    color: aqua;
+}
+/* 클래스 스타일<아이디 스타일 : aqua 적용 */
+
+.h1-1 {
+    color: blue;
+}
+/* 타입 스타일<클래스 스타일 : blue 적용 */
+
+h1 {
+    color: red !important;
+}
+/* 우선순위가 가장 높은 !important : red 적용 */
+
+h1 {
+    color: red;
+}
+
+h1 {
+    color: orange;
+}
+/* red, orange 중 위에서 부터 아래로 읽어들이기 때문에 우선순위로 orange 적용 */

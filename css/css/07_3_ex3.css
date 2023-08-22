@@ -1,0 +1,23 @@
+.tran {
+    text-transform: capitalize;
+    /* 제일 앞만 대문자 */
+    text-transform: uppercase;
+    /* 모두 대문자 */
+    text-transform: lowercase;
+    /* 모두 소문자 */
+}
+
+.spacing {
+    letter-spacing: 1.5em;
+    /* 자간 설정 */
+}
+
+.w_spacing {
+    word-spacing: 10px;
+    /* 단어간격 설정 */
+}
+
+.shadow {
+    text-shadow: 10px 5px 6px #000000;
+    /* 좌우(양수 우, 음수 좌) 상하(양수 하, 음수 상) 진하기(클수록 연해짐) */
+}
