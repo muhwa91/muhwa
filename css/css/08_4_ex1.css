@@ -1,0 +1,32 @@
+.none {
+    display: none;
+    /* 해당 효과는 코드는 존재하지만 화면상으로 표시되지 않음 */
+    /* 부모 태그에 적용시 자식 태그도 보이지 않음 */
+}
+
+.block {
+    display: block;
+}
+
+span {
+    border: 1px solid #000;
+    width: 150px;
+    /* 인라인 요소는 컨텐츠 영역까지만 width 지정됨 */
+}
+
+.inline {
+    border: 1px solid #000;
+    display: inline;
+}
+
+div {
+    border: 5px solid #000;
+    padding : 10px
+}
+
+.inline-block {
+    display: inline-block;
+    border: 1px solid #000;
+    width: 150px;
+}
+

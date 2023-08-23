@@ -1,0 +1,11 @@
+.container {
+    width: 300px;
+    border: 5px solid #000;
+    padding: 10px 20px 5px 15px;
+    /* 패딩 사이즈 조절은 마진과 동일, 시계방향으로 지정도 가능 */
+}
+
+h1, p {
+    border: 1px solid #000;
+    width: 150px;
+}

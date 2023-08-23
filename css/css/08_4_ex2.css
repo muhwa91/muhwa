@@ -1,0 +1,8 @@
+img {
+    float: left;
+}
+/* float : 왼쪽, 오른쪽 한곳으로 이동하게 만듦 */
+.p-2 {
+    clear: both;
+}
+/* clear : float 종료 */

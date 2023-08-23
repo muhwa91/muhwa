@@ -1,0 +1,55 @@
+main, section, article {
+    padding: 20px;
+}
+main {
+    background-color: cadetblue;
+}
+section {
+    background-color: antiquewhite;
+}
+article {
+    background-color: rgb(172, 178, 224);
+    position: relative;
+    height: 10000px;
+}
+.div_static {
+    background-color: lightslategray;
+    position: static;
+    /* static : 가장 기본 형태 */
+}
+.div_relative {
+    background-color: rgb(119, 153, 139);
+    position: relative;
+    left: 0;
+    top: 0;
+    /* top: -50px; */
+    /* bottom: -50px; */
+    /* relative : static과 동일한 위치지만 
+        방향값을 설정해주면 static 기준으로 이동 */
+}
+.div_absolute {
+    background-color: rgb(122, 51, 101);
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* z-index: -1; 뜬 상태에서 음수로 설정하면 아래로 가라앉음
+        설정값을 크게 할수록 먼저 표시됨 */
+    /* absolute : relative 기준으로 이동 */
+    /* ex)article에 relative를 준다면, article이 기준이 되어서
+        article 영역에서 표시 */
+}
+.div_fixed {
+    background-color: rgb(141, 209, 62);
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    /* 뷰포트(화면)내에서 표기 */
+    /* 일반적으로 뷰포트=body=브라우저상 보이는 화면 */
+    /* 주로 하단에서 위로가기 버튼으로 활용 */
+}
+.div_sticky {
+    background-color: rgb(207, 108, 108);
+    position: sticky;
+    top: 0;
+    /* top 적용시 스크롤할 때 계속해서 화면 상단에 고정되어있음 */
+}

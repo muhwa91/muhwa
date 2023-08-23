@@ -1,0 +1,49 @@
+div {
+    width: 200px;
+    height: 20px;
+    margin: 20px;
+}
+
+.div-1 {    
+    border-style: none;    
+}
+
+.div-2 {
+    border-style: solid;  
+    border-color: blue;
+    border-width: 5px;
+    /* border-width : 선 굵기 */
+    /* border-width : 1-상하, 2-좌우 3-하 */
+    /* 4개를 적을 때는 시계방향으로 상 우 하 좌 */
+    /* 1~4 적을 수 있음 */
+}
+
+.div-3 {
+    border-style: dotted;
+    border-width: 5px;
+}
+
+.div-4 {
+    border-style: dashed;
+    border-width: 5px;
+}
+
+.div-5 {
+    border-style: double;
+    border-width: 5px;
+}
+
+.div-6 {
+    height: 200px;
+    border: solid #000;
+    /* border-radius: 10px; */
+    /* 전체 모서리 둥글게 */
+    /* border-top-right-radius: 10px; */
+    /* 상우 둥글게 */
+    /* border-top-left-radius: 10px; */
+    /* 상좌 둥글게 */
+    /* border-bottom-right-radius: 10px; */
+    /* 하우 둥글게 */
+    /* border-bottom-left-radius: 10px; */
+    /* 하좌 둥글게 */
+}

@@ -1,0 +1,29 @@
+header {
+    background-color: aquamarine;
+    height: 120px;
+    width: 100%;
+}
+.side_1 {
+    float: left;
+    background-color: antiquewhite;
+    height: 500px;
+    width: 20%;
+}
+article {
+    float: left;
+    background-color: rgb(180, 128, 60);
+    height: 500px;
+    width: 60%;
+}
+.side_2 {
+    float: left;
+    background-color: antiquewhite;
+    height: 500px;
+    width: 20%;
+}
+footer {
+    background-color: rgb(110, 219, 110);
+    height: 120px;
+    width: 100%;
+    clear: left;
+}

@@ -1,0 +1,28 @@
+.container_1 {
+    border: 5px solid #000;
+    width: 400px;
+    margin: 20px;
+}
+
+.container_2 {
+    border: 5px solid #000;
+    width: 400px;
+    margin: 20px;
+}
+/* container1 하, container2 상 20px씩 되면 40px이 되어야 하지만 마진중첩현상 일어남
+    두개중에 큰 쪽으로 마진중첩(세로만 중첩, 좌우는 중첩X)
+    ex)container1 10px, container2 20px : 20px 적용 */
+
+h1, p {
+    border: 1px solid #000;
+    width: 150px;
+    margin: 10px auto;
+    /* 10px 상하, auto 좌우 자동맞춤 */
+}
+
+span {
+    border: 1px solid #000;
+    width: 150px;
+    margin: 10px;
+}
+/* 좌우는 마진중첩현상 일어나지 않음 */
