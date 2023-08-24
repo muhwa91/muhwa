@@ -1,0 +1,9 @@
+h1 {
+    background-color: rgb(97, 146, 97);
+    border: 10px dotted #000;
+    /* background-clip: padding-box; 바깥쪽 테두리 밖에 표시 */
+    background-clip: content-box;
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+}

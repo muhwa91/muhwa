@@ -1,0 +1,34 @@
+body {
+    background-color: #02233b;
+}
+
+.container {
+    width: 600px;
+    height: 800px;
+    margin: 10px auto;
+    padding: 10px;    
+    background: #fff url(../img/ggo.jpg) no-repeat right bottom / 70%;
+}
+
+p, h2 {
+    text-align: center;
+}
+
+h1 {
+    background-color: #004344;
+    color: #fff;
+    text-align: center;
+    width: 450px;
+    height: 50px;
+    margin: 10px auto;
+    padding: 10px
+}
+
+h3 {
+    color: red;
+}
+
+ul {
+    list-style-type: none;
+}
+

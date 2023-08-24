@@ -1,0 +1,18 @@
+.div-img {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #000;
+    background-image: url(../img/ssi.jpg)
+                        , url(../img/ggo.jpg);
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: 20% 20%;
+    /* background-position: 20% 20%; 2개 지정시 가로, 세로
+     방향 top, left, bottom, right 지정도 가능 */
+
+    overflow: scroll;
+}
+body {
+    background-image: url(../img/ssi.jpg);
+    background-size: cover;
+}
