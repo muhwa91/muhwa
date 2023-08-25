@@ -25,5 +25,5 @@ footer {
     background-color: rgb(110, 219, 110);
     height: 120px;
     width: 100%;
-    clear: left;
+    clear: both;
 }

@@ -1,0 +1,19 @@
+header div span {
+    color: aqua;
+}
+/* 상위요소 하위요소 : 상위요소 */
+
+header>span {
+    color: red;
+}
+/* 부모요소>자식요소 : 부모요소 내 해당 자식요소만 적용 */
+
+main span+p {
+    color: blue;
+}
+/* 바로 하위 형제요소 p만 적용 */
+
+footer span~p {
+    color: blueviolet;
+}
+/* span 형제요소 p는 모두 적용, 중간에 다른 태그가 있어도 적용 */

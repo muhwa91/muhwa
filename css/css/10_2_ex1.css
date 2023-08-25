@@ -1,0 +1,41 @@
+[target] {
+    color: green;
+}
+/* 속성명만 설정값줘서 변경 가능 */
+
+[target=daum] {
+    color: blue;
+}
+/* 속명명만 설정값줘서 변경 가능 */
+
+/* [class*=att_class] {
+    color: brown;
+} */
+/* 속성명 att_class 들어가있는 곳은 모두 적용 */
+/* ex)att_class~3까지 모두적용 */
+
+/* [class~=att_class] {
+    color: aqua;
+} */
+/* 속명명 att_class 들어가있는 곳만 적용 */
+/* ex)att_class, att_class2만 적용 */
+
+[class|=att] {
+    color: yellowgreen;
+}
+/* att, att-내용 된 것만 적용 */
+
+[class^=co] {
+    color: pink;
+}
+/* 특정 속성값 co 시작하는 것만 적용 */
+
+[class$=k1] {
+    color: rgb(170, 151, 45);
+}
+/* 특정 속성값 k1 끝나는 것만 적용 */
+
+[id=h6-1] {
+    color: aqua;
+}
+/* html 속성이면 모두 적용가능 */

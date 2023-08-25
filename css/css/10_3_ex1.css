@@ -1,0 +1,71 @@
+a {
+    color: burlywood;
+}
+
+a:link {
+    color: brown;
+}
+
+a:visited {
+    color: blue;
+}
+
+/* 방문했을 때 색 변경 */
+
+a:hover {
+    background-color: cornflowerblue;
+}
+
+/* 마우스 포인터 올렸을 때 색 변경 */
+
+#input-1:focus {
+    outline: none;
+    border: 2px solid green;
+}
+
+/* 실행이 되었을때 칸 초록색으로 변경 */
+
+input:checked+label {
+    color: orange;
+}
+
+/* 선택하면 색 변경 */
+/* label 주는 이유 : 포케, 아직 label 속성값 */
+/* checkbox, radio 모두 적용가능 */
+
+#target-1:target {
+    background-color: red;
+}
+
+.container :nth-child(4) {
+    color: yellow;
+}
+
+/* .container 띄워쓰기 후 적용해야함 */
+
+.container p:nth-of-type(2) {
+    color: green;
+}
+
+.container :not(p) {
+    color: chartreuse;
+}
+
+/* p태그가 아닌 곳에 색 변경 */
+/* 보통 복수보다 단수가 우선 적용됨
+    ex)nth-child(4)가 not(p)보다 우선 적용 */
+
+#label-2::before {
+    content: '중요';
+    color: aqua;
+}
+
+.korean-1::first-letter {
+    background-color: black;
+}
+/* 컨텐츠 중에 제일 첫글자만 적용 */
+
+.korean-2::first-line {
+    background-color: black;
+}
+/* 컨텐츠 중에 첫번째 줄만 적용 */
