@@ -5,6 +5,7 @@ div {
     padding: 20px;
     background-color: antiquewhite;
     margin: 10px;
+    /* 마진은 박스 사이즈에 포함안됨 */
    
 }
 .div-1 {

@@ -1,0 +1,69 @@
+fieldset {
+    background-image: url(../img/ssi.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid;
+    width: 600px;
+    height: 400px;
+    margin: 20px auto;
+}
+
+h1 {
+    color: rgb(204, 99, 117);
+}
+
+/* ul li 태그를 사용해서 li에 before 값을 주면 *빨갛게 표시 */
+
+
+input, textarea {
+    background-color: transparent;
+}
+
+input:hover {
+    border-color: red;
+}
+
+textarea:hover {
+    border-color: red;
+}
+
+input:checked + label {
+    color: red;
+}
+
+.text {
+    float: left;
+    margin: 0px;
+}
+
+#name::before {
+    color: red;
+    content: '*';
+}
+
+#age::before {
+    color: red;
+    content: '*';
+}
+
+#gender::before {
+    color: red;
+    content: '*';
+}
+
+#btn_send {
+    position: relative;
+}
+
+#btn_send:hover::after {
+    content: '내용을 다시 한 번 확인해 주세요.';
+    background-color: black;
+    color: white;
+    width: 300px;
+    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    left: 56px;
+}
+
+
