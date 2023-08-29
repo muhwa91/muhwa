@@ -1,0 +1,38 @@
+.container {
+    background-color: gray;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 50px);
+    /*  grid-template-columns: repeat(3, 50px); 가로 3 반복해서 줄수있음 */
+    /* grid-template-rows: 50px 50px; */
+    /* grid-column-gap: 10px; 
+    가로 10px 간격*/
+    /* grid-row-gap: 10px;
+    세로 10px 간격 */
+    grid-gap: 10px 5px;
+}
+
+.item {
+    background-color: cadetblue;
+}
+
+.container2 {
+    background-color: gray;
+    display: grid;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(4, 50px);
+    grid-gap: 5px;
+    /*  grid-template-columns: repeat(3, 50px); 가로 3 반복해서 줄수있음 */
+    /* grid-template-rows: 50px 50px; */
+}
+
+.item1 {
+    grid-column: 1/3;
+}
+
+.item5 {
+    /* 제일 상단 가로 세로가 기준선 */
+    grid-column: 2/3;
+    /* 세로선 2~3까지 사용 */
+    grid-row: 3/5;
+    /* 가로선 3~5까지 사용 */    
+}

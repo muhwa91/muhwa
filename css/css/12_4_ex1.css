@@ -1,30 +1,41 @@
 .container {
     background-color: gray;
     margin: 10px;
-    width: 60vw;
+    width: 100vw;
     height: 60vh; 
     display: flex;
     /*플렉스요소는 부모요소에 필수삽입  */
-    flex-direction: row;
+    /* flex-direction: row; */
     /* 주축의 방향을 바꿈
     row 값 : 왼쪽부터 오른쪽으로 1 2 3 4 5, 해당 속성값이 기본값으로 설정됨
     row-reverse : 오른쪽부터 왼쪽으로 5 4 3 2 1(reverse는 잘 사용하지 않음) */
     /* flex-wrap: wrap; */
     flex-flow: row wrap;
-    justify-content: flex-start;    
+    /* justify-content: flex-start;     */
     /* flex-start : 기본값
     flex-end : 주축(제일 상단 가로선)에서 가로로 오른쪽에 붙음
     center : 주축의 중앙정렬
     space-between : 컨테이너 내에 컨텐츠별로 가운데 공간생김(컨테이너 바깥에 붙음)
     space-around :  컨테이너 내에 컨텐츠별로 가운데 공간 생김(컨테이너 안쪽에 공간생김)*/
-    align-items: center;
+    /* align-items: center; */
+    /* align-items 주축을 기준으로 정렬할때 사용 */
     /* flex-end : 교차축(제일 상단 가로선이 주축이기 때문에 교차축은 왼쪽 세로선)
     을 기준으로 정렬 */
+    /* align-items: stretch : 부모영역에 있어 주축을 기준으로 아래로 길게 늘여줌
+    ex)item 값에 height를 주면 고정값이 설정되어서 움직이지 않음 */
+    align-content: space-around;
 }    
 .item {
-    width: 15vw;
+    width: 150px;
     height: 15vh;
     background-color: skyblue;
     border: 1px solid black;
+    box-sizing: border-box;
 }
 
+.item2 {
+    font-size: 30px;
+    /* align-self: flex-end; */
+}
+
+    /* display : block 부모영역만큼 차지 */
