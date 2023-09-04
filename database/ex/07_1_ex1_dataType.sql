@@ -1,0 +1,28 @@
+-- 숫자데이터 형식
+-- int : 4byte 정수/범위 +21억~-21억
+-- bigint : 8byte 정수, 범위 +900경~-900경
+-- float : 4byte 실수, 소수점 아래 7자리까지 표현
+-- double : 8byte 실수, 소수점 아래 15자리까지 표현
+-- decimal : 5~15byte, 소수점 아래 자리를 지정가능
+-- ex) DECIMAL(6, 2) 9999.22 여섯자리, 소수점
+
+-- 문자 데이터 형식
+-- char(n) : 1~255byte, n만큼 고정길이를 가지는 문자형
+-- varchar(n) : 1~65535byte, n만큼 가변길이를 가지는 문자형
+-- ex) abcde / char(10) 10고정길이 모두 사용, varchar(10) 5가변길이로 5길이만 사용
+-- longtext : 최대 4gb, text 데이터 값을 저장 
+-- longblob : 최대 4gb, blob 데이터 값을 저장
+-- enum : 정해진 값만 입력 가능하도록 하는 데이터 형식
+-- enum는 (값1, 값2, 값3 등으로 기재 가능)
+
+-- 날짜 및 시간 데이터 형식
+-- date : 3byte, 'yyyy-mm-dd'표기
+-- mariaDB는 date가 1001-01-01~9999-12-31 까지 저장
+-- datetime : 8byte, 'yyyy-mm-dd hh:mi:ss'표기
+-- mariaDB는 date가 1001-01-01 00:00:00~9999-12-31 23:59:59 까지 저장
+-- timestamp : 4byte, 'yyyy-mm-dd hh:mi:ss'표기
+-- datetime과 표기는 동일하지만
+-- datetime은 서버시간에 상관없이 고정되는 데이트 타입
+-- (한국시간 입력하면 한국시간만 출력)
+-- timestamp는 서버 시간에 따라 유동적으로 변하는 데이트 타입
+-- (한국시간 입력하면 미국시간으로 출력도 가능)
