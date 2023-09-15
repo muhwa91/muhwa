@@ -108,7 +108,7 @@ echo my_test($str);
 // 방법 3
 
 $str = "34215";
-function my_test(string $str);
+function my_test(string $str){}
     $arr = str_split($str);
     foreach($arr as $val) {
         $sum += $val;
