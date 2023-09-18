@@ -23,7 +23,7 @@ my_db_conn($conn);
 // ." ,:hire_date "
 // ." ) ";
 // $arr_ps = [
-// 	":emp_no" => "5000111"
+// 	":emp_no" => "500000"
 // 	,":birth_date" => "1991-10-02"
 // 	,":first_name" => "Junggi"
 // 	,":last_name" => "Yeo"
@@ -32,37 +32,72 @@ my_db_conn($conn);
 // ];
 
 // $stmt = $conn->prepare($sql);
-// $stmt->execute($arr_ps); 
-// // $result = $stmt->fetchAll();
-// // print_r($result);
+// $result = $stmt->execute($arr_ps);
 // $conn->commit();
 
-$sql =
-" delete from employees "
-." where "
-." emp_no = :emp_no "
-." or "
-." emp_no = :emp_no2; "
-;
-$arr_ps = [
-	":emp_no" => "500001"
-	,":emp_no2" => "500011"	
-];
-$stmt = $conn->prepare($sql);
-$result = $stmt->execute($arr_ps);
-$res_cnt = $stmt->rowCount();
-var_dump($res_cnt);
-$conn->commit();
-
-
+//2 자신의 이름을 "둘리", 성을 "호이"로 변경
 // $sql =
-// "UPDATE employees"
-// ."SET"
+// " UPDATE employees "
+// ." SET "
 // ." first_name = '둘리' "
-// ."WHERE emp_no = 999999"
+// ." WHERE "
+// ." emp_no = :emp_no "
 // ;
 
-//2 자신의 이름을 "둘리", 성을 "호이"로 변경
+// $arr_ps = [
+// 	":emp_no" => 500000
+// ];
+
+// $stmt = $conn->prepare($sql);
+// $result = $stmt->execute($arr_ps);
+// $conn->commit();
+
+// $sql =
+// " UPDATE employees "
+// ." SET "
+// ." last_name = '호이' "
+// ." WHERE "
+// ." emp_no = :emp_no "
+// ;
+
+// $arr_ps = [
+// 	":emp_no" => 500000
+// ];
+
+// $stmt = $conn->prepare($sql);
+// $result = $stmt->execute($arr_ps);
+// $conn->commit();
+
 //3 자신의 정보를 출력
+// $sql =
+// " SELECT "
+// ." * "
+// ." FROM "
+// ." EMPLOYEES "
+// ." where "
+// ." emp_no = 500000 "
+// ;
+// $arr_ps = [
+// ];
+// $stmt = $conn->prepare($sql);
+// $stmt->execute($arr_ps);
+// $result = $stmt->fetchAll();
+// print_r($result);
+
 //4 자신의 정보를 삭제
+// $sql =
+// 	"DELETE FROM employees "
+// 	." WHERE " 
+// 	."emp_no = :emp_no; "
+// ;
+
+// $arr_ps = [
+// 	":emp_no" => 500000
+// ];
+
+// $stmt = $conn->prepare($sql);
+// $result = $stmt->execute($arr_ps);
+// $res_cnt = $stmt->rowCount();
+// var_dump($res_cnt);
+
 //5 PDO클래스 사용법 숙지

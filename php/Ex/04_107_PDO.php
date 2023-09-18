@@ -76,25 +76,25 @@ $obj_conn = new PDO($db_dns, $db_user, $db_pw, $db_options);
 // insert
 // 부서번호 'd010', 부서명 'php504 데이터 insert
 
-// $sql = 
-// 	" INSERT INTO departments ( "
-// 	." dept_no "
-// 	." ,dept_name "	
-// 	." ) "
-// 	." VALUES( "
-// 	." :dept_no "
-// 	." ,:dept_name "	
-// 	." ) ";
-// $arr_ps = [
-// 	":dept_no" => "d010"
-// 	,":dept_name" => "php504"
-// ];
+$sql = 
+	" INSERT INTO departments ( "
+	." dept_no "
+	." ,dept_name "	
+	." ) "
+	." VALUES( "
+	." :dept_no "
+	." ,:dept_name "	
+	." ) ";
+$arr_ps = [
+	":dept_no" => "d010"
+	,":dept_name" => "php504"
+];
 
-// $stmt = $obj_conn->prepare($sql);
-// $result = $stmt->execute($arr_ps);
-// $obj_conn->commit(); //커밋
+$stmt = $obj_conn->prepare($sql);
+$result = $stmt->execute($arr_ps);
+$obj_conn->commit(); //커밋
 
-// var_dump($result);
+var_dump($result);
 
 
 // delete 
