@@ -36,6 +36,7 @@ my_db_conn($conn);
 // $conn->commit();
 
 //2 자신의 이름을 "둘리", 성을 "호이"로 변경
+
 // $sql =
 // " UPDATE employees "
 // ." SET "
@@ -67,6 +68,25 @@ my_db_conn($conn);
 // $stmt = $conn->prepare($sql);
 // $result = $stmt->execute($arr_ps);
 // $conn->commit();
+
+
+// $sql = 
+//     " UPDATE "
+//     ." employees "
+//     ." SET "
+//     ." first_name = :first_name "
+//     ." , "
+//     ." last_name = :last_name "
+//     ." WHERE emp_no = :emp_no; ";
+// $arr_ps = [
+// 	":first_name" => "둘리"
+// 	,":last_name" => "호이"
+// 	,":emp_no" => 500000
+// ];
+	
+// $stmt = $conn->prepare($sql);
+// $result = $stmt->execute($arr_ps);
+
 
 //3 자신의 정보를 출력
 // $sql =
