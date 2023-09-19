@@ -4,7 +4,7 @@ $arr = [5, 3, 34, 2, 6, 7, 12];
 $last_idx_arr = count($arr) -1 ;
 for($cnt = 0; $cnt <= $last_idx_arr; $cnt++) {
     for($idx = 0; $idx <= $last_idx_arr - $cnt -1; $idx++) {
-        if( $arr[$idx] > $a rr[$idx + 1]) {
+        if( $arr[$idx] > $arr[$idx + 1]) {
             $tmp = $arr[$idx];
             $arr[$idx] = $arr[$idx + 1];
             $arr[$idx + 1] =$tmp;

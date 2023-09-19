@@ -45,14 +45,17 @@
 //     echo "\n";
 // }
 
-for($a = 1; $a <= 5; $a++) {
-    for($b = 1; $b >= $a; $b--) {
+$num = 5;
+for($a = 1; $a <= $num; $a++) {
+    for($b = $num-$a; $b >= 1; $b--) {
+    echo " ";
+    }
+    for($c = 0; $c < $a; $c++){
     echo "*";
     }
-    for($b = 1)
     echo "\n";
 }
-echo " ";
+
 
 
 

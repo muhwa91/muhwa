@@ -95,9 +95,9 @@ my_db_conn($conn);
 // ." FROM "
 // ." EMPLOYEES "
 // ." where "
-// ." emp_no = 500000 "
+// ." emp_no = :emp_no "
 // ;
-// $arr_ps = [
+// $arr_ps = [ :emp_no = 500000
 // ];
 // $stmt = $conn->prepare($sql);
 // $stmt->execute($arr_ps);

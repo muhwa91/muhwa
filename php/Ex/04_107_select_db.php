@@ -19,7 +19,7 @@ $result = $stmt->fetchAll();
 
 print_r($result);
 
-db_destroy_conn(&$conn) {
+function db_destroy_conn(&$conn) {
 	$conn = null;
 }
 
