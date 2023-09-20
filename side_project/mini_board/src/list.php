@@ -1,6 +1,6 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/mini_board/src/");
-require_once("lib/lib_db.php");
+require_once(ROOT."lib/lib_db.php");
 // var_dump($_SERVER);
 $conn = null;
 // DB접속
