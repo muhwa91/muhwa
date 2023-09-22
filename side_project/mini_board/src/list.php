@@ -22,6 +22,8 @@ $page_num = 1; //페이지 번호 초기화
 // 	exit;
 // }
 $max_page_num = ceil(db_select_boards_cnt($conn) / $list_cnt); // 최대 페이지 수 (ceil 반올림)
+
+//GET method 확인
 if(isset($_GET["page"])) {
 	$page_num = $_GET["page"]; //유저가 보내온 페이지 셋팅
 }
@@ -96,10 +98,16 @@ db_destroy_conn($conn); // db파기
 			?>
 					<tr>
 						<td><?php echo $item["id"]; ?></td>
-						<td><?php echo $item["title"]; ?></td>
+						<td>
+							<a href="/mini_board/src/detail.php?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>">
+								<?php echo $item["title"]; ?>
+							</a>
+						</td>
 						<td><?php echo $item["create_at"]; ?></td>
 					</tr>
-			<?php	} ?>		
+			<?php	
+				} 
+			?>		
 
 		</table>
 		<section>

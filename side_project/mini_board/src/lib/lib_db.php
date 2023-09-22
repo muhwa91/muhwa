@@ -140,6 +140,41 @@ function db_insert_boards(&$conn, $arr_param) {
 
 }
 
+//--------------------------------------------------------
+// 함수명 : db_select_boards_id
+// 기능 : boards 레코드 작성
+// 파라미터 : PDO  &$conn
+//           Array	&$arr_param 쿼리 작성용 배열
+// 리턴 : Boolean
+//--------------------------------------------------------
+
+function db_select_boards_id(&$conn, &$id) {	
+	$sql =
+		" SELECT "
+		."		id "
+		." 		,title "
+		." 		,content "
+		."		,create_at "
+		." FROM "
+		."		boards"
+		." WHERE "
+		."		id = :id "		
+		;
+		$arr_ps = [
+			":id" => $id			
+		];
+	
+	try {
+		$stmt = $conn->prepare($sql);		
+		$stmt->execute($arr_ps);
+		$result = $stmt->FetchAll();		
+		return $result;
+	} catch(Exception $e) {
+		return false; // 예외발생 : false
+	}
+
+}
+
 
 
 // to do 나중에 지울 것
