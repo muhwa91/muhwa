@@ -74,13 +74,21 @@ db_destroy_conn($conn); // db파기
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/mini_board/src/css/common.css">
 	<title>리스트 페이지</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 </head>
 <body>
 	<?php
 		require_once(FILE_HEADER);
 	?>	
 	<main>
-	<a href="/mini_board/src/insert.php">글 작성</a>		
+		<br>
+		<div class="post">
+        	<a href="/mini_board/src/insert.php">
+          	<span class="thin">Create</span>
+			<span class="thick">Post</span></a>
+      	</div>		
 		<table>
 			<colgroup>
 				<col width="20%">
@@ -96,32 +104,44 @@ db_destroy_conn($conn); // db파기
 				// 리스트 생성
 				foreach($result as $item) {
 			?>
-					<tr>
-						<td><?php echo $item["id"]; ?></td>
-						<td>
-							<a href="/mini_board/src/detail.php?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>">
-								<?php echo $item["title"]; ?>
-							</a>
-						</td>
-						<td><?php echo $item["create_at"]; ?></td>
-					</tr>
+				<tr>
+					<td><?php echo $item["id"]; ?></td>
+					<td>
+						<a href="/mini_board/src/detail.php?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>">
+							<?php echo $item["title"]; ?>
+						</a>
+					</td>
+					<td><?php echo $item["create_at"]; ?></td>
+				</tr>
 			<?php	
 				} 
 			?>		
-
 		</table>
+		<br>
 		<section>
-			<a class="page-btn" href="http://localhost/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>">이전</a>
-			<?php
-				for($i = 1; $i <= $max_page_num; $i++) {
-				?>	
-					<a class="page-btn" href="http://localhost/mini_board/src/list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+			<div class="main_page">
+				<a href="http://localhost/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>"><</a>
 				<?php
-				}
-				?>
-			<a class="page-btn" href="http://localhost/mini_board/src/list.php/?page=<?php echo $next_page_num ?>">다음</a>
-		</section>
-		
+					for($i = 1; $i <= $max_page_num; $i++) {
+					// 현재 페이지에 활성화
+					if ((int)$page_num === $i) {
+						?>
+						 <!-- a : 페이지 표시 버튼 -->
+						<a class="main_num" href="http://localhost/mini_board/src/list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+						<?php
+						} else {
+						?>
+						<a class="main_num1" href="http://localhost/mini_board/src/list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+						<?php
+						}						
+					?>	
+					<?php
+					}
+					?>
+					<!-- 다음 페이지 -->
+				<a href="http://localhost/mini_board/src/list.php/?page=<?php echo $next_page_num ?>">></a>
+			</div>
+		</section>		
 	</main>
 </body>
 </html>

@@ -44,24 +44,31 @@ if($http_method === "POST") {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/mini_board/src/css/common.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 	<title>작성 페이지</title>
 </head>
 <body>
-	<?php
+	<main>
+		<?php
 		require_once(FILE_HEADER);
-	?>
-	<form action="/mini_board/src/insert.php" method="post">	
-		<label for="title">제목</label>
-		<input type="text" name="title" id="title">
-		<br>
-		<label for="content">내용</label>
-		<textarea name="content" id="content" cols="30" rows="10"></textarea>
-		<br>
-		<button type="submit">작성</button>
-		<a href="/mini_board/src/list.php">취소</a>
-	</form>
-		
-	
-	
+		?>
+		<form action="/mini_board/src/insert.php" method="post">
+			<br><br><br><br>
+			<div class="container">
+				<label for="title">제 목</label>
+				<input type="text" class = 'textarea1' name="title" id="title" 
+				maxlength="35" placeholder="30자 제한">
+			<br><br>
+				<label for="content">내 용</label>
+				<textarea class = 'textarea2' name="content" id="content" cols="30" rows="10"
+				placeholder="내용을 입력해주세요."></textarea>
+			</div>		
+			<br><br>
+			<button class="w-btn w-btn-gray" type="submit">작 성</button>
+			<button class="w-btn w-btn-gray" onclick="location.href=/mini_board/src/list.php">취 소</button>
+		</form>
+	</main>
 </body>
 </html>

@@ -46,38 +46,48 @@ $input_id = $_GET["id"];
 
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/mini_board/src/css/common.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 	<title>상세 페이지</title>
 </head>
 <body>
-	<?php
-		require_once(FILE_HEADER);
-	?>	
-	<table>
-		<tr>
-			<th>글 번호</th>
-			<td><?php echo $item["id"]; ?></td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td><?php echo $item["title"]; ?></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td><?php echo $item["content"]; ?></td>
-		</tr>
-		<tr>
-			<th>작성일자</th>
-			<td><?php echo $item["create_at"]; ?></td>
-		</tr>
-	</table>
-	<a href="#">수정</a>
-	<a href="/mini_board/src/list.php/?page=<?php echo $_GET["page"]; ?>">취소</a>
-	<a href="#">삭제</a>
+	<main>
+		<?php
+			require_once(FILE_HEADER);
+		?>	
+		<table>
+			<tr>
+				<th>글 번호</th>
+				<td><?php echo $item["id"]; ?></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td><?php echo $item["title"]; ?></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><?php echo $item["content"]; ?></td>
+			</tr>
+			<tr>
+				<th>작성일자</th>
+				<td><?php echo $item["create_at"]; ?></td>
+			</tr>
+		</table>
+		<br><br>
+		<div class="content">
+			<a href="#">수정</a>
+			<a href="/mini_board/src/list.php/?page=<?php echo $_GET["page"]; ?>">취소</a>
+			<a href="#">삭제</a>
+		</div>
+	</main>
 </body>
 </html>
