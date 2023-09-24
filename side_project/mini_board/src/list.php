@@ -83,7 +83,6 @@ db_destroy_conn($conn); // db파기
 		require_once(FILE_HEADER);
 	?>	
 	<main>
-		<br>
 		<div class="post">
         	<a href="/mini_board/src/insert.php">
           	<span class="thin">Create</span>
@@ -117,7 +116,6 @@ db_destroy_conn($conn); // db파기
 				} 
 			?>		
 		</table>
-		<br>
 		<section>
 			<div class="main_page">
 				<a href="http://localhost/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>"><</a>

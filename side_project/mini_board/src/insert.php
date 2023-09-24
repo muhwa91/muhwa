@@ -54,18 +54,17 @@ if($http_method === "POST") {
 		<?php
 		require_once(FILE_HEADER);
 		?>
+		<br><br>
 		<form action="/mini_board/src/insert.php" method="post">
-			<br><br><br><br>
 			<div class="container">
 				<label for="title">제 목</label>
 				<input type="text" class = 'textarea1' name="title" id="title" 
 				maxlength="35" placeholder="30자 제한">
-			<br><br>
+				<br>
 				<label for="content">내 용</label>
-				<textarea class = 'textarea2' name="content" id="content" cols="30" rows="10"
+				<textarea class = 'textarea2' name="content" id="content" cols="50" rows="10"
 				placeholder="내용을 입력해주세요."></textarea>
-			</div>		
-			<br><br>
+			</div>
 			<button class="w-btn w-btn-gray" type="submit">작 성</button>
 			<button class="w-btn w-btn-gray" onclick="location.href=/mini_board/src/list.php">취 소</button>
 		</form>

@@ -82,12 +82,14 @@ $input_id = $_GET["id"];
 				<td><?php echo $item["create_at"]; ?></td>
 			</tr>
 		</table>
-		<br><br>
 		<div class="content">
-			<a href="#">수정</a>
-			<a href="/mini_board/src/list.php/?page=<?php echo $_GET["page"]; ?>">취소</a>
-			<a href="#">삭제</a>
+			<button class="w-btn w-btn-gray" type="">수 정</button>
+			<button class="w-btn w-btn-gray" onclick="location.href=/mini_board/src/list.php/?page=<?php echo (int)$page; ?>">취 소</button>
+			<button class="w-btn w-btn-gray" type="">삭 제</button>
 		</div>
 	</main>
 </body>
 </html>
+
+
+

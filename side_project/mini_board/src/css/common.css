@@ -5,15 +5,7 @@
 
 body {
 	margin: 0;
-	padding: 0;	
-	background-image: url(../../doc/20210312171400.jpg);
-	background-repeat: no-repeat;
-	background-size: 900px 440px;
-	background-position: center 320px;
-}
-
-main {
-	text-align: center;
+	padding: 0;		
 }
 
 header {
@@ -55,6 +47,10 @@ header > h1 {
 			transition: all 0.1s linear;
 }  
 
+main {
+	text-align: center;
+}
+
 .post {
 	border: none;
 	text-align: right;
@@ -90,11 +86,14 @@ table {
 	height: 500px;
 	margin: 50px auto;
 	font-size: 1.5rem;
+	background-image: url(../../doc/20210312171400.jpg);
+	background-repeat: no-repeat;
+	background-size: 900px 500px;
 }
 
 th {
 	width: 900px;
-	height: 45px;
+	height: 35px;
 }
 td {
 	width: 900px;
@@ -223,12 +222,15 @@ a {
 }	
 
 .container *{
-	vertical-align:middle;
+	vertical-align:middle;	
 }
 	
-
 form {
-	font-size: 30px;	
+	font-size: 30px;
+	background-image: url(../../doc/20210312171400.jpg);
+	background-repeat: no-repeat;
+	background-size: 800px 500px;
+	background-position: center;
 }
 
 .textarea1 {	
