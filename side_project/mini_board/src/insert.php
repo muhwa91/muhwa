@@ -4,7 +4,7 @@ define("FILE_HEADER", ROOT."header.php");//헤더 패스
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // post로 request가 있을 때 처리
-$http_method = $_SERVER["REQUEST_METHOD"];
+$http_method = $_SERVER["REQUEST_METHOD"]; // Method 확인
 if($http_method === "POST") {
 	try {
 		$arr_post = $_POST;
@@ -50,11 +50,11 @@ if($http_method === "POST") {
 	<title>작성 페이지</title>
 </head>
 <body>
-	<main>
-		<?php
+	<?php
 		require_once(FILE_HEADER);
-		?>
+		?>	
 		<br><br>
+		<div class="form">
 		<form action="/mini_board/src/insert.php" method="post">
 			<div class="container">
 				<label for="title">제 목</label>
@@ -68,6 +68,6 @@ if($http_method === "POST") {
 			<button class="w-btn w-btn-gray" type="submit">작 성</button>
 			<button class="w-btn w-btn-gray" onclick="location.href=/mini_board/src/list.php">취 소</button>
 		</form>
-	</main>
+		</div>
 </body>
 </html>

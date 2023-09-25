@@ -87,7 +87,8 @@ db_destroy_conn($conn); // db파기
         	<a href="/mini_board/src/insert.php">
           	<span class="thin">Create</span>
 			<span class="thick">Post</span></a>
-      	</div>		
+      	</div>
+		<div class="form">		
 		<table>
 			<colgroup>
 				<col width="20%">
@@ -116,23 +117,16 @@ db_destroy_conn($conn); // db파기
 				} 
 			?>		
 		</table>
+		</div>
 		<section>
 			<div class="main_page">
 				<a href="http://localhost/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>"><</a>
 				<?php
 					for($i = 1; $i <= $max_page_num; $i++) {
 					// 현재 페이지에 활성화
-					if ((int)$page_num === $i) {
-						?>
-						 <!-- a : 페이지 표시 버튼 -->
-						<a class="main_num" href="http://localhost/mini_board/src/list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-						<?php
-						} else {
-						?>
-						<a class="main_num1" href="http://localhost/mini_board/src/list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-						<?php
-						}						
-					?>	
+					$str = (int)$page_num === $i ? "main_num" : "main_num1";
+					?>
+					<a class="<?php echo $str;?>" href="http://localhost/mini_board/src/list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 					<?php
 					}
 					?>
@@ -143,4 +137,3 @@ db_destroy_conn($conn); // db파기
 	</main>
 </body>
 </html>
-

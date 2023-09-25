@@ -8,8 +8,9 @@ $conn = null; // DB Connect
 
 try {
 	//id 확인
-
+	// DB 연결
 	if(!my_db_conn($conn)) {
+		// DB Instance 에러
 		throw new Exception("DB Error : PDO Instance");
 	}
 
@@ -18,7 +19,7 @@ try {
 	}
 
 	$id = $_GET["id"]; // id 셋팅
-	$page = $_GET["page"]; // page 셋팅
+	$page = (int)$_GET["page"]; // page 셋팅
 
 	// 게시글 데이터 조회
 	$result=db_select_boards_id($conn, $id);
@@ -60,10 +61,11 @@ $input_id = $_GET["id"];
 	<title>상세 페이지</title>
 </head>
 <body>
+	<?php
+		require_once(FILE_HEADER);
+	?>	
 	<main>
-		<?php
-			require_once(FILE_HEADER);
-		?>	
+		<div class="form">
 		<table>
 			<tr>
 				<th>글 번호</th>
@@ -83,9 +85,10 @@ $input_id = $_GET["id"];
 			</tr>
 		</table>
 		<div class="content">
-			<button class="w-btn w-btn-gray" type="">수 정</button>
-			<button class="w-btn w-btn-gray" onclick="location.href=/mini_board/src/list.php/?page=<?php echo (int)$page; ?>">취 소</button>
+			<button class="w-btn w-btn-gray" onclick="location.href='/mini_board/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'">수정페이지로</button>
+			<button class="w-btn w-btn-gray" onclick="location.href='/mini_board/src/list.php/?page=<?php echo $page; ?>'";>취 소</button>
 			<button class="w-btn w-btn-gray" type="">삭 제</button>
+		</div>
 		</div>
 	</main>
 </body>

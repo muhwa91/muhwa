@@ -10,7 +10,7 @@ body {
 
 header {
 	width: 100%;
-	background-color: rgba(71, 100, 114, 0.5);
+	background-color: rgba(71, 100, 114, 0.7);
 	padding: 2rem;
 	margin: 0;
 	font-size: 1rem;
@@ -47,7 +47,19 @@ header > h1 {
 			transition: all 0.1s linear;
 }  
 
-main {
+/* body {
+	text-align: center;
+	background-image: url(../../doc/20210312171400.jpg);
+	background-repeat: no-repeat;
+	background-size: 1000px 700px;
+	background-position: center;
+} */
+
+.form {
+	background-image: url(../../doc/20210312171400.jpg);
+	background-repeat: no-repeat;
+	background-size: 1000px 700px;
+	background-position: center;
 	text-align: center;
 }
 
@@ -86,9 +98,6 @@ table {
 	height: 500px;
 	margin: 50px auto;
 	font-size: 1.5rem;
-	background-image: url(../../doc/20210312171400.jpg);
-	background-repeat: no-repeat;
-	background-size: 900px 500px;
 }
 
 th {
@@ -226,11 +235,7 @@ a {
 }
 	
 form {
-	font-size: 30px;
-	background-image: url(../../doc/20210312171400.jpg);
-	background-repeat: no-repeat;
-	background-size: 800px 500px;
-	background-position: center;
+	font-size: 30px;	
 }
 
 .textarea1 {	
