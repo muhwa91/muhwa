@@ -2,20 +2,19 @@
 // class : 동종의 객체들이 모여있는 집합을 정의한 것
 //php 객체 지향으로 쓸 때에는 카멜기법
 class ClassRoom {
-    // 멤버필드
-
-    // 멤버 변수
+    // 멤버필드 : 멤버변수와 메소드가 정의되어 있는 장소
+    // 멤버 변수 : class내에 있는 변수
     // 접근제어 지시자 : public, private, protected
-    public $computer; // 어디에서나 접근 가능
+    public $computer; // 어디에서나 접근 가능(보안성 취약하여 잘 사용하지 않음)
     private $book; // class 내에서만 접근 가능
     protected $bag; // class와 나를 상속 받은 자식class 내에서만 접근 가능
-    public $now;
+    private $now;
 
 // 생성자(constructor)
 // 클래스를 이용하여 객체를 생성할 때 사용
 // 생성자를 정의 하지 않을 때는 디폴트 생성자가 선언됨
 // 클래스를 인스턴스 할 때 자동으로 실행되는 메소드
-public function __construct() {
+public function __construct() { //public, private, protected 가능
     echo "컨스트럭트 실행";
     $this->now = date("Y-m-d H:i:s");
 }
@@ -23,7 +22,7 @@ public function __construct() {
 
 
 // 메소드(method) : class내에 있는 함수
-public function class_room_set_value() {
+public function class_room_set_value() { 
     $this->computer = "컴퓨터";
     $this->book = "책";
     $this->bag = "가방";
