@@ -81,6 +81,7 @@ try {
 		require_once(FILE_HEADER);
 	?>
 	<main>
+	<div class="form">
 	<form action="/mini_board/src/update.php" method="post">
 		<table>
 			<input type="hidden" name="id" value="<?php echo $id ?>">
@@ -102,11 +103,12 @@ try {
 				</td>
 			</tr>			
 		</table>
+		</div>
 		<div class="content">
 			<button class="w-btn w-btn-gray" type="submit">수정확인</button>
 			<button class="w-btn w-btn-gray" onclick="location.href='/mini_board/src/detail.php/?id=<?php echo $id;?>&page=<?php echo $page;?>'";>수정취소</button>
-		</div>
-	</form>		
+		</form>
+	</div>		
 	</main>
 </body>
 </html>

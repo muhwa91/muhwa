@@ -55,11 +55,16 @@ header > h1 {
 	background-position: center;
 } */
 
+
 .form {
 	background-image: url(../../doc/20210312171400.jpg);
 	background-repeat: no-repeat;
 	background-size: 1000px 700px;
 	background-position: center;
+	text-align: center;
+}
+
+.content {
 	text-align: center;
 }
 

@@ -1,6 +1,6 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/mini_board/src/");//웹서버root
-define("FILE_HEADER", ROOT."header.php");//헤더 패스
+define("FILE_HEADER", ROOT."header.php");//헤더 패스(상수)
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 // var_dump($_SERVER);
 
