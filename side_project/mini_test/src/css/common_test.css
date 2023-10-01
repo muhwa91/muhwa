@@ -1,0 +1,221 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+
+header {
+	padding: 0px 10px;
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;	
+	background-color: rgb(0, 0, 0);
+	color: white;
+	position: relative;	
+}
+
+header input {
+	display: none;
+}
+
+header label {
+	display: flex;
+	width: 35px;
+	height: 25px;
+	flex-direction: column;
+	justify-content: space-between;
+	cursor: pointer;
+}
+
+header label span {
+	width:  100%;
+	height: 5px;
+	background-color: white;
+	border-radius: 10px;
+	transition: transform .2s ease-in-out;	
+}
+
+header label span:first-child {
+	transform-origin: 0% 0%;
+}
+
+header label span:last-child {
+	transform-origin: 0% 100%;
+}
+
+header:has(input:checked) label span:first-child {
+	transform: rotateZ(37deg);
+}
+
+header:has(input:checked) label span:nth-child(2) {
+	transform: scaley(0);
+}
+
+header:has(input:checked) label span:last-child {
+	transform: rotate(-37deg);
+}
+
+header:has(input:checked) ~ nav {
+	transform: translateX(0%);
+}
+
+nav{
+	width: 25vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0);	
+	transform: translateX(-100%);
+	transition: transform 0.2s ease-in-out;
+	position: absolute;
+	z-index: 6;	
+}
+
+nav ul {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 20px 0px 0px 20px;
+	color: white;
+	font-size: 28px;
+}
+
+nav a {
+	color: inherit;
+}
+
+.container {
+	width: 100%;
+	height: 1000px;
+	background-image: url(/mini_test/doc/whale.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	top: 150px;
+	z-index: 1;	
+}
+
+table {
+	width: 1000px;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid transparent;
+	background-color: rgba(240, 236, 236, 0.1);	
+	font-size: 2rem;
+	color: rgb(255, 255, 255, 0.7);
+	border-collapse: collapse;
+	position: absolute;
+	top: 100px;
+	left: 25vw;
+}
+
+th {
+	height: 70px;
+}
+
+td {
+	height: 50px;
+}
+
+tr {	
+	border-bottom: 0.1px solid rgb(180, 180, 180, 0.5);
+}
+
+form {
+	color: rgb(255, 255, 255, 0.7);
+	font-size: 1.5rem;
+	position: absolute;
+	top: 100px;
+	left: 25vw;	
+}
+
+.container1 *, .container2 *{
+	vertical-align:middle;
+}
+
+.textarea1 {	
+	width: 500px;
+	height: 10px;
+	padding: 10px;
+	background-color: rgba(71, 100, 114, 0.3);
+	box-sizing: border-box;
+	border: solid transparent;
+	border-radius: 10px;	
+	resize: none;
+	color: rgb(255, 255, 255, 0.7);
+}
+
+.textarea2 {	
+	width: 500px;
+	height: 300px;
+	padding: 10px;
+	background-color: rgba(71, 100, 114, 0.3);
+	box-sizing: border-box;
+	border: solid transparent;
+	border-radius: 10px;	
+	resize: none;
+	color: rgb(255, 255, 255, 0.7);
+}
+
+.container2 {
+	text-align: center;
+}
+
+.container2 button {
+	width: 100px;
+	height: 30px;
+	margin: 10px;
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(255, 255, 255, 0.7);
+}
+
+form button {
+	width: 100px;
+	height: 30px;
+	margin: 10px;
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(255, 255, 255, 0.7);
+}
+
+.w-btn {
+	line-height: 0px;
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-gray {
+    background-color: rgba(71, 100, 114, 0.3);
+}
+
+.w-btn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.w-btn:active {
+    transform: scale(1.5);
+}
+
+
+
+
+
