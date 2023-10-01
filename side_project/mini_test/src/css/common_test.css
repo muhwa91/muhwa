@@ -1,3 +1,14 @@
+/* 헤더 폰트 */
+header {
+	font-family: 'Gaegu', cursive; 	
+}
+/* 전체 폰트 */
+body {
+	font-family: 'Orbit', sans-serif;
+}
+
+
+
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -69,7 +80,7 @@ header:has(input:checked) ~ nav {
 }
 
 nav{
-	width: 25vw;
+	width: 300px;
 	height: 100vh;
 	background-color: rgba(0, 0, 0);	
 	transform: translateX(-100%);
@@ -86,7 +97,7 @@ nav ul {
 	gap: 20px;
 	padding: 20px 0px 0px 20px;
 	color: white;
-	font-size: 28px;
+	font-size: 30px;
 }
 
 nav a {
@@ -105,26 +116,82 @@ nav a {
 	z-index: 1;	
 }
 
-table {
-	width: 1000px;
+.list_table {
+	margin: 0px 300px;
+	width: 900px;
 	text-align: center;
 	text-decoration: none;
 	border: 1px solid transparent;
 	background-color: rgba(240, 236, 236, 0.1);	
-	font-size: 2rem;
+	font-size: 1.7rem;
 	color: rgb(255, 255, 255, 0.7);
 	border-collapse: collapse;
-	position: absolute;
-	top: 100px;
-	left: 25vw;
+	/* border-bottom: 0.1px solid white;	 */
 }
 
-th {
+.detail_table {
+	margin: 0px -120px;
+	width: 900px;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid transparent;
+	background-color: rgba(240, 236, 236, 0.1);	
+	font-size: 1.7rem;
+	color: rgb(255, 255, 255, 0.7);
+	border-collapse: collapse;	
+}
+
+.delete_table {
+	margin: 0px 10px;
+	width: 900px;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid transparent;
+	background-color: rgba(240, 236, 236, 0.1);	
+	font-size: 1.7rem;
+	color: rgb(255, 255, 255, 0.7);
+	border-collapse: collapse;		
+}
+
+.update_table {
+	margin: 0px -52px;
+	width: 900px;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid transparent;
+	background-color: rgba(240, 236, 236, 0.1);	
+	font-size: 1.7rem;
+	color: rgb(255, 255, 255, 0.7);
+	border-collapse: collapse;		
+}
+
+/* caption {
+	text-align: center;
+	font-size: 1.7rem;
+	color: rgb(255, 255, 255, 0.7);
+} */
+
+table th, table td {
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
+}
+
+table th {
+	width: 80px;	
 	height: 70px;
 }
 
-td {
+table th:first-child, table td:first-child {
+	border-left: 0;
+}
+
+table td {
+	width: 800px;
 	height: 50px;
+	text-align: center;
+}
+
+table th:last-child, table td:last-child {
+	border-right: 0;
 }
 
 tr {	
@@ -132,20 +199,18 @@ tr {
 }
 
 form {
+	margin: 0px 350px;
 	color: rgb(255, 255, 255, 0.7);
 	font-size: 1.5rem;
-	position: absolute;
-	top: 100px;
-	left: 25vw;	
 }
 
-.container1 *, .container2 *{
+/* .container1 *, .container2 *{
 	vertical-align:middle;
-}
+} */
 
 .textarea1 {	
-	width: 500px;
-	height: 10px;
+	width: 700px;
+	height: 30px;
 	padding: 10px;
 	background-color: rgba(71, 100, 114, 0.3);
 	box-sizing: border-box;
@@ -153,11 +218,27 @@ form {
 	border-radius: 10px;	
 	resize: none;
 	color: rgb(255, 255, 255, 0.7);
+	vertical-align:middle;
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
 }
 
 .textarea2 {	
-	width: 500px;
+	width: 700px;
 	height: 300px;
+	padding: 20px;
+	background-color: rgba(71, 100, 114, 0.3);
+	box-sizing: border-box;
+	border: solid transparent;
+	border-radius: 10px;	
+	resize: none;
+	color: rgb(255, 255, 255, 0.7);
+	vertical-align:middle;
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
+}
+
+.textarea3 {	
+	width: 750px;
+	height: 30px;
 	padding: 10px;
 	background-color: rgba(71, 100, 114, 0.3);
 	box-sizing: border-box;
@@ -165,6 +246,29 @@ form {
 	border-radius: 10px;	
 	resize: none;
 	color: rgb(255, 255, 255, 0.7);
+	vertical-align:middle;
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
+}
+
+.textarea4 {	
+	width: 750px;
+	height: 200px;
+	padding: 20px;
+	background-color: rgba(71, 100, 114, 0.3);
+	box-sizing: border-box;
+	border: solid transparent;
+	border-radius: 10px;	
+	resize: none;
+	color: rgb(255, 255, 255, 0.7);
+	vertical-align:middle;
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
+}
+
+
+.container1 {
+	margin: auto;
+	width: 900px;
+	/* text-align: center; */
 }
 
 .container2 {
@@ -190,15 +294,14 @@ form button {
 }
 
 .w-btn {
-	line-height: 0px;
-    position: relative;
+	line-height: 0px;    
     border: none;
     display: inline-block;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     font-weight: 600;
-    transition: 0.25s;
+    transition: 0.25s;	
 }
 
 .w-btn-gray {
@@ -215,7 +318,108 @@ form button {
     transform: scale(1.5);
 }
 
+.list_num {	
+	text-align: center;
+}
 
+.list_num a{
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	text-decoration: none;
+	display: inline-block;
+	background-color: rgba(71, 100, 114, 0.3);
+	border: 1px solid transparent;
+	border-radius: 40px;
+}	
 
+.list_num a:link{
+	text-decoration: none;
+	color : #fff
+}
+
+.list_num a:visited{
+	color: white;
+}
+.list_num  a:hover {
+	color: #fff;
+	background-color: #000;
+}
+
+.list_num a:active{
+	color: #fff;
+	background-color: #000;
+}
+  
+.list_num a:before{
+	content: '';
+	position: absolute;
+	bottom: 0; left: 0;
+	width: 100%;
+}
+
+.list_num a:hover:before{
+	opacity: 1.0;
+}
+  
+.list_num a, .list_num a:before {
+	-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+} 
+
+.main_num {
+	color: rgb(255, 255, 255, 0.7) !important;
+	background-color: #000 !important;
+}
+
+.main_num1 {
+	background-color: rgba(71, 100, 114, 0.3);
+}
+
+table a:link {
+	color : rgb(255, 255, 255, 0.7);
+}
+
+table a:visited {
+	color: rgb(255, 255, 255, 0.7);
+}
+table a:hover {
+	color: rgba(7, 28, 39, 0.3);
+}
+  
+table a:before {
+	content: '';
+	position: absolute;
+	bottom: 0; left: 0;
+	width: 100%;
+}
+  
+table a:hover:before {
+	opacity: 1.0;
+}
+  
+table a, table a:before {
+	-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.75rem;
+	color: #ffffff;
+	z-index: 1;
+}
+
+footer a {
+	text-decoration: none;
+	color: #fff;
+}
 
 

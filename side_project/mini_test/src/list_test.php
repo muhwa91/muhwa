@@ -5,7 +5,7 @@ define("ERROR_MSG_PARAM", "Parameter Error : %s"); // 파라미터 에러 메세
 require_once(ROOT."lib/lib_db_test.php");
 
 $conn = null; // DB Connection 변수
-$list_cnt = 10; // 한 페이지 최대 표시 수
+$list_cnt = 5; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
 $arr_err_msg = []; // 에러 메세지 저장용
 
@@ -74,42 +74,72 @@ try {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/mini_test/src/css/common_test.css">
 	<title>리스트 페이지</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 </head>
 <body>
 <?php
 	require_once(FILE_HEADER);
 ?>
-<div class="container">
-	<table>
-		<colgroup>
-			<col width="10%">
-			<col width="60%">
-			<col width="30%">
-		</colgroup>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>등록일</th>
-		</tr>
-		<?php
-			// 리스트 생성
-			foreach($result as $item) {
-		?>
-		<tr>
-			<td><?php echo $item["id"]; ?></td>
-			<td>
-				<a href="/mini_test/src/detail_test.php?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>">
-				<?php echo $item["title"]; ?>
-				</a>
-			</td>
-			<td>
-				<?php echo $item["create_at"]; ?>
-			</td>
-		</tr>
-		<?php	
-		} 
-		?>
-	</table>
-</div>
+	<div class="container">
+		<div class="list_table">
+			<table>
+				<colgroup>
+					<col width="10%">
+					<col width="60%">
+					<col width="30%">
+				</colgroup>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>등록일</th>
+				</tr>
+				<?php
+					// 리스트 생성
+					foreach($result as $item) {
+				?>
+				<tr>
+					<td><?php echo $item["id"]; ?></td>
+					<td>
+						<a href="/mini_test/src/detail_test.php?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>">
+						<?php echo $item["title"]; ?>
+						</a>
+					</td>
+					<td>
+						<?php echo $item["create_at"]; ?>
+					</td>
+				</tr>
+				<?php	
+				} 
+				?>
+			</table>
+		</div>
+		<br>
+		<div class="list_num">
+			<a href="http://localhost/mini_test/src/list_test.php/?page=<?php echo $prev_page_num ?>"><<</a>
+				<?php
+				for($i = 1; $i <= $max_page_num; $i++) {
+				// 현재 페이지에 활성화
+				$str = (int)$page_num === $i ? "main_num" : "main_num1";
+				?>
+			<a class="<?php echo $str;?>" href="http://localhost/mini_test/src/list_test.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+				<?php
+				}
+				?>
+				<!-- 다음 페이지 -->
+			<a href="http://localhost/mini_test/src/list_test.php/?page=<?php echo $next_page_num ?>">>></a>
+		</div>
+	</div>
+	<footer>
+		<div class="footer">
+			<a href="#">시간이 있었는데</a> |
+			<a href="#">없었습니다.</a>
+		</div>
+        <p>제작자 : 나<br>
+			제작시간 : 12시간<br>
+			권리 없음
+		</p>
+	</footer>
 </body>
 </html>

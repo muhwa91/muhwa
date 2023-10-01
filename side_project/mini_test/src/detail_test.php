@@ -58,39 +58,53 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/mini_test/src/css/common_test.css">
     <title>상세 페이지</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 </head>
 <body>
 <?php
 	require_once(FILE_HEADER);
 ?>
-    <div class="container">
-        <form action="">   
-    <div class="container1">	
-            <table>
-		        <tr>
-			        <th>번호</th>
-			        <td><?php echo $item["id"]; ?></td>
-		        </tr>
-		        <tr>
-			        <th>제목</th>
-			        <td><?php echo $item["title"]; ?></td>
-		        </tr>
-		        <tr>
-			        <th>내용</th>
-			        <td><?php echo $item["content"]; ?></td>
-		        </tr>
-		        <tr>
-			        <th>등록일</th>
-			        <td><?php echo $item["create_at"]; ?></td>
-		        </tr>            
-	        </table>
+    <div class="container">     
+        <div class="container1">
+			<div class="detail_table">
+				<table>
+					<tr>
+						<th>번호</th>
+						<td><?php echo $item["id"]; ?></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td><?php echo $item["title"]; ?></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><?php echo $item["content"]; ?></td>
+					</tr>
+					<tr>
+						<th>등록일</th>
+						<td><?php echo $item["create_at"]; ?></td>
+					</tr>            
+				</table>
+			</div>
         </div>
-        <div class="container2">
-		    <button class="w-btn w-btn-gray" onclick="location.href='/mini_board/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'">수 정</button>
-		    <button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/list_test.php/?page=<?php echo $page; ?>'";>취 소</button>
-		    <button class="w-btn w-btn-gray" onclick="location.href='/mini_board/src/delete.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'">삭 제</button>
-        </div>    
-        </form>    
-    </div>     
+        <br>
+		<div class="container2">
+			<button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/update_test.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'">수 정</button>
+			<button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/list_test.php/?page=<?php echo $page; ?>'";>취 소</button>
+			<button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/delete_test.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'">삭 제</button>
+		</div>            
+    </div>
+	<footer>
+		<div class="footer">
+			<a href="#">시간이 있었는데</a> |
+			<a href="#">없었습니다.</a>
+		</div>
+        <p>제작자 : 나<br>
+			제작시간 : 12시간<br>
+			권리 없음
+		</p>
+	</footer>     
 </body>
 </html>
