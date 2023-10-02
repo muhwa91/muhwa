@@ -84,7 +84,6 @@ try {
 			throw new Exception("DB Error : Update_Boards_id");
 		}
 		$conn->commit(); // commit
-
 		header("Location: detail_test.php/?id={$id}&page={$page}"); // 디테일 페이지로 이동
 		exit;
 	}
@@ -143,11 +142,11 @@ try {
                     </table>
                 </div>
             </div>
-        </form>
         <div class="container2">
 			<button class="w-btn w-btn-gray" type="submit">수 정</button>
 			<button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/detail_test.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'";>취 소</button>
-        </div>
+		</div>
+		</form>
     </div>
     <footer>
 		<div class="footer">

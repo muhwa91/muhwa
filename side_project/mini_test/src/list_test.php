@@ -35,6 +35,9 @@ try {
 
 	$max_page_num = ceil($boards_cnt / $list_cnt); // 최대 페이지 수
 
+	if(isset($_GET["page"])) {
+		$page_num = $_GET["page"]; //유저가 보내온 페이지 셋팅
+	}
 	$offset = ($page_num - 1) * $list_cnt; // 오프셋 계산
 
 	// 이전버튼
@@ -51,7 +54,6 @@ try {
 
 	// 게시글 리스트 조회
 	$result = db_select_boards_paging($conn, $arr_param);
-
 	// 게시글 조회 예외처리
 	if($result === false) {
 		// 게시글 조회 에러

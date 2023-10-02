@@ -8,16 +8,16 @@
 		<h1>mini_test</h1>
 </header>
 <nav>
-		<ul>
-			<li><a href="/mini_test/src/list_test.php">🐳home</a></li>
-			<br>
-			<li><a href="">🐳login</a></li>
-			<br>
-			<li><a href="/mini_test/src/insert_test.php">🐳create post</a></li>
-			<br>
-			<li><a href="">🐳copyright</a></li>
-		</ul>
+	<div class="back color-5">    	    
+		<ul class="header_a">
+			<li><a href="/mini_test/src/list_test.php">🐳Home</a></li>
+			<li><a href="">🐳Login</a></li>
+			<li><a href="/mini_test/src/insert_test.php">🐳Create post</a></li>
+			<li><a href="">🐳Copyright</a></li>
+		</ul>    	
+  	</div>		
 </nav>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
