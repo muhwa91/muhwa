@@ -146,7 +146,7 @@ try {
         </form>
         <div class="container2">
 			<button class="w-btn w-btn-gray" type="submit">수 정</button>
-			<button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/detail_test.php/?id=<?php echo $id;?>&page=<?php echo $page;?>'";>취 소</button>
+			<button class="w-btn w-btn-gray" onclick="location.href='/mini_test/src/detail_test.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>'";>취 소</button>
         </div>
     </div>
     <footer>
