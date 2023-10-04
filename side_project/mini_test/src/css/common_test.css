@@ -79,6 +79,58 @@ header:has(input:checked) ~ nav {
 	transform: translateX(0%);
 }
 
+h1 {
+	position: relative;
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-size: 4em;
+	letter-spacing: 4px;
+	overflow: hidden;
+	background: linear-gradient(90deg, #000, #fff, #000);
+	background-repeat: no-repeat;
+	background-size: 80%;
+	animation: animate 3s linear infinite;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: rgba(32, 14, 112, 0.188);
+  }
+  
+  @keyframes animate {
+	0% {
+	  background-position: -500%;
+	}
+	100% {
+	  background-position: 500%;
+	}
+  }
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 nav{
 	width: 17vw;
 	height: 100vh;
@@ -86,7 +138,7 @@ nav{
 	transform: translateX(-100%);
 	transition: transform 0.2s ease-in-out;
 	position: absolute;
-	z-index: 6;	
+	z-index: 5;	
 }
 
 nav ul {
@@ -106,7 +158,7 @@ nav a {
 
 .container {
 	width: 100%;
-	height: 1000px;
+	height: 750px;
 	background-image: url(/mini_test/doc/whale.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -114,8 +166,30 @@ nav a {
 	background-attachment: fixed;
 	position: absolute;
 	top: 150px;
-	z-index: 1;	
+	z-index: 1;
+	animation: fadein 5s ease 3s;
+   -webkit-animation: fadein 3s;
 }
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
 
 .list_table {
 	margin: auto;
@@ -327,7 +401,7 @@ form button {
 	width: 40px;
 	height: 40px;
 	text-align: center;
-	line-height: 40px;
+	line-height: 35px;
 	text-decoration: none;
 	display: inline-block;
 	background-color: rgba(71, 100, 114, 0.3);
@@ -406,7 +480,7 @@ table a, table a:before {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
 	width: 100%;
     background-color: #000;
@@ -465,12 +539,9 @@ footer a {
 	width: 90%;
   }
 
-.rain eff{
-	width: 100%;
+.rain_eff{
+	width: 70%;
 	height: 100%;
-  min-width: 600px;
-	max-width: 800px;
-	max-height: 500px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
@@ -484,8 +555,7 @@ footer a {
 
 .rain{
 	position: relative;
-	width: 100%;
-	height: 100%;
+	width: 70%;
 }
 
 .rain:nth-of-type(1){
@@ -574,9 +644,10 @@ footer a {
 }
 
 .waves > div{
+	width: 100%;
 	position: absolute;
-	top:0px;
-	left: 0px;
+	top:90px;
+	left: 100px;
 	right: 0px;
 	bottom: 0px;
 	border-radius: 50%;
