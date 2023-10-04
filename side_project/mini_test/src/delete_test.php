@@ -133,7 +133,8 @@ try {
 				정말 삭제 하시겠습니까?
 			</caption>	
 			</div>
-		</div>			
+		</div>
+		<br>			
 		<div class="container2">
 			<form action="/mini_test/src/delete_test.php" method="post">
 				<input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -151,6 +152,6 @@ try {
 			제작시간 : 12시간<br>
 			권리 없음
 		</p>
-	</footer>
+	</footer>	
 </body>
 </html>

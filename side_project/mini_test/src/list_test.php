@@ -21,7 +21,7 @@ try {
 	// 파라미터 획득
 	$page = isset($_GET["page"]) ? $_GET["page"] : "1"; // page 셋팅
 	if($page === "") {
-		$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
+		$arr_err_msg[] = sprintf("ERROR_MSG_PARAM", "page");
 	}
 	if(count($arr_err_msg) >= 1) {
 		throw new Exception(implode("<br>", $arr_err_msg));

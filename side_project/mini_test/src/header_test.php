@@ -11,12 +11,157 @@
 	<div class="back color-5">    	    
 		<ul class="header_a">
 			<li><a href="/mini_test/src/list_test.php">🐳Home</a></li>
+			<br>
 			<li><a href="">🐳Login</a></li>
+			<br>
 			<li><a href="/mini_test/src/insert_test.php">🐳Create post</a></li>
+			<br>
 			<li><a href="">🐳Copyright</a></li>
 		</ul>    	
   	</div>		
 </nav>
+
+<div class="rain eff">
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<div class="rain">
+	<div class="drop"></div>
+	<div class="waves">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="splash"></div>
+	<div class="particles">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+</div>
+
+
+
 
 <!DOCTYPE html>
 <html lang="ko">
