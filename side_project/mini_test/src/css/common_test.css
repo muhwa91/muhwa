@@ -80,7 +80,7 @@ header:has(input:checked) ~ nav {
 }
 
 nav{
-	width: 300px;
+	width: 17vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0);	
 	transform: translateX(-100%);
@@ -95,7 +95,7 @@ nav ul {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	padding: 20px 0px 0px 20px;
+	padding: 20px 20px 0px 20px;
 	color: white;
 	font-size: 25px;
 }
@@ -111,6 +111,7 @@ nav a {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	background-attachment: fixed;
 	position: absolute;
 	top: 150px;
 	z-index: 1;	
@@ -457,11 +458,11 @@ footer a {
 	backface-visibility: hidden;
 	border-color: #fff;
 	transition: width 350ms ease-in-out;
-	width: 100%;
+	width: 90%;
   }
   
   .header_a a:hover:before {
-	width: 100%;
+	width: 90%;
   }
 
 .rain eff{
