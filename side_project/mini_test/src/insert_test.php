@@ -57,7 +57,7 @@ if($http_method === "POST") {
 				<br>
 				<label for="title">제 목</label>
 				<input type="text" class = 'textarea1' name="title" id="title" 
-					maxlength="20" placeholder="20자 제한">
+					maxlength="20" placeholder="20자 제한" required>
 				<br><br>
 				<label for="content">내 용</label>
 				<textarea class = 'textarea2' name="content" id="content" cols="25" rows="10"
@@ -66,7 +66,7 @@ if($http_method === "POST") {
 			<br>
 			<div class="container2">
 				<button class="w-btn w-btn-gray" type="submit">작 성</button>
-				<button class="w-btn w-btn-gray" onclick="location.href=/mini_test/src/list_test.php">취 소</button>
+				<button class="w-btn w-btn-gray" type="button" onclick="location.href='/mini_test/src/list_test.php'">취 소</button>
 				<button class="w-btn w-btn-gray" type="reset">초기화</button>
 			</div>
 		</form>
