@@ -62,7 +62,8 @@ try {
 	}
 
 } catch(Exception $e) {
-	echo $e->getMessage(); // 예외발생 메세지 출력
+	// echo $e->getMessage(); // 예외발생 메세지 출력 //v002 del
+	header("Location: error_test.php/?err_msg={$e->getMessage()}");	//v002 add
 	exit; // 처리 종료
 } finally {
 	db_destroy_conn($conn); // DB 파기
@@ -89,8 +90,8 @@ try {
 			<table>
 				<colgroup>
 					<col width="10%">
-					<col width="60%">
-					<col width="30%">
+					<col width="55%">
+					<col width="35%">
 				</colgroup>
 				<tr>
 					<th>번호</th>
@@ -125,7 +126,7 @@ try {
 				// 현재 페이지에 활성화
 				$str = (int)$page_num === $i ? "main_num" : "main_num1";
 				?>
-			<a class="<?php echo $str;?>" href="http://localhost/mini_test/src/list_test.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+			<a id="<?php echo $str;?>" href="http://localhost/mini_test/src/list_test.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 				<?php
 				}
 				?>

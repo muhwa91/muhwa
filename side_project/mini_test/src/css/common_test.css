@@ -90,6 +90,7 @@ h1 {
 	background-repeat: no-repeat;
 	background-size: 80%;
 	animation: animate 3s linear infinite;
+	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: rgba(32, 14, 112, 0.188);
   }
@@ -156,7 +157,7 @@ nav a {
 	color: inherit;
 }
 
-.container {
+.container, .container3 {
 	width: 100%;
 	height: 750px;
 	background-image: url(/mini_test/doc/whale.jpg);
@@ -263,6 +264,7 @@ table td {
 	width: 800px;
 	height: 50px;
 	text-align: center;
+	word-break: break-all;
 }
 
 table th:last-child, table td:last-child {
@@ -443,12 +445,12 @@ form button {
 			transition: all 0.2s ease;
 } 
 
-.main_num {
-	color: rgb(255, 255, 255, 0.7) !important;
-	background-color: #000 !important;
+#main_num {
+	color: rgb(255, 255, 255, 0.7);
+	background-color: #000;
 }
 
-.main_num1 {
+#main_num1 {
 	background-color: rgba(71, 100, 114, 0.3);
 }
 
@@ -808,3 +810,23 @@ footer a {
 	}
 }
 
+.container3 {
+	text-align: center;
+	color: #fff;
+	font-size: 4rem;
+}
+
+.container3 button {
+	width: 100px;
+	height: 30px;
+	margin: 10px;
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(255, 255, 255, 0.7);
+}
+
+.container p {
+	text-align: center;
+	color: #fff;
+	font-size: 3rem;
+}
