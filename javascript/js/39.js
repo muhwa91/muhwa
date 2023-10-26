@@ -61,11 +61,56 @@ TITLE.style.color = 'red'
 // TITLE.classList.add('class1', 'class2', 'class3');
 // TITLE.classList.remove('class1', 'class2', 'class3');
 
+// 5. 새로운 요소 생성
+// 요소 생성
+// const LI = document.createElement('li');
+// LI.innerHTML = '영어도 못하고 수학도 못하고 ㅠㅠ';
 
+// 삽입할 부모 요소 접근
+// const UL = document.querySelector('#ul');
 
+// 부모 요소 가장 마지막 위치 삽입
+// UL.appendChild(LI);
 
+// 요소 특정위치 삽입
+// const SPACE = document.querySelector('li:nth-child(3)'); // 세번째로 이동
+// UL.insertBefore(LI, SPACE); // 위치 조절해줌
 
+// 요소 삭제
+// LI.remove(); // 추가했던 '영어도 못하고 수학도 못하고 ㅠㅠ' 삭제
 
+// 1. 사과게임 위에 장기를 넣어주세요 
+const LI = document.createElement('li'); // 요소 생성
+LI.innerHTML = '장기'; // 요소 생성
+const UL = document.querySelector('#ul'); // 삽입할 부모 요소 접근
+const SPACE = document.querySelector('li:nth-child(4)'); // 요소 특정위치 삽입
+UL.insertBefore(LI, SPACE); // 요소 특정위치 삽입
 
+// 2. 어메이징 브리에 베이지 배경색 넣기
+const AMG = document.querySelector('li:nth-child(4)');
+AMG.style.backgroundColor = 'beige';
+
+// 3. 리스트에서 짝수는 빨간색 글씨, 홀수는 파랑색 글씨
+// const LI1 = document.getElementsByTagName('li');
+// const EVEN = document.querySelectorAll('li:nth-child(even)');
+// const ODD = document.querySelectorAll('li:nth-child(odd)');
+// for(let i=0; i<EVEN.length; i++) {
+// 	EVEN[i].style.color = 'red';
+// };
+// for(let i=0; i<ODD.length; i++) {
+// 	ODD[i].style.color = 'blue';
+// };
+
+const LISTEVENODD = document.getElementsByTagName('li');
+const CNT = LISTEVENODD.length;
+for(let i = 1; i <= CNT; i++){
+    if ( i % 2 === 1) {
+        LISTEVENODD[i-1].style.color = "blue";
+    } else if ( i % 2 === 0) {
+        LISTEVENODD[i-1].style.color = "red";
+    } else {
+        LISTEVENODD[i-1].style.color = "black";
+    }
+}
 
 
