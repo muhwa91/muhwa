@@ -19,8 +19,8 @@ function popOpen1() {
  
 function popOpen2() {
 	alert('다시 숨는다!'); // 클릭시 '다시 숨는다!' 출력
-	DIV2.style.backgroundColor = 'white'; // 클릭시 백그라운드 컬러 설정
     DIV2.removeEventListener('click', popOpen2); // 클릭시 '다시 숨는다!' 출력 제거
+	DIV2.style.backgroundColor = 'white'; // 클릭시 백그라운드 컬러 설정
 	DIV1.addEventListener('mouseenter', popOpen); // 영역 마우스 위치 팝업창
 	DIV2.addEventListener('click', popOpen1); // 클릭시 함수 popOpen1 실행
 }
