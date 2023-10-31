@@ -34,16 +34,16 @@
 // 2) (재할당 가능)
 // let을 주로 사용하자
 
-let u_name = "홍길동";
-console.log(u_name);
-u_name = "갑순이";
-console.log(u_name);
+// let u_name = "홍길동";
+// console.log(u_name);
+// u_name = "갑순이";
+// console.log(u_name);
 
 // 3. const : (중복 선언 불가능), (재할당 불가능), 블록레벨 스코프
 
 // 상수는 대문자로 표기
 const AGE = 19;
-// AGE = 20;
+AGE = 20;
 console.log(AGE);
 
 
@@ -82,12 +82,12 @@ function htest1() {
 	return "htest1 함수입니다.";
 }
 
-var hvar = "var로 선언";
+// var hvar = "var로 선언";
 let hlet = "let으로 선언";
 
 
-console.log(hvar);
-console.log(hlet);
+// console.log(hvar);
+// console.log(hlet);
 
 
 
