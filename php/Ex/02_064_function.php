@@ -9,12 +9,12 @@
 // 9
 
 // 리턴 있는 함수
-// function my_sum2($a, $b) {
-//     return $a + $b;
-// }
-// $reslt = my_sum2(2,2);
-// echo $reslt;
-// 3
+function my_sum2($a, $b) {
+    return $a + $b;
+}
+$reslt = my_sum2(2,2);
+echo $reslt;
+// 4
 
 // 두 숫자를 받아서 - * / %를 리턴하는 함수 만들기
 // function my_min($a, $b) {
@@ -86,35 +86,35 @@
 // ex) "3421"일 경우, 3+4+2+1해서 10이 리턴 되는 함수
 
 // 방법 1
-$str = "34215";
-function my_test(string $str) {
-    $len = mb_strlen($str);
-    $sum = 0;
-    for($idx = 0; $idx <= $len - 1; $idx++) {
-        $sum += (int)mb_substr($str, $idx, 1);
-    }
-    return $sum;
-}
-echo my_test($str);
+// $str = "34215";
+// function my_test(string $str) {
+//     $len = mb_strlen($str);
+//     $sum = 0;
+//     for($idx = 0; $idx <= $len - 1; $idx++) {
+//         $sum += (int)mb_substr($str, $idx, 1);
+//     }
+//     return $sum;
+// }
+// echo my_test($str);
 
 // 방법 2
-$str = "34215";
-function my_test(string $str) {
-    $arr = str_split($str);
-    return array_sum($arr);
-}
-echo my_test($str);
+// $str = "34215";
+// function my_test(string $str) {
+//     $arr = str_split($str);
+//     return array_sum($arr);
+// }
+// echo my_test($str);
 
 // 방법 3
 
-$str = "34215";
-function my_test(string $str){}
-    $arr = str_split($str);
-    foreach($arr as $val) {
-        $sum += $val;
-    }
-    return array_sum($arr);
-echo my_test($str);
+// $str = "34215";
+// function my_test(string $str){}
+//     $arr = str_split($str);
+//     foreach($arr as $val) {
+//         $sum += $val;
+//     }
+//     return array_sum($arr);
+// echo my_test($str);
 
 
 

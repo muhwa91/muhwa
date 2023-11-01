@@ -8,7 +8,7 @@ $arr = array(0, "a", 2, 6, 10);
 $arr2 = [0, 1, 2];
 $arr3 = ["배열", $arr[1], $arr2[1]];
 
-// var_dump($arr3);
+var_dump($arr3);
 $arr4 = [
     "name" => "홍길동" //0 = name(키) 
     ,"age" => 18
