@@ -23,8 +23,9 @@ button {
 	width: 80%;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-
+	grid-template-columns: repeat(auto-fit, minmax(270px, 4fr));
+/* auto-fill : 컨텐츠가 부족해도 그리드가 빈 공간을 만들어줌 */
+/* auto-fit : 화면을 늘려도 빈 공간 생성안하고 컨텐츠 크기만 증가 */
 	text-align: center;
 	grid-gap: 10px;
 	margin: 0 auto;
