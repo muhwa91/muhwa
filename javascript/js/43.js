@@ -114,3 +114,4 @@ function imgClear() {
 	const DIV_IMG = document.querySelector('#div-img');
 	DIV_IMG.innerHTML = "";
 }
+
