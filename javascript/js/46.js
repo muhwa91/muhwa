@@ -48,3 +48,5 @@ async function test2() {
 
 test2
 .then(() => console.log('test2'));
+
+
