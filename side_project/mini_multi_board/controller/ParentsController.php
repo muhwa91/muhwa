@@ -3,7 +3,7 @@
 namespace controller;
 
 class ParentsController {
-	protected $controllerChkUrl;
+	protected $controllerChkUrl; // 프로퍼티 생성
 
 	public function __construct($action) {
 		// 뷰관련 체크 접속 url 셋팅
