@@ -59,6 +59,3 @@ class ParentsController {
 // 브라우저 웹 > index.php (Router) > controller > view > 브라우저 웹
 // controller > model, view 
 // model, view 서로 상호작용 불가
-
-
-중기형 ㅋ ㅋ
