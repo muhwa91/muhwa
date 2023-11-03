@@ -3,8 +3,8 @@
 namespace router;
 
 // 사용할 컨트롤러 지정
-use controller\UserController as UC;
-use controller\BoardController as BC;
+use controller\UserController;
+use controller\BoardController;
 // as 사용시 별칭으로 사용하면 되고, as 미사용시 본 이름 사용
 
 
@@ -26,28 +26,30 @@ class Router {
 		$url = $_GET["url"]; // 접속 url 획득
 		$method = $_SERVER["REQUEST_METHOD"]; // 메소드 획득
 
-		if($url === "user/login") {
+		if($url === "user/login") { // user/[해당기능]
 			if($method === "GET") { // GET인지 확인
-				new UC("loginGet");
+				new UserController("loginGet");
 				// 클래스() : 실행하는 문/ construct 실행 
 				// 자식클래스에 실행할 처리가 없으면 부모클래스에 실행할 처리가 실행됨
 				// 일반적으로 부모클래스에 정의해줌
-			} else {  // POST인지 확인				
+			} else {  // POST인지 확인
+				new UserController("loginPost");			
 			}
 		} else if($url === "user/logout") {
 			if($method === "GET") {
 				// 해당 컨트롤러 호출
+				new UserController("logoutGet");
 			}
 		} else if($url === "user/regist") {
 			if($method === "GET") {
 				// 해당 컨트롤러 호출
-				new UC("registGet");
+				new UserController("registGet");
 			} else {
 				// 해당 컨트롤러 호출
 			}
 		} else if($url === "board/list")
 			if($method === "GET") {
-				new BC("listGet");
+				new BoardController("listGet");
 			}
 
 

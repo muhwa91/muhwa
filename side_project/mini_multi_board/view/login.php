@@ -10,15 +10,19 @@
 	<?php require_once("view/inc/header.php"); ?>
 
 	<main class="d-flex justify-content-center align-items-center h-75">
-		<form style="width: 400px;" action="/board/list">
-			<div id="errorMsg" class="form-text text-danger">에러에러에러</div>
+		<form style="width: 400px;" action="/user/login" method="POST">
+			<div id="errorMsg" class="form-text text-danger">
+				<?php echo count($this->arrErrorMsg) > 0 ? implode("<br>", $this->arrErrorMsg) : "" ?>
+			</div>
 			<div class="mb-3">
 				<label for="u_id" class="form-label">아이디</label>
-				<input type="text" class="form-control" id="u_id">
+				<input type="text" class="form-control" id="u_id" name="u_id">
+				<!-- name 셋팅을 해야 값이 넘어옴 -->
 			</div>
 			<div class="mb-3">
 				<label for="u_pw" class="form-label">비밀번호</label>
-				<input type="password" class="form-control" id="u_pw">
+				<input type="password" class="form-control" id="u_pw" name="u_pw">
+				<!-- name 셋팅을 해야 값이 넘어옴 -->
 			</div>			
 			<button type="submit" class="btn btn-primary">로그인</button>
 		</form>
