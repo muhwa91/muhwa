@@ -14,11 +14,19 @@ class UserController extends ParentsController{
 	protected function loginPost() {
 		// ID, PW 설정(DB에서 사용할 데이터 가공)
 		$arrInput = [];
+		// $arrInput은 배열형태로 세팅
 		$arrInput["u_id"] = $_POST["u_id"];
+		// POST로 제출된 u_id를 $arrInput["u_id"]에 저장
 		$arrInput["u_pw"] = $this->encrtptionPassword($_POST["u_pw"]);
+		// 하단에 정의해 둔 encrtptionPassword 메소드 이용하여
+		// ($_POST["u_pw"])아규먼트를 encrtptionPassword 메소드 파라미터에 전달
+		// return 암호화 된 비밀번호(base64_encode)
+		// 즉, post로 제출 된 비밀번호를 암호화하여 $arrInput["u_pw"]에 저장
 
 		$modelUser = new UserModel();
+		// 유저모델 클래스 인스턴스 생성하여 $modelUser에 저장
 		$resultUserInfo =  $modelUser->getUserInfo($arrInput, true);
+		// 유저모델 클래스를 인스턴스 
 		
 		// 유저 유무 체크
 		if(count($resultUserInfo) === 0) {
