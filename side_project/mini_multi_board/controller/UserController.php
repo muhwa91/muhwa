@@ -1,10 +1,16 @@
 <?php
 
+// <고유 식별자 제공>
 namespace controller;
+// namespace : 클래스간 이름 충돌 방지
 
+// <사용할 모델 지정>
 use model\UserModel;
+// 부모컨트롤러 클래스에게 상속받는 유저컨트롤러 클래스는 일차적으로 자식컨트롤러에서 정의된 실행할 처리가
+// 실행되고, 자식컨트롤러에서 실행할 처리가 없으면 부모컨트롤러에 정의된 실행할 처리가 처리됨
+// 일반적으로 부모클래스에 실행할 처리를 정의해줌
 
-class UserController extends ParentsController{
+class UserController extends ParentsController{ // 부모 컨트롤러 클래스에게 상속받는 유저컨트롤러 클래스
 	// 로그인 페이지 이동
 	protected function loginGet() {
 		return "view/login.php";
@@ -26,26 +32,30 @@ class UserController extends ParentsController{
 		$modelUser = new UserModel();
 		// 유저모델 클래스 인스턴스 생성하여 $modelUser에 저장
 		$resultUserInfo =  $modelUser->getUserInfo($arrInput, true);
-		// 유저모델 클래스를 인스턴스 
+		// 유저모델 클래스의 메소드 getUserInfo 호출하여 아규먼트($arrInput, true) 파라미터로 전달
+		// 메소드 getUserInfo($arrInput, true) if문까지 실행하여 결과 값을 배열형태로 저장한 $result를 
+		// $resultUserInfo에 저장
 		
-		// 유저 유무 체크
-		if(count($resultUserInfo) === 0) {
-			$this->arrErrorMsg[] = "아이디와 비밀번호를 다시 확인해 주세요.";
+		// 유저 유무 체크 
+		if(count($resultUserInfo) === 0) { // DB의 ID,PW와 유저가 입력한 ID, PW가 일치하지 않을때
+			$this->arrErrorMsg[] = "아이디와 비밀번호를 다시 확인해 주세요."; // 에러메세지 저장
 			return "view/login.php"; // 로그인 페이지로 리턴
 		} 
 		
 		// 세션에 u_id 정의
-		$_SESSION["u_id"] = $resultUserInfo[0]["u_id"];
+		$_SESSION["u_id"] = $resultUserInfo[0]["u_id"]; // DB의 ID, PW와 유저가 입력한 ID, PW가 일치할 때
+		// 인덱스 0번에 있는 u_id 데이터를 세션에 저장
 		return "Location: /board/list";
 	}
 
 	// 로그아웃 처리
 	protected function logoutGet() {
-		session_unset(); // 세션 요소 삭제
-		session_destroy(); // 세션 고유 id 삭제
-
-		// 로그인 페이지 리턴
+		session_unset(); 
+		//세션 변수 제거(세션에 저장된 데이터 삭제)
+		session_destroy(); 
+		// 세션 고유 id 삭제(세션 완전 제거)		
 		return "Location: /user/login";
+		// 로그인 페이지 리턴
 	}
 
 
@@ -59,5 +69,3 @@ class UserController extends ParentsController{
 		return base64_encode($pw);
 	}
 }
-
-// 부모클래스인 ParentsController를 상속받아 echo "ParentsController임".$action; 실행
