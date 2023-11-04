@@ -1,7 +1,7 @@
 <?php
 
 namespace router;
-
+// router 네임스페이스 지정하여 고유 식별자 제공
 // 사용할 컨트롤러 지정
 use controller\UserController;
 use controller\BoardController;

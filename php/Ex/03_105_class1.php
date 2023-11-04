@@ -15,26 +15,26 @@ class ClassRoom {
 // 생성자를 정의 하지 않을 때는 디폴트 생성자가 선언됨
 // 클래스를 인스턴스 할 때 자동으로 실행되는 메소드
 public function __construct() { //public, private, protected 가능
-    echo "컨스트럭트 실행";
+    // echo "컨스트럭트 실행";
     $this->now = date("Y-m-d H:i:s");
 }
 
 
 
 // 메소드(method) : class내에 있는 함수
-public function class_room_set_value() { 
-    $this->computer = "컴퓨터";
-    $this->book = "책";
-    $this->bag = "가방";
-}
+// public function class_room_set_value() { 
+//     $this->computer = "컴퓨터";
+//     $this->book = "책";
+//     $this->bag = "가방";
+// }
 
 // 컴퓨터, 북, 백의 값을 출력하는 메소드 만들기
-public function classRoomPrint() {
-    $str = $this->computer."\n"    
-    .$this->book."\n"
-    .$this->bag;
-    echo $str;
-}
+// public function classRoomPrint() {
+//     $str = $this->computer."\n"    
+//     .$this->book."\n"
+//     .$this->bag;
+//     echo $str;
+// }
 
 //getter 메소드
 public function get_now() {
@@ -48,9 +48,9 @@ public function set_now() {
 // 컨스트럭트 실행> setter 메소드에 now 저장> getter 메소드에서 now값 리턴 출력
 
 //static
-public static function static_test() {
-    echo "스태틱 메소드";
-}
+// public static function static_test() {
+//     echo "스태틱 메소드";
+// }
 
 
 }
@@ -58,14 +58,14 @@ public static function static_test() {
 
 
 // class instance 생성
-// $obj_classroom = new ClassRoom();
+$obj_classroom = new ClassRoom();
 // $obj_classroom->class_room_set_value();
 // var_dump($obj_classroom->computer);
 // $obj_classroom->classRoomPrint();
-// $obj_classroom->set_now();
-// echo $obj_classroom->get_now();
+$obj_classroom->set_now();
+echo $obj_classroom->get_now();
 
-ClassRoom::static_test();
+// ClassRoom::static_test();
 
 
 
