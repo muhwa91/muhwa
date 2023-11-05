@@ -59,12 +59,3 @@ class ParentsController {
 		}
 	}
 }
-
-
-
-
-// MVC 패턴(객체지향 프로그래밍) : 유지보수 장점
-// 브라우저 웹 > index.php (Router) > controller <> model
-// 브라우저 웹 > index.php (Router) > controller > view > 브라우저 웹
-// controller > model, view 
-// model, view 서로 상호작용 불가
