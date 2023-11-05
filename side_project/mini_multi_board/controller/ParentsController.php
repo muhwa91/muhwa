@@ -12,7 +12,6 @@ class ParentsController {
 	public function __construct($action) { // 생성자/파라미터 $action loginGet
 		$this->controllerChkUrl = $_GET["url"]; // 프로퍼티 controllerChkUrl 값 $_GET["url"] 으로 변경
 		// 뷰관련 체크 접속 url 셋팅
-		// $action = loginGet
 		
 		if(!isset($_SESSION)) { // 세션이 설정되지 않았을 때($_SESSION = 슈퍼글로벌변수)
 			session_start();
@@ -22,14 +21,12 @@ class ParentsController {
 		$this->chkAuthorization(); // 메소드 chkAuthorization 호출
 		// 유저 로그인 및 권한 체크 
 
-		// controller 메소드 호출
 		$resultAction = $this->$action();
-		//loginGet(); = 리턴 값 view/login.php = $resultAction
-		//loginPost(); = 리턴 값 view/login.php = $resultAction
+		// controller 메소드 호출
 		
-		// view 호출
 		$this->callView($resultAction);
-		// callView(view/login.php) > Location 포함X else로 가서 require_once view.login.php 실행 > 처리종료
+		// view 호출
+
 		exit();
 	}
 
@@ -61,8 +58,8 @@ class ParentsController {
 		// 유저가 보내온 주소에 대해서 처리한 값으로 처리
 		}
 	}
-
 }
+
 
 
 

@@ -53,7 +53,7 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 		session_unset(); 
 		//세션 변수 제거(세션에 저장된 데이터 삭제)
 		session_destroy(); 
-		// 세션 고유 id 삭제(세션 완전 제거)		
+		// 세션 고유 id 삭제	
 		return "Location: /user/login";
 		// 로그인 페이지 리턴
 	}
