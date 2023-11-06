@@ -17,8 +17,8 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 
 	protected function listGet() { // 게시판 리스트 페이지
 		$b_type = isset($_GET["b_type"]) ? $_GET["b_type"] : "0"; // 파라미터 세팅
-
-		$arrBoardInfo = [
+		// GET 메소드 b_type 값 판단
+		$arrBoardInfo = [ // GET 메소드 b_type 값 배열형태로 저장
 			"b_type" => $b_type
 		];
 		
@@ -29,13 +29,18 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 				break;
 			} 
 		}
+		// <부모컨트롤러>protected $arrBoardNameInfo
+		// <보드네임모델>boardname에서 b_type, b_name 출력한 값을 배열형태로 저장
 
-		$boardModel = new BoardModel(); // 보드모델 인스턴스화
+		$boardModel = new BoardModel();
+		// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 저장
 		$this->arrBoardInfo = $boardModel->getBoardList($arrBoardInfo); // 보드리스트 획득
-		
-		$boardModel->destroy(); // 사용 모델 파기
-
+		// 지역변수 $arrBoardInfo에 저장되어 있는 ["b_type"]과 일치하는 결과를 배열로 변환하여 $result에 저장 후 리턴
+		// <보드컨트롤러>리턴 받은 값을 프로퍼티 $arrBoardInfo에 저장
+		$boardModel->destroy(); 
+		// DB연결 후 보드모델 클래스 인스턴스 저장한 $boardModel 파기
 		return "view/list.php";
+		// <부모컨트롤러>리턴 값 전달
 	}
 
 	protected function addPost() { // 글 작성

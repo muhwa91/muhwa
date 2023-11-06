@@ -144,48 +144,100 @@ class Router {
 				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
 				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(listGet)
 				// 3. $this->controllerChkUrl = board/list;
-				// 4. 세션설정(세션이 없으므로, session_start(); 실행)
-				
-				// [세션 존재하지 않는 경우]
-				// 세션이 없으므로, session_start(); 실행
+				// 4. 슈퍼글로벌 변수 $_SESSION이 설정되어 있는지 확인
+				// 설정되어 있으면 if문 실행X, 설정되어 있지 않으면 세션시작
 				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
-				// 슈퍼글로벌변수 $_SESSION에 u_id 값을 가지고 있고, 
-				// in_array(board/list, ["board/list"]) 배열 안에 특정 값인 $url(=board/list) 존재하는지 판단
-				// 충족하므로 if문 실행 > header("Location: /user/login"); 실행
+				// 1)if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				// 세션 내에 u_pk 값이 있고, $url이 [board/list] 배열 내 존재하는지 판단 / 두가지 모두 충족하지 않을 시 if문 실행
+				// 충족할 시 header("Location: /user/login"); 실행 후 처리종료
+				// 2)if(isset($_SESSION["u_pk"]) && $url === "user/login")
+				// 세션 내에 u_pk 값이 있고, $url이 user/login인지 판단 / 두가지 모두 충족할 시 if문 실행
+				// 충족할 시 header("Location: /board/list"); 실행 후 처리종료
+				// 6. GET메소드로 접속하여 if문 2개 모두 실행되지 않아 리디렉션(현재 페이지에서 다른 페이지로 이동) 발생X
+				// 7. 보드네임모델 클래스 인스턴스화 시 자동으로 부모모델 클래스의 생성자 호출
+				// 8. <부모모델>DB연결 후 보드네임모델 클래스를 $boardNameModel에 인스턴스 저장
+				// 9. $boardNameModel에서 getBoardNameList() 메소드 호출
+				// 10. <보드네임모델>boardname에서 b_type, b_name 출력
+				// 11. 출력한 값을 배열형태로 변환하여 $result에 저장 후 리턴
+				// 12. <부모컨트롤러>리턴 받은 값을 프로퍼티 $arrBoardNameInfo에 저장
+				// 13. $boardNameModel(DB연결+보드네임모델 인스턴스 저장내용) 파기
+				// 14. $action=listGet이므로,
+				// <보드컨트롤러>listGet() 메소드 호출 > GET메소드 내 b_type 존재여부 판단
+				// true = $_GET["b_type"] / false = "0" 으로 설정하여 파라미터 세팅하여 $b_type에 저장
+				// 지역변수 $arrBoardInfo 내에 배열형태로 저장
+				// 배열형태의 프로퍼티 $arrBoardNameInfo를 루프시키기 위하여 foreach문 실행
+				// 12번에서 변경해두었던 프로퍼티 $arrBoardNameInfo(boardname에서 b_type, b_name 출력한 값의 배열형태)의 값을 $item에 저장
+				// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
+				// 프로퍼티 protected $titleBoardName의 값을 $item["b_name"]으로 변경하고
+				// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break
+				// 보드모델 클래스 인스턴스화 시 자동으로 부모모델 클래스의 생성자 호출
+				// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 저장
+				// <보드모델>getBoardList($arrBoardInfo) 메소드 호출(지역변수 $arrBoardInfo에는 $_GET["b_type"]의 값이 저장되어있음)
+				// 지역변수 $arrBoardInfo에 저장되어 있는 ["b_type"]과 일치하는 결과를 배열로 변환하여 $result에 저장 후 리턴
+				// <보드컨트롤러>리턴 받은 값을 프로퍼티 $arrBoardInfo에 저장
+				// 15. DB연결 후 보드모델 클래스 인스턴스 저장한 $boardModel 파기
+				// 16. return "view/list.php";
+				// 17. <부모컨트롤러>리턴 받은 값을 $resultAction에 저장
+				// 18. callView($resultAction) 메소드 호출 > require_once($resultAction) >
+				// require_once(view/list.php); 실행
 				// 처리종료
-				// cf) chkAuthorization 메소드 호출하여 if문 조건 충족하여 실행하고, if문 내에 exit(); 실행 시
-				// 이후의 코드나 처리는 실행되지 않음
-				// 즉, $this->chkAuthorization(); 에서 처리종료
-
-				// [세션 존재하는 경우]
-				// if(!isset($_SESSION))
-				// if문 실행X
+			}		
+		} else if($url === "board/add") {
+			if($method === "GET") {
+				// 처리 없음
+			} else {
+				new BoardController("addPost");
+				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
+				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(listGet)
+				// 3. $this->controllerChkUrl = board/list;
+				// 4. 슈퍼글로벌 변수 $_SESSION이 설정되어 있는지 확인
+				// 설정되어 있으면 if문 실행X, 설정되어 있지 않으면 세션시작
 				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
-				// 슈퍼글로벌변수 $_SESSION에 u_id 값이 없고, in_array(board/list, ["board/list"]) 배열 안에 특정 값인 $url(=board/list) 존재하는지 판단
-				// 1조건 불충족, 2조건 충족으로 if문 실행X
-				// 6. $action=listGet이므로, 
-				// <보드컨트롤러>listGet() 메소드 호출 > return "view/list.php";
-				// <부모컨트롤러>$resultAction = "view/list.php"
-				// 7. callView($resultAction) 메소드 호출 > require_once($resultAction)
-				// require_once(view/list.php);
-				// 처리종료	
-			}		
-			} else if($url === "board/add") {
-				if($method === "GET") {
-					// 처리 없음
-				} else {
-					new BoardController("addPost");
-				}
+				// 1)if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				// 세션 내에 u_pk 값이 있고, $url이 [board/list] 배열 내 존재하는지 판단 / 두가지 모두 충족하지 않을 시 if문 실행
+				// 충족할 시 header("Location: /user/login"); 실행 후 처리종료
+				// 2)if(isset($_SESSION["u_pk"]) && $url === "user/login")
+				// 세션 내에 u_pk 값이 있고, $url이 user/login인지 판단 / 두가지 모두 충족할 시 if문 실행
+				// 충족할 시 header("Location: /board/list"); 실행 후 처리종료
+				// 6. if문 2개 모두 실행되지 않아 리디렉션(현재 페이지에서 다른 페이지로 이동) 발생X
+				// 7. 보드네임모델 클래스 인스턴스화 시 자동으로 부모모델 클래스의 생성자 호출
+				// 8. <부모모델>DB연결 후 보드네임모델 클래스를 $boardNameModel에 인스턴스 저장
+				// 9. $boardNameModel에서 getBoardNameList() 메소드 호출
+				// 10. <보드네임모델>boardname에서 b_type, b_name 출력
+				// 11. 출력한 값을 배열형태로 변환하여 $result에 저장 후 리턴
+				// 12. <부모컨트롤러>리턴 받은 값을 프로퍼티 $arrBoardNameInfo에 저장
+				// 13. $boardNameModel(DB연결+보드네임모델 인스턴스 저장내용) 파기
+				// 14. $action=addPost이므로,
+				// <보드컨트롤러>addPost() 메소드 호출 > 
+				// $_POST["b_type"]...$_FILES["b_img"]["name"] 을 지역변수 $b_type...$b_img에 저장
+				// 지역변수 $arrAddBoardInfo 내에 배열형태로 저장
+				// move_uploaded_file 함수로 이미지 파일 저장
+				// cf)move_uploaded_file(업로드된 파일 임시경로, 이동하거나 저장하려는 대상 경로); /boolean
+				// 15. 보드모델 클래스 인스턴스화 시 자동으로 부모모델 클래스의 생성자 호출
+				// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 저장
+				// 트랜잭션 시작
+				// <보드모델>addBoard($arrAddBoardInfo) 메소드 호출
+				// (지역변수 $arrAddBoardInfo에는 $_POST["b_type"]...$_FILES["b_img"]["name"]의 값이 저장되어있음)
+				// 지역변수 $arrAddBoardInfo에 저장되어 있는 u_pk...b_img 변경하여 insert 처리한 결과를 배열 변환하여 $result에 저장 후 리턴
+				// <보드컨트롤러>리턴 받은 값을 $result에 저장
+				// insert처리여부 if문 조건 판단
+				// $result가 true아닐 시 트랜잭션 시작한 곳으로 롤백
+				// $result가 true일 시 커밋
+				// 16. DB연결 후 보드모델 클래스 인스턴스 저장한 $boardModel 파기
+				// 17. return "Location: /board/list?b_type=".$b_type;
+				// 18. <부모컨트롤러>리턴 받은 값을 $resultAction에 저장
+				// 18. callView($resultAction) 메소드 호출 > 
+				// 함수 strpos 사용하여 $resultAction 문자열에서 "Location:" 문자열을 찾아서 처음에 위치한다면 true
+				// 조건 충족 되어 header("Location: /board/list?b_type=".$b_type;); 실행
+				// 처리종료
 			}
+		}
 
-
-			// 없는 경로일 경우
-			echo "이상한 URL : ".$url;
-			exit();
-		
+		// 없는 경로일 경우
+		echo "이상한 URL : ".$url;
+		exit();
+	
 	} 
 }
