@@ -46,7 +46,7 @@ class Router {
 				// 4. 세션설정(세션이 없으므로, session_start(); 실행)
 				// 5. chkAuthorization() 메소드 호출 > $url = user/login > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_id"]) && in_array($url, $this->arrNeedAuth))
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
 				// in_array(user/login, ["board/list"]) 배열 안에 특정 값인 $url(=user/login) 존재하는지 판단
 				// 충족하지 않으므로 if문 실행X
 				// 6. $action=loginGet이므로, 
@@ -64,7 +64,7 @@ class Router {
 				// 4. 세션설정(세션이 없으므로, session_start(); 실행)
 				// 5. chkAuthorization() 메소드 호출 > $url = user/login > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_id"]) && in_array($url, $this->arrNeedAuth))
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
 				// in_array(user/login, ["board/list"]) 배열 안에 특정 값인 $url(=user/login) 존재하는지 판단
 				// 충족하지 않으므로 if문 실행X
 				// 6. $action=loginPost이므로, 
@@ -103,7 +103,7 @@ class Router {
 				// 3. $this->controllerChkUrl = user/logout;
 				// 4. chkAuthorization() 메소드 호출 > $url = user/logout > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_id"]) && in_array($url, $this->arrNeedAuth))
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
 				// 슈퍼글로벌변수 $_SESSION에 u_id 값을 가지고 있고, in_array(user/logout, ["board/list"]) 배열 안에 특정 값인 $url(=user/regist) 존재하는지 판단
 				// 1조건 충족, 2조건 불충족으로 if문 실행X
 				// 5. $action=logoutGet이므로, 
@@ -125,7 +125,7 @@ class Router {
 				// 4. 세션설정(세션이 없으므로, session_start(); 실행)
 				// 5. chkAuthorization() 메소드 호출 > $url = user/login > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_id"]) && in_array($url, $this->arrNeedAuth))
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
 				// in_array(user/regist, ["board/list"]) 배열 안에 특정 값인 $url(=user/regist) 존재하는지 판단
 				// 충족하지 않으므로 if문 실행X
 				// 6. $action=registGet이므로, 
@@ -144,28 +144,13 @@ class Router {
 				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
 				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(listGet)
 				// 3. $this->controllerChkUrl = board/list;
-				// 4. 세션설정
-
-				// [세션 존재하는 경우]
-				// if(!isset($_SESSION))
-				// if문 실행X
-				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
-				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_id"]) && in_array($url, $this->arrNeedAuth))
-				// 슈퍼글로벌변수 $_SESSION에 u_id 값이 없고, in_array(board/list, ["board/list"]) 배열 안에 특정 값인 $url(=board/list) 존재하는지 판단
-				// 1조건 불충족, 2조건 충족으로 if문 실행X
-				// 6. $action=listGet이므로, 
-				// <보드컨트롤러>listGet() 메소드 호출 > return "view/list.php";
-				// <부모컨트롤러>$resultAction = "view/list.php"
-				// 7. callView($resultAction) 메소드 호출 > require_once($resultAction)
-				// require_once(view/list.php);
-				// 처리종료		
-
+				// 4. 세션설정(세션이 없으므로, session_start(); 실행)
+				
 				// [세션 존재하지 않는 경우]
 				// 세션이 없으므로, session_start(); 실행
 				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
-				// if(!isset($_SESSION["u_id"]) && in_array($url, $this->arrNeedAuth))
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
 				// 슈퍼글로벌변수 $_SESSION에 u_id 값을 가지고 있고, 
 				// in_array(board/list, ["board/list"]) 배열 안에 특정 값인 $url(=board/list) 존재하는지 판단
 				// 충족하므로 if문 실행 > header("Location: /user/login"); 실행
@@ -173,11 +158,34 @@ class Router {
 				// cf) chkAuthorization 메소드 호출하여 if문 조건 충족하여 실행하고, if문 내에 exit(); 실행 시
 				// 이후의 코드나 처리는 실행되지 않음
 				// 즉, $this->chkAuthorization(); 에서 처리종료
+
+				// [세션 존재하는 경우]
+				// if(!isset($_SESSION))
+				// if문 실행X
+				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
+				// private $arrNeedAuth = ["board/list"];
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				// 슈퍼글로벌변수 $_SESSION에 u_id 값이 없고, in_array(board/list, ["board/list"]) 배열 안에 특정 값인 $url(=board/list) 존재하는지 판단
+				// 1조건 불충족, 2조건 충족으로 if문 실행X
+				// 6. $action=listGet이므로, 
+				// <보드컨트롤러>listGet() 메소드 호출 > return "view/list.php";
+				// <부모컨트롤러>$resultAction = "view/list.php"
+				// 7. callView($resultAction) 메소드 호출 > require_once($resultAction)
+				// require_once(view/list.php);
+				// 처리종료	
+			}		
+			} else if($url === "board/add") {
+				if($method === "GET") {
+					// 처리 없음
+				} else {
+					new BoardController("addPost");
+				}
 			}
+
 
 			// 없는 경로일 경우
 			echo "이상한 URL : ".$url;
 			exit();
-		}
+		
 	} 
 }

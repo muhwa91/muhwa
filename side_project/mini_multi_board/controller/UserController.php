@@ -43,9 +43,9 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 		} 
 		
 		// 세션에 u_id 정의
-		$_SESSION["u_id"] = $resultUserInfo[0]["u_id"]; // DB의 ID, PW와 유저가 입력한 ID, PW가 일치할 때
+		$_SESSION["u_pk"] = $resultUserInfo[0]["id"]; // DB의 ID, PW와 유저가 입력한 ID, PW가 일치할 때
 		// 인덱스 0번에 있는 u_id 데이터를 세션에 저장
-		return "Location: /board/list";
+		return "Location: /board/list?b_type=0";
 	}
 
 	// 로그아웃 처리
