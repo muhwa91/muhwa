@@ -56,7 +56,7 @@ class Router {
 				// require_once(view/login.php); 실행
 				// 처리종료
 
-			} else {  // POST 메소드로 로그인 했을 때
+			} else {  // POST일 때
 				new UserController("loginPost");
 				// 1. 유저컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
 				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(loginPost)
@@ -138,14 +138,14 @@ class Router {
 			} else {
 
 			}
+
 		} else if($url === "board/list") {
 			if($method === "GET") { // GET 메소드로 리스트로 갈 때
 				new BoardController("listGet");	
 				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
 				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(listGet)
 				// 3. $this->controllerChkUrl = board/list;
-				// 4. 슈퍼글로벌 변수 $_SESSION이 설정되어 있는지 확인
-				// 설정되어 있으면 if문 실행X, 설정되어 있지 않으면 세션시작
+				// 4. 이미 세션이 설정되어 있기 때문에 if문 실행X
 				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
 				// 1)if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
@@ -182,7 +182,8 @@ class Router {
 				// 18. callView($resultAction) 메소드 호출 > require_once($resultAction) >
 				// require_once(view/list.php); 실행
 				// 처리종료
-			}		
+			}	
+				
 		} else if($url === "board/add") {
 			if($method === "GET") {
 				// 처리 없음

@@ -23,14 +23,17 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 		];
 		
 		foreach($this->arrBoardNameInfo as $item) { // 페이지 제목 세팅
+		// 배열형태의 프로퍼티 $arrBoardNameInfo를 루프시키기 위하여 foreach문 실행
+		// <부모컨트롤러>리턴 받은 값으로 변경해두었던 프로퍼티 $arrBoardNameInfo(boardname에서 b_type, b_name 출력한 값의 배열형태)의 값을 $item에 저장
 			if($item["b_type"] === $b_type) {
 				$this->titleBoardName = $item["b_name"];
 				$this->boardType = $item["b_type"];
 				break;
-			} 
+			}
+			// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
+			// 프로퍼티 protected $titleBoardName의 값을 $item["b_name"]으로 변경하고
+			// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break
 		}
-		// <부모컨트롤러>protected $arrBoardNameInfo
-		// <보드네임모델>boardname에서 b_type, b_name 출력한 값을 배열형태로 저장
 
 		$boardModel = new BoardModel();
 		// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 저장
@@ -59,22 +62,32 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 			,"u_pk" => $u_pk
 			,"b_img" => $b_img
 		];
+		// POST로 받아온 데이터 배열형태로 저장
 		
 		move_uploaded_file($_FILES["b_img"]["tmp_name"], _PATH_USERIMG.$b_img);
 		// 이미지 파일 저장
 		
 		// insert 처리
 		$boardModel = new BoardModel();
+		// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 저장
 		$boardModel->beginTransaction();
+		// 트랜잭션 시작
 		$result = $boardModel->addBoard($arrAddBoardInfo);
-		if($result !== true) {
+		// <보드모델>addBoard($arrAddBoardInfo) 메소드 호출
+		// (지역변수 $arrAddBoardInfo에는 $_POST["b_type"]...$_FILES["b_img"]["name"]의 값이 저장되어있음)
+		// 지역변수 $arrAddBoardInfo에 저장되어 있는 u_pk...b_img 변경하여 insert 처리한 결과를 배열 변환하여 $result에 저장 후 리턴
+		// <보드컨트롤러>리턴 받은 값을 $result에 저장
+
+		if($result !== true) { // insert처리여부 if문 조건 판단
 			$boardModel->rollBack();
+			// $result가 true아닐 시 트랜잭션 시작한 곳으로 롤백
 		} else {
 			$boardModel->commit();
+			// $result가 true일 시 커밋
 		}
 
-		// 모델 파기
 		$boardModel-> destroy();
+		// 모델 파기
 
 		return "Location: /board/list?b_type=".$b_type;	
 	}
