@@ -25,6 +25,7 @@
 				<!-- name 셋팅을 해야 값이 넘어옴 -->
 			</div>			
 			<button type="submit" class="btn btn-primary">로그인</button>
+			<a href="/user/regist" class="btn btn-info text-light float-end">회원가입</a>
 		</form>
 	</main>
 

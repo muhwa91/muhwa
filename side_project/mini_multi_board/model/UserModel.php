@@ -45,4 +45,45 @@ class UserModel extends ParentsModel { // 부모모델 클래스에게 상속받
 			exit();
 		}
 	}
+
+	// 유저 정보 insert
+	// 파라미터 앞에 타입힌트 적어놓을시 타 데이터 타입 적용시 에러 / ex)(Array $arrUserInfo)
+	// 파라미터 뒤 : int 리턴 값으로 데이터 타입 적용 가능 / ex) (Array $arrUserInfo) : int
+	public function addUserInfo(Array $arrAddUserInfo) { 
+		$sql =
+			" INSERT INTO user ( "
+			." u_id "
+			." ,u_pw "
+			." ,u_name "
+			." ) "			
+			." VALUES ( "
+			." :u_id "
+			." ,:u_pw "
+			." ,:u_name "
+			." ) "
+			;
+
+		$prepare = [
+			":u_id" => $arrAddUserInfo["u_id"]
+			,":u_pw" => $arrAddUserInfo["u_pw"]
+			,":u_name" => $arrAddUserInfo["u_name"]
+		];
+		// 유저가 POST로 제출한 값이 $arrAddUserInfo["u_id"]["u_pw"]["u_name"]
+		// $prepare 저장
+
+		try {
+			$stmt = $this->conn->prepare($sql);
+			// sql 쿼리 준비문 생성하여 $stmt에 저장
+			$result = $stmt->execute($prepare);
+			// sql 쿼리 준비문 실행
+			return $result;
+			// 리턴 $result;
+		} catch(Exception $e) {
+			echo "UserModel->addUserInfo Error : ".$e->getMessage();
+			exit();
+		}
+	}
+
+
+
 }

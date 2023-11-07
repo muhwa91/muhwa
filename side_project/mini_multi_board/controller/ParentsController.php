@@ -14,7 +14,11 @@ class ParentsController {
 	protected $controllerChkUrl; // 헤더 표시 제어용 문자열
 	protected $arrErrorMsg = []; // 화면에 표시할 에러메세지 리스트	
 	protected $arrBoardNameInfo; // 헤더 게시판 드롭다운 표시용
-	private $arrNeedAuth = ["board/list"]; // 비로그인 시 접속 불가능한 url 리스트	
+	private $arrNeedAuth = [
+		"board/list"
+		,"board/add"
+		,"board/detail"
+	]; // 비로그인 시 접속 불가능한 url 리스트	
 
 	public function __construct($action) { // 생성자/파라미터 $action loginGet
 		$this->controllerChkUrl = $_GET["url"]; // 프로퍼티 controllerChkUrl 값 $_GET["url"] 으로 변경

@@ -91,4 +91,30 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 
 		return "Location: /board/list?b_type=".$b_type;	
 	}
+
+	protected function detailGet() { // 상세정보 API
+		$id = $_GET["id"];
+
+		$arrBoardDetailInfo = [
+			"id" => $id	
+		];
+
+		$boardModel = new BoardModel();
+		$result = $boardModel->getBoardDetail($arrBoardDetailInfo);
+		$result[0]["b_img"] = "/"._PATH_USERIMG.$result[0]["b_img"];
+		// 이미지 패스 재설정
+
+		$arrTmp = [ // response 데이터 작성
+			"errflg" => "0"
+			,"msg" => ""
+			,"data" => $result[0]
+			
+		];
+		$response = json_encode($arrTmp);
+
+		//response 처리
+		header('Content-type: application/json');
+		echo $response;
+		exit();
+	}
 }

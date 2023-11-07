@@ -136,7 +136,7 @@ class Router {
 				// 처리종료
 
 			} else {
-
+				new UserController("registPost");
 			}
 
 		} else if($url === "board/list") {
@@ -190,11 +190,11 @@ class Router {
 			} else {
 				new BoardController("addPost");
 				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
-				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(listGet)
-				// 3. $this->controllerChkUrl = board/list;
+				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(addPost)
+				// 3. $this->controllerChkUrl = board/add;
 				// 4. 슈퍼글로벌 변수 $_SESSION이 설정되어 있는지 확인
 				// 설정되어 있으면 if문 실행X, 설정되어 있지 않으면 세션시작
-				// 5. chkAuthorization() 메소드 호출 > $url = board/list > if문 조건 판단
+				// 5. chkAuthorization() 메소드 호출 > $url = board/add > if문 조건 판단
 				// private $arrNeedAuth = ["board/list"];
 				// 1)if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
 				// 세션 내에 u_pk 값이 있고, $url이 [board/list] 배열 내 존재하는지 판단 / 두가지 모두 충족하지 않을 시 if문 실행
@@ -234,7 +234,57 @@ class Router {
 				// 조건 충족 되어 header("Location: /board/list?b_type=".$b_type;); 실행
 				// 처리종료
 			}
-		}
+		} else if($url === "board/detail")
+			if($method === "GET") {
+				new BoardController("detailGet");
+				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
+				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(detailGet)
+				// 3. $this->controllerChkUrl = board/detail;
+				// 4. 슈퍼글로벌 변수 $_SESSION이 설정되어 있는지 확인
+				// 설정되어 있으면 if문 실행X, 설정되어 있지 않으면 세션시작
+				// 5. chkAuthorization() 메소드 호출 > $url = board/detail > if문 조건 판단
+				// private $arrNeedAuth = ["board/list"];
+				// 1)if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				// 세션 내에 u_pk 값이 있고, $url이 [board/list] 배열 내 존재하는지 판단 / 두가지 모두 충족하지 않을 시 if문 실행
+				// 충족할 시 header("Location: /user/login"); 실행 후 처리종료
+				// 2)if(isset($_SESSION["u_pk"]) && $url === "user/login")
+				// 세션 내에 u_pk 값이 있고, $url이 user/login인지 판단 / 두가지 모두 충족할 시 if문 실행
+				// 충족할 시 header("Location: /board/list"); 실행 후 처리종료
+				// 6. GET메소드로 접속하여 if문 2개 모두 실행되지 않아 리디렉션(현재 페이지에서 다른 페이지로 이동) 발생X
+				// 7. 보드네임모델 클래스 인스턴스화 시 자동으로 부모모델 클래스의 생성자 호출
+				// 8. <부모모델>DB연결 후 보드네임모델 클래스를 $boardNameModel에 인스턴스 저장
+				// 9. $boardNameModel에서 getBoardNameList() 메소드 호출
+				// 10. <보드네임모델>boardname에서 b_type, b_name 출력
+				// 11. 출력한 값을 배열형태로 변환하여 $result에 저장 후 리턴
+				// 12. <부모컨트롤러>리턴 받은 값을 프로퍼티 $arrBoardNameInfo에 저장
+				// 13. $boardNameModel(DB연결+보드네임모델 인스턴스 저장내용) 파기
+				// 14. $action=detailGet이므로,
+				// // <보드컨트롤러>detailGet() 메소드 호출 > GET메소드 내 id 값 $id에 저장
+				// 지역변수 $arrBoardDetailInfo 내에 배열형태로 저장
+				// 15. 보드모델 클래스 인스턴스화 시 자동으로 부모모델 클래스의 생성자 호출
+				// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 
+				// 16. <보드모델>getBoardDetail($arrBoardDetailInfo) 메소드 호출 >
+				// (지역변수 $arrBoardDetailInfo에는 $_GET["id"]의 값이 저장되어있음)
+				// id...updated_at 출력하는 sql 쿼리 준비문 생성하여 $stmt에 저장
+				// $prepare에 세팅해둔 지역변수 $arrBoardDetailInfo에 저장되어 있는 $_GET["id"]의 값을 변경하여 처리한 결과를 배열 변환하여 $result에 저장 후 리턴
+				// <보드컨트롤러>리턴 받은 값을 $result에 저장
+				// 에러플래그, 메세지, 데이터 담기위해 $arrTmp 배열형태로 response 데이터 작성
+				// json_encode 사용하여 $arrTmp를 변환하여 $response에 저장
+				
+
+
+
+
+
+
+
+
+				// 12번에서 변경해두었던 프로퍼티 $arrBoardNameInfo(boardname에서 b_type, b_name 출력한 값의 배열형태)의 값을 $item에 저장
+				// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
+				// 프로퍼티 protected $titleBoardName의 값을 $item["b_name"]으로 변경하고
+				// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break
+				
+			} 				
 
 		// 없는 경로일 경우
 		echo "이상한 URL : ".$url;
