@@ -6,6 +6,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<title>회원가입 페이지</title>
 </head>
+
 <body class="vh-100 vw-100">
 	<?php require_once("view/inc/header.php"); ?>
 
@@ -14,11 +15,14 @@
 			<div id="errorMsg" class="form-text text-danger">
 				<?php echo count($this->arrErrorMsg) > 0 ? implode("<br>", $this->arrErrorMsg) : "" ?>
 			</div>
+			
 			<div class="mb-3">
 				<label for="u_id" class="form-label">아이디</label>
+				<button type="button" class="btn btn-primary" onclick="openJoin(); return false;">아이디 중복체크</button>
 				<input type="text" class="form-control" id="u_id" name="u_id" minlength="8" maxlength="20">
 				<!-- name 셋팅을 해야 값이 넘어옴 -->
 			</div>
+				
 			<div class="mb-3">
 				<label for="u_pw" class="form-label">비밀번호</label>
 				<input type="password" class="form-control" id="u_pw" name="u_pw" minlength="8" maxlength="20">
@@ -42,6 +46,10 @@
 	<footer class="fixed-bottom bg-primary text-light text-center p-3">
 		저작권
 	</footer>
+	<script src="/view/js/common.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+

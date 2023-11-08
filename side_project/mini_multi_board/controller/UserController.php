@@ -9,6 +9,7 @@ use model\UserModel;
 // 부모컨트롤러 클래스에게 상속받는 유저컨트롤러 클래스는 일차적으로 자식컨트롤러에서 정의된 실행할 처리가
 // 실행되고, 자식컨트롤러에서 실행할 처리가 없으면 부모컨트롤러에 정의된 실행할 처리가 처리됨
 // 일반적으로 부모클래스에 실행할 처리를 정의해줌
+use lib\Validation;
 
 class UserController extends ParentsController{ // 부모 컨트롤러 클래스에게 상속받는 유저컨트롤러 클래스
 	// 로그인 페이지 이동
@@ -18,6 +19,17 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 
 	// 로그인 처리
 	protected function loginPost() {
+
+		$inputData = [
+			"u_id" => $_POST["u_id"]
+			,"u_pw" => $_POST["u_pw"]
+		];
+
+		if(!Validation::userChk($inputData)) { // 유효성 체크
+			$this->arrErrorMsg = Validation::getArrErrorMsg();
+			return "view/login.php";
+		}
+
 		// ID, PW 설정(DB에서 사용할 데이터 가공)
 		$arrInput = [];
 		// $arrInput은 배열형태로 세팅
@@ -28,8 +40,9 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 		// ($_POST["u_pw"])아규먼트를 encrtptionPassword 메소드 파라미터에 전달
 		// return 암호화 된 비밀번호(base64_encode)
 		// 즉, post로 제출 된 비밀번호를 암호화하여 $arrInput["u_pw"]에 저장
-
+		
 		$modelUser = new UserModel();
+		// 유저정보 획득
 		// 유저모델 클래스 인스턴스 생성하여 $modelUser에 저장
 		$resultUserInfo =  $modelUser->getUserInfo($arrInput, true);
 		// 유저모델 클래스의 메소드 getUserInfo 호출하여 아규먼트($arrInput, true) 파라미터로 전달
@@ -64,38 +77,25 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 	}
 
 	// 회원가입 처리
-	protected function registPost() {
-		$u_id = $_POST["u_id"];
-		$u_pw = $_POST["u_pw"];
-		$u_pw_chk = $_POST["u_pw_chk"];
-		$u_name = $_POST["u_name"];
-		$arrAddUserInfo = [
-			"u_id" => $u_id
-			,"u_pw" => $this->encrtptionPassword($u_pw)
-			,"u_name" => $u_name
+	protected function registPost() {		
+		$inputData = [
+			"u_id" => $_POST["u_id"]
+			,"u_pw" => $_POST["u_pw"]
+			,"u_pw_chk" => $_POST["u_pw_chk"]
+			,"u_name" => $_POST["u_name"]
 		];
 
-		$patternId = "/^[a-zA-Z0-9]{8,20}$/";
-		$patternPw = "/^[a-zA-Z0-9!@]{8,20}$/";
-		$patternName = "/^[a-zA-Z가-힣]{2,50}$/u";
-
-		if(preg_match($patternId, $u_id, $match) === 0) { // ID에러처리 true = 1 false = 0
-			$this->arrErrorMsg[] = "아이디는 영어대소문자와 숫자로 8~10자로 입력해 주세요.";
-		}
-		if(preg_match($patternPw, $u_pw, $match) === 0) { // PW에러처리 true = 1 false = 0
-			$this->arrErrorMsg[] = "비밀번호는 영어대소문자와 숫자, !, @로 8~20자로 입력해 주세요.";
-		}
-		if($u_pw !== $u_pw_chk) { // PW확인 에러처리
-			$this->arrErrorMsg[] = "비밀번호와 비밀번호 확인이 서로 다릅니다.";
-		}
-		if(preg_match($patternName, $u_name, $match) === 0) { // Name에러처리 true = 1 false = 0
-			$this->arrErrorMsg[] = "이름은 영어대소문자와 한글로 2~50자로 입력해 주세요.";
-		}
+		$arrAddUserInfo = [
+			"u_id" => $_POST["u_id"]
+			,"u_pw" => $this->encrtptionPassword($_POST["u_pw"])
+			,"u_name" => $_POST["u_name"]
+		];
 
 		// TODO : 아이디 중복 체크 필요(마지막으로 체크할 때 TODO 확인하기)
 
-		if(count($this->arrErrorMsg) > 0) { // 유효성 체크 실패시
-			return "view/regist.php";
+		if(!Validation::userChk($inputData)) { // 유효성 체크
+			$this->arrErrorMsg = Validation::getArrErrorMsg();
+			return "view/login.php";
 		}
 
 		// 인서트 처리
@@ -120,6 +120,29 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 
 		return "Location: /user/login";
 	}
+
+	protected function regist_ChkGet() {
+		$u_id = $_GET["u_id"];
+		$arrChkUserInfo = [
+			"u_id" => $_GET["u_id"]
+		];
+
+		$modelChkUser = new UserModel();
+		$resultChkUserInfo =  $modelChkUser->getChkUserInfo($arrChkUserInfo);
+		$arrTmp = [ // response 데이터 작성
+			"errflg" => "0"
+			,"msg" => ""
+			,"data" => $resultChkUserInfo[0]
+
+		];
+		$response = json_encode($arrTmp);
+
+		//response 처리
+		header('Content-type: application/json');
+		echo $response;
+		exit();
+	}
+
 
 	// 비밀번호 암호화
 	private function encrtptionPassword($pw) {  

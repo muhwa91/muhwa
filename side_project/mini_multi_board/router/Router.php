@@ -69,7 +69,7 @@ class Router {
 				// 충족하지 않으므로 if문 실행X
 				// 6. $action=loginPost이므로, 
 				// <유저컨트롤러>loginPost() 메소드 호출 > $arrInput 빈 배열 세팅, POST 제출받은 값 저장(u_id, 암호화된 u_pw)
-				// 유저모델 클래스 인스턴스 시, 자동으로 부모모델 클래스의 생성자 호출
+				// 유저모델 클래스 인스턴스 시, 부모모델 클래스의 생성자 호출
 				// 7. <부모모델>생성자 내에서 DB연결 실행 후 인스턴스 생성한 유저 모델을 $modelUser에 저장
 				// 8. <유저모델>getUserInfo 메소드 호출하여 아규먼트 $arrInput, true를 파라미터에 전달
 				// 9. <유저모델>getUserInfo($arrUserInfo, true)로 실행하여 if문 ($pwFlg) 조건 충족되어 if문 실행
@@ -129,16 +129,87 @@ class Router {
 				// in_array(user/regist, ["board/list"]) 배열 안에 특정 값인 $url(=user/regist) 존재하는지 판단
 				// 충족하지 않으므로 if문 실행X
 				// 6. $action=registGet이므로, 
-				// <유저컨트롤러>registGet() 메소드 호출 > return "view/regist.php"._EXTENSION_PHP; > 
-				// <부모컨트롤러>$resultAction = return "view/regist.php"._EXTENSION_PHP;
+				// <유저컨트롤러>registGet() 메소드 호출 > return "view/regist.php"; > 
+				// <부모컨트롤러>$resultAction = return "view/regist.php";
 				// 7. callView($resultAction) 메소드 호출 > require_once($resultAction) >
 				// require_once(view/regist.php"._EXTENSION_PHP); 실행
 				// 처리종료
 
 			} else {
 				new UserController("registPost");
-			}
+				// 1. 유저컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
+				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(registPost)
+				// 3. $this->controllerChkUrl = user/regist;
+				// 4. 세션설정(세션이 없으므로, session_start(); 실행)
+				// 5. chkAuthorization() 메소드 호출 > $url = user/regist > if문 조건 판단
+				// private $arrNeedAuth = ["board/list","board/add","board/detail"];
+				// if(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				// in_array(user/regist, ["board/list","board/add","board/detail"]) 배열 안에 
+				// 특정 값인 $url(=user/regist) 존재하는지 판단
+				// 충족하지 않으므로 if문 실행X
+				// 보드네임모델 클래스 인스턴스화 시, 부모모델 클래스의 생성자 호출
+				// 6. <부모모델>생성자 내에서 DB연결 실행 후 인스턴스 생성한 보드네임모델을 $boardNameModel에 저장
+				// 7. $boardNameModel의 getBoardNameList() 메소드 호출
+				// 8. b_type, b_name 출력하는 쿼리문의 실행결과를 배열형태로 저장하여 $result에 저장하여 리턴
+				// 9. 리턴받은 값을 멤버변수 arrBoardNameInfo의 값 변경
+				// 10. $boardNameModel 데이터 파기
+				// 11. $action=registPost이므로,
+				// <유저컨트롤러>registPost() 메소드 호출 >
+				// post로 제출받은 데이터(u_id, u_pw, u_name)를 지역변수$arrAddUserInfo 배열형태로 변환
+				// Id, Pw, Name 정규표현식 선언
+				// if문 사용하여 조건 판단
+				// preg_match 함수 이용하여 정규표현식, post로 제출받은 데이터와 비교하여 매칭하는 값을 가져옴
+				// 1)정규표현식과 u_id 비교하여 0일 때 에러메세지 출력(true = 1, false = 0)
+				// 2)정규표현식과 u_pw 비교하여 0일 때 에러메세지 출력(true = 1, false = 0)
+				// 3)u_pw와 u_pw_chk 비교하여 일치하지 않을 때 에러메세지 출력
+				// 4)정규표현식과 u_name 비교하여 0일 때 에러메세지 출력(true = 1, false = 0)
 
+				// if문 사용하여 조건 판단
+				// 1)에러메세지가 0 초과일 때 return "view/regist.php";
+				// 2)<부모컨트롤러>리턴 받은 값을 $resultAction에 저장
+				// 3)$resultAction = "view/regist.php"
+				// 4)callView($resultAction) 메소드 호출 > require_once($resultAction) >
+				// require_once(view/regist.php); 실행
+				// 처리종료
+
+				// if문 사용하여 조건 판단
+				// 1)에러메세지가 0 일 때 if문 실행X
+				// 유저모델 클래스 인스턴스화 시, 부모모델 클래스의 생성자 호출
+				// 2)<부모모델>생성자 내에서 DB연결 실행 후 인스턴스 생성한 유저모델을 $userModel에 저장
+				// 3)트랜잭션 시작
+				// 4)<유저모델>addUserInfo($arrAddUserInfo) 메소드 호출 >				
+				// 5)(지역변수 $arrAddUserInfo에는 $_POST["u_id"], $_POST["u_pw"], $_POST["u_name"]의 값이 저장되어있음)
+				// 6)지역변수 $arrAddBoardInfo에 저장되어 있는 값을 insert 처리한 결과를 $result에 저장 후 리턴
+				// 7)<유저컨트롤러>리턴 받은 값을 $result에 저장
+				// 8)if문 조건판단
+				// $result가 true가 아닐 때 롤백
+				// true일 때 커밋
+				// 9)DB연결 후 유저모델 클래스 인스턴스 저장한 $userModel 파기
+				// 10)return "Location: /user/login";
+				// 11)<부모컨트롤러>$resultAction = return "Location: /user/login";
+				// 12)callView($resultAction) 메소드 호출 > if문 실행
+				// 함수 strpos 사용하여 $resultAction 문자열에서 "Location:" 문자열을 찾아서 처음에 위치한다면 true
+				// 조건 충족 되어 header("Location: /user/login"); 실행
+				// 처리종료		
+
+
+
+
+
+
+				// (지역변수 $arrBoardDetailInfo에는 $_GET["id"]의 값이 저장되어있음)
+				// id...updated_at 출력하는 sql 쿼리 준비문 생성하여 $stmt에 저장
+				// $prepare에 세팅해둔 지역변수 $arrBoardDetailInfo에 저장되어 있는 $_GET["id"]의 값을 변경하여 처리한 결과를 배열 변환하여 $result에 저장 후 리턴
+				// <보드컨트롤러>리턴 받은 값을 $result에 저장
+				// 에러플래그, 메세지, 데이터 담기위해 $arrTmp 배열형태로 response 데이터 작성
+				// json_encode 사용하여 $arrTmp를 변환하여 $response에 저장				
+			}
+		} else if($url === "user/regist_chk") {
+			if($method === "GET") {
+				new UserController("regist_ChkGet");
+			}
+		
+		
 		} else if($url === "board/list") {
 			if($method === "GET") { // GET 메소드로 리스트로 갈 때
 				new BoardController("listGet");	

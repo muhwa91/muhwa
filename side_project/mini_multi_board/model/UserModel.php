@@ -50,7 +50,7 @@ class UserModel extends ParentsModel { // 부모모델 클래스에게 상속받
 	// 파라미터 앞에 타입힌트 적어놓을시 타 데이터 타입 적용시 에러 / ex)(Array $arrUserInfo)
 	// 파라미터 뒤 : int 리턴 값으로 데이터 타입 적용 가능 / ex) (Array $arrUserInfo) : int
 	public function addUserInfo(Array $arrAddUserInfo) { 
-		$sql =
+		$sql = 
 			" INSERT INTO user ( "
 			." u_id "
 			." ,u_pw "
@@ -62,6 +62,7 @@ class UserModel extends ParentsModel { // 부모모델 클래스에게 상속받
 			." ,:u_name "
 			." ) "
 			;
+		// 유저컨트롤러에서 파라미터로 전달받은 값을 insert 처리
 
 		$prepare = [
 			":u_id" => $arrAddUserInfo["u_id"]
@@ -83,7 +84,36 @@ class UserModel extends ParentsModel { // 부모모델 클래스에게 상속받
 			exit();
 		}
 	}
+	
+	public function getChkUserInfo($arrChkUserInfo) { // pw를 안받으면 false로 세팅
+		$sql =
+			" SELECT "
+			." count(u_id) as cnt "
+			." FROM user "
+			." WHERE "
+			." u_id = :u_id ";
 
+		$prepare = [
+			":u_id" => $arrChkUserInfo["u_id"]
+		];
+		// 유저가 GET로 제출한 값이 $arrChkUserInfo["u_id"]
+		// $prepare 저장
+
+		try {
+			$stmt = $this->conn->prepare($sql);
+			// sql 쿼리 준비문 생성하여 $stmt에 저장
+			$stmt->execute($prepare);
+			// sql 쿼리 준비문 실행
+			$result = $stmt->fetchAll();
+			// sql 쿼리 결과 데이터를 fetchAll 함수이용하여 배열로 반환하여
+			// $result에 저장
+			return $result;
+			// 리턴 $result;
+		} catch(Exception $e) {
+			echo "UserModel->getChkUserInfo Error : ".$e->getMessage();
+			exit();
+		}
+	}
 
 
 }
