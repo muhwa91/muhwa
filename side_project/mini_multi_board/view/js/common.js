@@ -54,7 +54,7 @@ function closeDetailModal() {
   MODAL.style = "display: none;";
 }
 
-// 아이디 체크 모달 제어
+// 아이디 체크 제어
 function openJoin() {
   const INPUTID = document.querySelector("#u_id").value;
   const URL = "/user/regist_chk?u_id=" + INPUTID;

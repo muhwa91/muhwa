@@ -51,7 +51,7 @@ class ParentsController {
 
 		$resultAction = $this->$action();
 		// controller 메소드 호출
-		
+				
 		$this->callView($resultAction);
 		// view 호출
 
