@@ -75,10 +75,11 @@ function openJoin() {
 
 // 아이디 체크 POST 다른 방식
 
-// router 조건 $url === "/user/idchk" else if문 작성
+// <router>
+// $url === "/user/idchk" else if문 작성
 // else if($url === "/user/idchk") {
 // if($method === "POST") {
-// new BoardController("idchkGet");
+// new BoardController("idchkPOST");
 
 //<유저컨트롤러>
 // protected function idchkPOST() {
