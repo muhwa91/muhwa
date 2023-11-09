@@ -58,5 +58,3 @@ https://github.com/greenmeerkat/2308_php/assets/142575026/a44021dd-a660-4957-886
 유저(브라우저) <-> 웹서버 > index.php, Router > Controller <-> model > View > 웹서버
 컨트롤러는 모델과 뷰에 대해서 작용
 컨트롤러는 모델과 상호작용하고, 모델과 뷰는 작용하지 않음
-
-자리변경
