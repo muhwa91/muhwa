@@ -33,8 +33,7 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 			// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
 			// 프로퍼티 protected $titleBoardName의 값을 $item["b_name"]으로 변경하고
 			// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break
-		}
-
+		} 
 		$boardModel = new BoardModel();
 		// <부모모델>DB연결 후 보드모델 클래스를 $boardModel에 인스턴스 저장
 		$this->arrBoardInfo = $boardModel->getBoardList($arrBoardInfo); // 보드리스트 획득
@@ -98,11 +97,13 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 		$arrBoardDetailInfo = [
 			"id" => $id	
 		];
-
+		
 		$boardModel = new BoardModel();
 		$result = $boardModel->getBoardDetail($arrBoardDetailInfo);
-		$result[0]["b_img"] = "/"._PATH_USERIMG.$result[0]["b_img"];
 		// 이미지 패스 재설정
+		$result[0]["b_img"] = "/"._PATH_USERIMG.$result[0]["b_img"]; 
+		// 작성 유저 플래그 설정
+		$result[0]["uflg"] = $result[0]["u_pk"] === $_SESSION["u_pk"] ? "1" : "0";		
 
 		$arrTmp = [ // response 데이터 작성
 			"errflg" => "0"
@@ -117,4 +118,62 @@ class BoardController extends ParentsController { // 부모 컨트롤러 클래�
 		echo $response;
 		exit();
 	}
+
+	protected function removeGet() { // 강사님 방법
+		$errFlg = "0";
+		$errMsg = "";
+		$arrDeleteBoardInfo = [
+			"id" => $_GET["id"]
+			,"u_pk" => $_SESSION["u_pk"]
+		];
+		
+		$boardModel = new BoardModel(); // 삭제 처리
+		$boardModel->begintransaction();
+		$result = $boardModel->removeBoardCard($arrDeleteBoardInfo);
+
+		if($result !== 1) {
+			$errFlg = "1";
+			$errMsg = "삭제 처리 이상";
+			$boardModel->rollBack();
+		} else {
+			$boardModel->commit();
+		}
+		$boardModel->destroy();
+	 
+		$arrTmp = [ // response 데이터 작성
+			"errflg" => $errFlg
+			,"msg" => $errMsg
+			,"id" => $arrDeleteBoardInfo["id"]
+			];
+		$response = json_encode($arrTmp); 
+	 
+		header('Content-type: application/json'); // response 처리
+		echo $response;
+		exit();
+	 }
+
+	// protected function deletePost() { // 성찬이 방법
+	// 	$id = $_POST["id"];
+	// 	$u_pk = $_SESSION["u_pk"];
+
+	// 	$arrBoardDeleteInfo = [
+	// 		"id" => $id
+	// 		,"u_pk" => $u_pk
+	// 	];
+
+	// 	$boardModel = new BoardModel();
+	// 	$boardModel->begintransaction();
+	// 	$result = $boardModel->postBoardDelete($arrBoardDeleteInfo);
+
+	// 	if($result !== true) {
+	// 		$boardModel->rollBack();
+	// 	} else {
+	// 		$boardModel->commit();
+	// 	}
+
+	// 	$boardModel->destroy();
+	// 	return "Location: /board/list?b_type=0";
+	// }
+
+	
 }

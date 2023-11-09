@@ -28,12 +28,25 @@ function openDetail(id) {
       const IMG = document.querySelector("#b_img");
       const CREATEAT = document.querySelector("#create_at");
       const UPDATEAT = document.querySelector("#updated_at");
+      const DEL_INPUT = document.querySelector("#del_id"); // 강사님 방법
+      const BTN_DEL = document.querySelector("#btn_del");
+      // const DELETEAT = document.querySelector("#detail_content"); // 성찬이 방법
 
       TITLE.innerHTML = data.data.b_title;
       CONTENT.innerHTML = data.data.b_content;
       CREATEAT.innerHTML = data.data.create_at;
       UPDATEAT.innerHTML = data.data.updated_at;
       IMG.setAttribute("src", data.data.b_img);
+      DEL_INPUT.value = data.data.id; // 강사님 방법
+      // DELETEAT.value = data.data.id; // 성찬이 방법
+      // .value value 값 설정, db에 요청해서 받는 게시글의 상세정보
+
+      // 삭제 버튼 표시 처리
+      if (data.data.uflg === "1") {
+        BTN_DEL.classList.remove("d-none");
+      } else {
+        BTN_DEL.classList.add("d-none");
+      }
 
       openModal(); // 모달 오픈
     })
@@ -44,7 +57,7 @@ function openDetail(id) {
 function openModal() {
   const MODAL = document.querySelector("#modalDetail");
   MODAL.classList.add("show");
-  MODAL.style = "display: block; backgroun-color: rgba(0, 0, 0, 0.7);";
+  MODAL.style = "display: block; background-color: rgba(0, 0, 0, 0.5);";
 }
 
 // 모달 클로즈 함수
@@ -71,6 +84,29 @@ function openJoin() {
     })
     .catch((error) => console.log(error));
 }
+
+function deleteCard() {
+  // 강사님 방법
+  const B_PK = document.querySelector("#del_id").value;
+  const URL = "/board/remove?id=" + B_PK;
+  fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.errflg === "0") {
+        // 모달 닫기
+        closeDetailModal();
+        // 카드 삭제
+        const MAIN = document.querySelector("main");
+        const CARD_NAME = "#card" + data.id;
+        const DEL_CARD = document.querySelector(CARD_NAME);
+        MAIN.removeChild(DEL_CARD);
+      } else {
+        alert(data.msg);
+      }
+    })
+    .catch((error) => console.log(error));
+}
+
 // onclick="openJoin(); return false;" return false php exit()기능
 
 // 아이디 체크 POST 다른 방식

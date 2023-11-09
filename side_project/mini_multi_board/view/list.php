@@ -32,7 +32,7 @@
 		<?php
 			foreach ($this->arrBoardInfo as $item) {
 		?>		
-			<div class="card" id="card <?php $item["id"]; ?>">
+			<div class="card" id="card<?php echo $item["id"]; ?>">
 				<img src="<?php echo isset($item["b_img"]) ? "/"._PATH_USERIMG.$item["b_img"] : ""; ?>" class="card-img-top" alt="사진음슴">
 				<div class="card-body">
 				<h5 class="card-title"><?php echo $item["b_title"]; ?></h5>
@@ -52,21 +52,29 @@
   <!-- 상세 Modal -->
 	<div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-scrollable">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="b_title">아니 내 연습장 표지 어디갔는데</h5>
-					<button type="button" onclick="closeDetailModal(); return false;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			<form action="/board/delete" method="post">
+				<div class="modal-content">
+					<div class="modal-header">
+						<input type="hidden" name="id" id="detail_content">
+						<h5 class="modal-title" id="b_title">아니 내 연습장 표지 어디갔는데</h5>
+						<button type="button" onclick="closeDetailModal(); return false;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>작성일 : <span id="create_at"></span></p>
+						<p>수정일 : <span id="updated_at"></span></p>
+						<span id="b_content">이럴거면 a4쓰지 왜 연습장 쓰냐고</span>
+						<img id="b_img" class="card-img-top" src="">
+					</div>
+					<div class="modal-footer">
+						<!-- 강사님 방법 -->
+						<input type="hidden" id="del_id" value="">
+						<button type="button" id="btn_del" onclick="deleteCard(); return false;" class="btn btn-primary me-auto bd-highlight">삭제</button> 
+						<!-- 성찬이 방법 -->
+						<!-- <button type="submit" class="btn btn-secondary me-auto p-2 bd-highlight" data-bs-dismiss="modal">삭제</button> -->
+						<button type="button" onclick="closeDetailModal(); return false;" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					</div>
 				</div>
-				<div class="modal-body">
-					<p>작성일 : <span id="create_at"></span></p>
-					<p>수정일 : <span id="updated_at"></span></p>
-					<span id="b_content">이럴거면 a4쓰지 왜 연습장 쓰냐고</span>
-					<img id="b_img" src="" alt="">
-				</div>
-				<div class="modal-footer">
-					<button type="button" onclick="closeDetailModal(); return false;" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 
@@ -85,8 +93,8 @@
 						<input type="file" name="b_img" accept="image/*">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 						<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">작성</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 					</div>
 				</form>
 			</div>

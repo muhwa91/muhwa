@@ -117,4 +117,61 @@ class BoardModel extends ParentsModel { // 부모모델 클래스에게 상속�
 			exit();
 		}
 	}
+
+	public function removeBoardCard($arrDeleteBoardInfo) { //강사님 방법
+		$sql = 
+			"update"
+			." board "
+			." SET "
+			." deleted_at = NOW() "
+			." WHERE "
+			." id = :id "
+			." AND "
+			." u_pk = :u_pk "
+			;
+			
+		$prepare = [
+				":id" => $arrDeleteBoardInfo["id"]
+				,":u_pk" => $arrDeleteBoardInfo["u_pk"]
+			];
+			
+		try {
+				$stmt = $this->conn->prepare($sql);
+				$stmt->execute($prepare);	
+				$result = $stmt->rowCount(); // 쿼리에 영향을 받은 레코드 수 반환, 삭제처리가 얼마나 되었는지 확인 가능
+				return $result;
+			} catch(Exception $e) {
+				echo "BoardModel->removeBoardCard Error : ".$e->getMessage();
+				exit();
+			} 
+	 }
+
+
+	// public function postBoardDelete($arrBoardDeleteInfo) { 성찬이 방법
+	// 	$sql =
+	// 		" UPDATE "
+	// 		." board "
+	// 		." SET deleted_at = NOW() "
+	// 		." WHERE "
+	// 		." id = :id "
+	// 		." AND u_pk = :u_pk "
+	// 		;
+		
+	// 	$prepare = [
+	// 		":id" => $arrBoardDeleteInfo["id"]
+	// 		,":u_pk" => $arrBoardDeleteInfo["u_pk"]
+	// 	];
+
+	// 	try {
+	// 		$stmt = $this->conn->prepare($sql);
+	// 		// sql 쿼리 준비문 생성하여 $stmt에 저장
+	// 		$result = $stmt->execute($prepare);
+	// 		// sql 쿼리 준비문 실행			
+	// 		return $result;
+	// 		// 리턴 $result;
+	// 	} catch(Exception $e) {
+	// 		echo "BoardModel->postBoardDelete Error : ".$e->getMessage();
+	// 		exit();
+	// 	} 
+	// }
 }

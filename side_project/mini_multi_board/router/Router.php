@@ -412,8 +412,20 @@ class Router {
 				// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
 				// 프로퍼티 protected $titleBoardName의 값을 $item["b_name"]으로 변경하고
 				// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break				
-			} 				
+			}
+		
+		}else if($url === "board/remove") { // 강사님 방법
+				if($method === "GET") {
+					new BoardController("removeGet");
+				}
 		}
+		// } else if($url === "board/delete") { 성찬이 방법
+		// 	if($method === "GET") {
+		// 		// 처리 없음
+		// 	} else {
+		// 		new BoardController("deletePost");
+		// 	}
+		// }
 		// 없는 경로일 경우
 		echo "이상한 URL : ".$url;
 		exit();	
