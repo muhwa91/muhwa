@@ -284,7 +284,7 @@ class Router {
 		} else if($url === "board/list") {
 			if($method === "GET") { // GET 메소드로 리스트로 갈 때
 				new BoardController("listGet");	
-				//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
+			}	//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
 				//2. [부모컨트롤러] __construct("listGet")
 				//2-1 $this->controllerChkUrl = $_GET["url"]; controllerChkUrl = board/list
 				//cf)header.php 내에 if 조건문 판단
@@ -300,7 +300,7 @@ class Router {
 				//"board/list","board/add","board/detail" 배열 내 값과 비교하여 포함되었으므로,
 				//조건 충족하여 if문 실행
 				//2-6 header("Location: /user/login"); 처리종료
-
+			
 		} else if($url === "board/add") {
 			if($method === "GET") {
 				// 처리 없음
@@ -324,26 +324,6 @@ class Router {
 				//2)슈퍼글로벌변수 $_SESSION 내 u_pk 값이 없고, $url = user/regist으로 일치하지 않으므로
 				//조건 충족 되지 않아 if문 실행X
 				//---------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 				// 1. 보드컨트롤러 클래스 인스턴스화 시, 자동으로 부모컨트롤러 클래스의 생성자 호출
 				// 2. 부모컨트롤러 클래스에서 construct($action) = construct(addPost)
@@ -431,13 +411,11 @@ class Router {
 				// 12번에서 변경해두었던 프로퍼티 $arrBoardNameInfo(boardname에서 b_type, b_name 출력한 값의 배열형태)의 값을 $item에 저장
 				// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
 				// 프로퍼티 protected $titleBoardName의 값을 $item["b_name"]으로 변경하고
-				// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break
-				
+				// 프로퍼티 protected $boardType의 값을 $item["b_type"]으로 변경하고 break				
 			} 				
 		}
 		// 없는 경로일 경우
 		echo "이상한 URL : ".$url;
-		exit();
-	
-		}
+		exit();	
 	}
+}
