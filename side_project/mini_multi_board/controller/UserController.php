@@ -121,31 +121,36 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 		return "Location: /user/login";
 	}
 
-	protected function regist_ChkGet() {
-		$u_id = $_GET["u_id"];
-		$arrChkUserInfo = [
-			"u_id" => $_GET["u_id"]
+	protected function regist_ChkPost() {
+		$errorFlg = "0";
+		$errorMsg = "";
+		$inputData = [
+			"u_id" => $_POST["u_id"]
+		];
+		// 유효성 체크
+		if(!Validation::userChk($inputData)) {
+			$errorFlg = "1";
+			$errorMsg = Validation::getArrErrorMsg()[0];
+		}
+
+		// 중복 체크
+		$userModel = new UserModel();
+		$result = $userModel->getUserInfo($inputData);
+		$userModel->destroy();
+
+		if(count($result) > 0) {
+			$errorFlg = "1";
+			$errorMsg = "중복된 아이디입니다.";
+		}
+				
+		// response 처리
+		$response = [
+			"errflg" => $errorFlg
+			,"msg" => $errorMsg
 		];
 
-		$modelChkUser = new UserModel();
-		$resultChkUserInfo =  $modelChkUser->getChkUserInfo($arrChkUserInfo);
-		$arrTmp = [ // response 데이터 작성
-			"errflg" => "0"
-			,"msg" => ""
-			,"data" => $resultChkUserInfo[0]
-
-		];
-		$response = json_encode($arrTmp);
-
-		//response 처리
 		header('Content-type: application/json');
-		echo $response;
+		echo json_encode($response);
 		exit();
-	}
-
-
-	// 비밀번호 암호화
-	private function encrtptionPassword($pw) {  
-		return base64_encode($pw);
 	}
 }
