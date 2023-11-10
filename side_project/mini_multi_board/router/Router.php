@@ -1,15 +1,15 @@
 <?php
 
 // <URL 규칙>
-	// 1. 회원 정보 관련 URL
-	// user/[해당기능]
-	// ex) 로그인 : 호스트/user/login
-	// ex) 회원가입 : 호스트/user/regist
-	
-	// 2. 게시판 관련 URL
-	// board/[해당기능]
-	// ex) 리스트 : 호스트/board/list
-	// ex) 수정 : 호스트/board/edit
+// 1. 회원 정보 관련 URL
+// user/[해당기능]
+// ex) 로그인 : 호스트/user/login
+// ex) 회원가입 : 호스트/user/regist
+
+// 2. 게시판 관련 URL
+// board/[해당기능]
+// ex) 리스트 : 호스트/board/list
+// ex) 수정 : 호스트/board/edit
 
 // <고유 식별자 제공>
 namespace router;
@@ -172,7 +172,7 @@ class Router {
 				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/logout
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(X)
 				//조건 불충족>>if문 실행(X)
-				//2)(isset($_SESSION["u_pk"]) && $url === "user/logout")
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
 				//$_SESSION 내 u_pk 값이 있음+$url = user/logout
 				//조건 불충족>>if문 실행(X)
 				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
@@ -210,7 +210,7 @@ class Router {
 				//$_SESSION 내 u_pk 값이 없음+함수 in_array 사용하여 user/regist
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(X)
 				//조건 불충족>>if문 실행(X)
-				//2)(isset($_SESSION["u_pk"]) && $url === "user/regist")
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
 				//$_SESSION 내 u_pk 값이 없음+$url = user/regist
 				//조건 불충족>>if문 실행(X)
 				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
@@ -246,7 +246,7 @@ class Router {
 				//$_SESSION 내 u_pk 값이 없음+함수 in_array 사용하여 user/regist
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(X)
 				//조건 불충족>>if문 실행(X)
-				//2)(isset($_SESSION["u_pk"]) && $url === "user/regist")
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
 				//$_SESSION 내 u_pk 값이 없음+$url = user/regist
 				//조건 불충족>>if문 실행(X)
 				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
@@ -322,7 +322,7 @@ class Router {
 				//$_SESSION 내 u_pk 값이 없음+함수 in_array 사용하여 user/regist_chk
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(X)
 				//조건 불충족>>if문 실행(X)
-				//2)(isset($_SESSION["u_pk"]) && $url === "user/regist")
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
 				//$_SESSION 내 u_pk 값이 없음+$url = user/regist_chk
 				//조건 불충족>>if문 실행(X)				
 				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
@@ -386,36 +386,213 @@ class Router {
 		} else if($url === "board/list") {
 			if($method === "GET") {
 				new BoardController("listGet");
-				
+				//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
+				//2. [부모컨트롤러]__construct("board/list")
+				//2-1. controllerChkUrl = board/list
+				//2-2. 세션있으므로, if문 실행(X)
+				//2-3. chkAuthorization() 메소드 호출
+				//2-4. $url = board/list
+				//2-5. if 조건문 2개 판단
+				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/regist_chk
+				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(O)
+				//조건 불충족>>if문 실행(X)
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
+				//$_SESSION 내 u_pk 값이 있음+$url = board/list
+				//조건 불충족>>if문 실행(X)
+				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
+				//4. [부모모델]생성자 실행하여 DB연결+[보드네임모델]인스턴스를 [부모컨트롤러]$boardNameModel에 저장
+				//5. [보드네임모델]의 getBoardNameList() 메소드 호출
+				//5-1. [보드네임모델]b_type, b_name 출력 쿼리문 실행하여 해당 값 배열형태로 $result에 저장하여 리턴
+				//6. [부모컨트롤러]프로퍼티 arrBoardNameInfo에 리턴 받은 값 저장
+				//cf)프로퍼티 arrBoardNameInfo header.php 내 if문 내 foreach문에서 사용
+				//if 조건문 판단
+				//($this->controllerChkUrl !== "user/login" && $this->controllerChkUrl !== "user/regist")
+				//user/login이 아닌 경우+user/regist가 아닌 경우 / board/list 해당
+				//조건 충족>>if문 실행(O)
+				//if문 내 foreach 실행(O) / 게시판 타입과 게시판 이름이 기재된 드롭다운 화면 출력
+				//6-1. $boardNameModel([부모모델]생성자 실행하여 DB연결+[보드네임모델] 인스턴스) 파기
+				//6-2. $action("listGet") 메소드 호출
+				//7. [보드컨트롤러]$b_type = isset($_GET["b_type"]) ? $_GET["b_type"] : "0";
+				//7-1. $_GET 내에 b_type 확인하여 true일 시 $_GET["b_type"]을 $b_type에 저장
+				//false일 시 "0"으로 저장
+				//7-2. $b_type의 값을 $arrBoardInfo에 배열형태로 저장
+				//7-3. [부모컨트롤러]b_type, b_name 출력 쿼리문 실행하여 해당 값 배열형태로 $result에 저장하여 리턴받은 값을
+				//저장해 둔 프로퍼티 arrBoardNameInfo을 $item에 저장하여 foreach 실행 
+				// $item에 저장된 b_type이 $b_type($_GET["b_type"]의 값)과 동일할 때
+				// 프로퍼티 $titleBoardName의 값을 $item["b_name"]으로 저장하고
+				// 프로퍼티 $boardType의 값을 $item["b_type"]으로 저장하고 break
+				//7-4. [보드모델]인스턴스 생성>[부모모델]생성자 호출
+				//7-5. [부모모델]생성자 실행하여 DB연결+[보드모델]인스턴스를 [보드컨트롤러]$boardModel에 저장
+				//7-6. [보드모델]getBoardList($arrBoardInfo) 메소드 호출
+				//8. [보드모델] board테이블에서 $arrBoardInfo에 저장된 $_GET["b_type"]의 값과 동일한 값을 가지는 조건과
+				//deleted_at null인 조건을 충족하는 id, u_pk, b_title, b_content, b_img, create_at, updated_at 출력한 결과를
+				//배열형태로 $result에 저장하여 리턴
+				//9. [보드컨트롤러]프로퍼티 arrBoardInfo에 리턴 받은 값 저장
+				//9-1. $boardModel([부모모델]생성자 실행하여 DB연결+[보드모델] 인스턴스) 파기
+				//9-2. return "view/list.php";
+				//10. [부모컨트롤러] $resultAction에 리턴 받은 값 저장
+				//10-1. callView("view/list.php") 메소드 호출
+				//10-2. 함수 strpos 사용하여 "view/regist.php"에서 첫 문자열이 "Location:"으로 시작되는지 판단
+				//조건 불충족>>if문 실행(X)
+				//10-3. require_once("view/list.php") 실행
+				//10-4. 처리종료
 			}
 		} else if($url === "board/add") {
 			if($method === "GET") { // 처리 없음
 			} else {
 				new BoardController("addPost");
+				//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
+				//2. [부모컨트롤러]__construct("addPost")
+				//2-1. controllerChkUrl = board/list
+				//2-2. 세션있으므로, if문 실행(X)
+				//2-3. chkAuthorization() 메소드 호출
+				//2-4. $url = board/add
+				//2-5. if 조건문 2개 판단
+				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/regist_chk
+				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(O)
+				//조건 불충족>>if문 실행(X)
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
+				//$_SESSION 내 u_pk 값이 있음+$url = board/list
+				//조건 불충족>>if문 실행(X)
+				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
+				//4. [부모모델]생성자 실행하여 DB연결+[보드네임모델]인스턴스를 [부모컨트롤러]$boardNameModel에 저장
+				//5. [보드네임모델]의 getBoardNameList() 메소드 호출
+				//5-1. [보드네임모델]b_type, b_name 출력 쿼리문 실행하여 해당 값 배열형태로 $result에 저장하여 리턴
+				//6. [부모컨트롤러]프로퍼티 arrBoardNameInfo에 리턴 받은 값 저장
+				//cf)프로퍼티 arrBoardNameInfo header.php 내 if문 내 foreach문에서 사용
+				//if 조건문 판단
+				//($this->controllerChkUrl !== "user/login" && $this->controllerChkUrl !== "user/regist")
+				//user/login이 아닌 경우+user/regist가 아닌 경우 / board/add 해당
+				//조건 충족>>if문 실행(O)
+				//if문 내 foreach 실행(O) / 게시판 타입과 게시판 이름이 기재된 드롭다운 화면 출력
+				//6-1. $boardNameModel([부모모델]생성자 실행하여 DB연결+[보드네임모델] 인스턴스) 파기
+				//6-2. $action("addPost") 메소드 호출
+				//7. [보드컨트롤러]POST 요청받은 b_type, b_title, b_content & $_SESSION에 저장된 u_pk &
+				//$_FILES에 저장된 b_img, name 값을 각 변수에 저장
+				//7-1. 각 변수에 저장한 값을 배열형태 변수 $arrAddBoardInfo에 저장
+				//7-2. 함수 move_uploaded_file 사용하여 POST 요청받은 이미지를 서버에 임시로 저장하고,
+				//상수로 설정한 PATH에 저장하고 경로 끝에 파일 이름 추가
+				//7-4. [보드모델]인스턴스 생성>[부모모델]생성자 호출
+				//7-5. [부모모델]생성자 실행하여 DB연결+[보드모델]인스턴스를 [보드컨트롤러]$boardModel에 저장
+				//7-6. [보드컨트롤러]$boardModel 트랜잭션 시작
+				//7-7. [보드모델]addBoard($arrAddBoardInfo) 메소드 호출
+				//8. [보드모델] board테이블에 $arrAddBoardInfo에 저장된 u_pk, b_title, b_content, b_img
+				//insert 결과를 $result에 저장하여 리턴
+				//9. [보드컨트롤러]리턴 받은 값을 if 조건문 판단
+				//false-롤백, true-커밋
+				//14-1. $boardModel([부모모델]생성자 실행하여 DB연결+[유저모델] 인스턴스) 파기
+				//14-2. return "Location: /board/list?b_type=".$b_type;	
+				//15. [부모컨트롤러]리턴받은 값 $resultAction에 저장
+				//15-1. callView("Location: /user/login") 메소드 호출
+				//15-2. 함수 strpos 사용하여 "Location: /user/login"에서 첫 문자열이 "Location:"으로 시작되는지 판단
+				//조건 충족>>if문 실행(O)
+				//15-3. header("Location: /board/list?b_type=".$b_type"); 실행
+				//15-4. 처리종료				
 			}
 		} else if($url === "board/detail") {
 			if($method === "GET") {
 				new BoardController("detailGet");
+				//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
+				//2. [부모컨트롤러]__construct("detailGet")
+				//2-1. controllerChkUrl = board/detail
+				//2-2. 세션있으므로, if문 실행(X)
+				//2-3. chkAuthorization() 메소드 호출
+				//2-4. $url = board/add
+				//2-5. if 조건문 2개 판단
+				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/regist_chk
+				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(O)
+				//조건 불충족>>if문 실행(X)
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
+				//$_SESSION 내 u_pk 값이 있음+$url = board/detail
+				//조건 불충족>>if문 실행(X)
+				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
+				//4. [부모모델]생성자 실행하여 DB연결+[보드네임모델]인스턴스를 [부모컨트롤러]$boardNameModel에 저장
+				//5. [보드네임모델]의 getBoardNameList() 메소드 호출
+				//5-1. [보드네임모델]b_type, b_name 출력 쿼리문 실행하여 해당 값 배열형태로 $result에 저장하여 리턴
+				//6. [부모컨트롤러]프로퍼티 arrBoardNameInfo에 리턴 받은 값 저장
+				//cf)프로퍼티 arrBoardNameInfo header.php 내 if문 내 foreach문에서 사용
+				//if 조건문 판단
+				//($this->controllerChkUrl !== "user/login" && $this->controllerChkUrl !== "user/regist")
+				//user/login이 아닌 경우+user/regist가 아닌 경우 / board/detail 해당
+				//조건 충족>>if문 실행(O)
+				//if문 내 foreach 실행(O) / 게시판 타입과 게시판 이름이 기재된 드롭다운 화면 출력
+				//6-1. $boardNameModel([부모모델]생성자 실행하여 DB연결+[보드네임모델] 인스턴스) 파기
+				//6-2. $action("detailGet") 메소드 호출
+				//7. [보드컨트롤러] $_GET["id"] 값을 $id에 저장
+				//7-1. $id에 저장한 값을 배열형태 변수 $arrAddBoardInfo에 저장
+				//7-2. [보드모델]인스턴스 생성>[부모모델]생성자 호출
+				//7-3. [부모모델]생성자 실행하여 DB연결+[보드모델]인스턴스를 [보드컨트롤러]$boardModel에 저장
+				//7-4. [보드모델]getBoardDetail($arrBoardDetailInfo) 메소드 호출
+				//8. [보드모델] board테이블에서 $arrBoardDetailInfo에 저장된 id의 값과 동일한 값을 가지는 조건을
+				//충족하는 id, u_pk, b_title, b_content, b_img, 
+				//DATE_FORMAT(create_at, '%Y년 %m월 %d일 %h시 %i분 %s초') AS create_at
+				//DATE_FORMAT(updated_at, '%Y년 %m월 %d일 %h시 %i분 %s초') AS updated_at 출력한 결과를
+				//배열형태로 $result에 저장하여 리턴
+				//9. [보드컨트롤러]$result에 리턴 받은 값 저장
+				//9-1. /이미지 PATH.$result 인덱스 0에 있는 b_img를 $result 인덱스 0에 있는 b_img에 저장
+				//9-2. $result 인덱스 0에 있는 u_pk값이 $_SESSION u_pk가 같으면 1을 반환하고 다르면 0을 반환하여
+				//$result 인덱스 0에 있는 uflg에 저장
+				//9-3. errflg, msg에 초기화, data에 $result[0] 설정 후 배열형태의 변수 $arrTmp에 저장
+				//9-4. $arrTmp를 json_encode 처리한 값을 $response에 저장 
+				//9-4. header('Content-type: application/json');
+				//echo $response;
+				//exit(); >> 자바스크립트에서 처리
 			}
 		} else if($url === "board/remove") { // 강사님 방법
 			if($method === "GET") {
 				new BoardController("removeGet");
+				//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
+				//2. [부모컨트롤러]__construct("addPost")
+				//2-1. controllerChkUrl = board/remove
+				//2-2. 세션있으므로, if문 실행(X)
+				//2-3. chkAuthorization() 메소드 호출
+				//2-4. $url = board/add
+				//2-5. if 조건문 2개 판단
+				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 board/remove
+				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(X)
+				//조건 불충족>>if문 실행(X)
+				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
+				//$_SESSION 내 u_pk 값이 있음+$url = board/remove
+				//조건 불충족>>if문 실행(X)
+				//3. [보드네임모델]인스턴스 생성>[부모모델]생성자 호출
+				//4. [부모모델]생성자 실행하여 DB연결+[보드네임모델]인스턴스를 [부모컨트롤러]$boardNameModel에 저장
+				//5. [보드네임모델]의 getBoardNameList() 메소드 호출
+				//5-1. [보드네임모델]b_type, b_name 출력 쿼리문 실행하여 해당 값 배열형태로 $result에 저장하여 리턴
+				//6. [부모컨트롤러]프로퍼티 arrBoardNameInfo에 리턴 받은 값 저장
+				//cf)프로퍼티 arrBoardNameInfo header.php 내 if문 내 foreach문에서 사용
+				//if 조건문 판단
+				//($this->controllerChkUrl !== "user/login" && $this->controllerChkUrl !== "user/regist")
+				//user/login이 아닌 경우+user/regist가 아닌 경우 / board/remove 해당
+				//조건 충족>>if문 실행(O)
+				//if문 내 foreach 실행(O) / 게시판 타입과 게시판 이름이 기재된 드롭다운 화면 출력
+				//6-1. $boardNameModel([부모모델]생성자 실행하여 DB연결+[보드네임모델] 인스턴스) 파기
+				//6-2. $action("removeGet") 메소드 호출
+				//7. [보드컨트롤러] $errFlg를 "0", $errMsg를 "" 으로 초기화해주고 $_GET["id"], $_SESSION["u_pk"] 값을
+				// 배열형태 변수 $arrDeleteBoardInfo에 저장
+				//7-1. [보드모델]인스턴스 생성>[부모모델]생성자 호출
+				//7-2. [부모모델]생성자 실행하여 DB연결+[보드모델]인스턴스를 [보드컨트롤러]$boardModel에 저장
+				//7-3. [보드컨트롤러]$boardModel 트랜잭션 시작
+				//7-4. [보드모델]removeBoardCard($arrDeleteBoardInfo) 메소드 호출
+				//8. [보드모델] board테이블에서 $arrDeleteBoardInfo에 저장된 id, u_pk의 값과 동일한 값을 가지는 조건을
+				//충족하는 데이터의 deleted_at를 현재날짜로 update 처리하고 메소드 rowCount()를 사용하여 
+				//쿼리에 영향을 받은 레코드 수를 반환하여 $result에 저장하여 리턴(삭제처리가 얼마나 되었는지 확인 가능)
+				//9. [보드컨트롤러]$result의 값이 1이 아니면 $errFlg에 '1', $errMsg에 삭제 에러메세지를 저장하고 롤백
+				//$result의 값이 1이면 커밋
+				//9-1. $boardModel([부모모델]생성자 실행하여 DB연결+[보드모델] 인스턴스) 파기
+				//9-2. errflg에 $errFlg, msg에 $errMsg, id에 $arrDeleteBoardInfo에 저장되어있는 $_GET["id"]값을 설정 후 
+				//배열형태의 변수 $arrTmp에 저장
+				//9-4. $arrTmp를 json_encode 처리한 값을 $response에 저장 
+				//9-4. header('Content-type: application/json');
+				//echo $response;
+				//exit(); >> 자바스크립트에서 처리
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-		// 없는 경로일 경우
-		echo "이상한 URL : ".$url;
-		exit();
+	// 없는 경로일 경우
+	echo "이상한 URL : ".$url;
+	exit();
 	}
 }
