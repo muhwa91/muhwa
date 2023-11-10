@@ -162,7 +162,7 @@ class Router {
 			if($method === "GET") {				
 				new UserController("logoutGet");
 				//1. [유저컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
-				//2. [부모컨트롤러]__construct("loginGet")
+				//2. [부모컨트롤러]__construct("logoutGet")
 				//2-1. controllerChkUrl = user/logout
 				//2-2. 세션있으므로, if문 실행(X)
 				//2-3. chkAuthorization() 메소드 호출
@@ -387,14 +387,14 @@ class Router {
 			if($method === "GET") {
 				new BoardController("listGet");
 				//1. [보드컨트롤러]인스턴스 생성>[부모컨트롤러] 생성자 호출
-				//2. [부모컨트롤러]__construct("board/list")
+				//2. [부모컨트롤러]__construct("listGet")
 				//2-1. controllerChkUrl = board/list
 				//2-2. 세션있으므로, if문 실행(X)
 				//2-3. chkAuthorization() 메소드 호출
 				//2-4. $url = board/list
 				//2-5. if 조건문 2개 판단
 				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
-				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/regist_chk
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 board/list
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(O)
 				//조건 불충족>>if문 실행(X)
 				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
@@ -450,7 +450,7 @@ class Router {
 				//2-4. $url = board/add
 				//2-5. if 조건문 2개 판단
 				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
-				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/regist_chk
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 board/add
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(O)
 				//조건 불충족>>if문 실행(X)
 				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
@@ -502,7 +502,7 @@ class Router {
 				//2-4. $url = board/add
 				//2-5. if 조건문 2개 판단
 				//1)(!isset($_SESSION["u_pk"]) && in_array($url, $this->arrNeedAuth))
-				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 user/regist_chk
+				//$_SESSION 내 u_pk 값이 있음+함수 in_array 사용하여 board/detail
 				//"board/list","board/add","board/detail" 배열 내 값과 비교했을 때 포함(O)
 				//조건 불충족>>if문 실행(X)
 				//2)(isset($_SESSION["u_pk"]) && $url === "user/login")
