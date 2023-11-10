@@ -58,3 +58,11 @@ https://github.com/greenmeerkat/2308_php/assets/142575026/a44021dd-a660-4957-886
 유저(브라우저) <-> 웹서버 > index.php, Router > Controller <-> model > View > 웹서버
 컨트롤러는 모델과 뷰에 대해서 작용
 컨트롤러는 모델과 상호작용하고, 모델과 뷰는 작용하지 않음
+
+
+1. Git에서 소스코드 내려받기
+2. 터미널에서 위치를 vendor를 내려받을 라라벨 프로젝트 위치로 이동
+3. 커맨드로 composer install 입력 -> vendor를 다운로드받음
+4. .env 파일을 생성 -> .env.example를 복사해서 .env로 바꾸면된다.
+5. 커맨드로 :php artisan key:generate -> .env 파일에 APPKEY를 생성
+6. 그 외 설정 세팅 ex) .env의 DB세팅
