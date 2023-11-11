@@ -591,8 +591,8 @@ class Router {
 				//exit(); >> 자바스크립트에서 처리
 			}
 		}
-	// 없는 경로일 경우
-	echo "이상한 URL : ".$url;
-	exit();
+		// 없는 경로일 경우
+		echo "이상한 URL : ".$url;
+		exit();
 	}
 }

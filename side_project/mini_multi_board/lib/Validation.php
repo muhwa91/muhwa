@@ -55,14 +55,7 @@ class Validation {
 		
 		return true;		
 	}
-}
-
-
-
-
-
-
-
+	
 // Validation 체크
 // $arr = [
 // 	"u_id" => "admin"
@@ -72,3 +65,4 @@ class Validation {
 // var_dump(Validation::userChk($arr));
 
 // var_dump(Validation::getArrErrorMsg());
+}

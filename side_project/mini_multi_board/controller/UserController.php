@@ -35,7 +35,7 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 		// $arrInput은 배열형태로 세팅
 		$arrInput["u_id"] = $_POST["u_id"];
 		// POST로 제출된 u_id를 $arrInput["u_id"]에 저장
-		$arrInput["u_pw"] = $this->encrtptionPassword($_POST["u_pw"]);
+		$arrInput["u_pw"] = $this->encryptionPassword($_POST["u_pw"]);
 		// 하단에 정의해 둔 encrtptionPassword 메소드 이용하여
 		// ($_POST["u_pw"])아규먼트를 encrtptionPassword 메소드 파라미터에 전달
 		// return 암호화 된 비밀번호(base64_encode)
@@ -127,6 +127,7 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 		$inputData = [
 			"u_id" => $_POST["u_id"]
 		];
+
 		// 유효성 체크
 		if(!Validation::userChk($inputData)) {
 			$errorFlg = "1";
@@ -142,15 +143,21 @@ class UserController extends ParentsController{ // 부모 컨트롤러 클래스
 			$errorFlg = "1";
 			$errorMsg = "중복된 아이디입니다.";
 		}
-				
+		
+
 		// response 처리
 		$response = [
 			"errflg" => $errorFlg
 			,"msg" => $errorMsg
 		];
-
 		header('Content-type: application/json');
 		echo json_encode($response);
 		exit();
 	}
+
+	// 비밀번호 암호화
+	private function encryptionPassword($pw) {
+		return base64_encode($pw);
+	}
 }
+

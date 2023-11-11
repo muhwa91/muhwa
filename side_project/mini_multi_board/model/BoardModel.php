@@ -144,7 +144,7 @@ class BoardModel extends ParentsModel { // 부모모델 클래스에게 상속�
 				echo "BoardModel->removeBoardCard Error : ".$e->getMessage();
 				exit();
 			} 
-	 }
+	}
 
 
 	// public function postBoardDelete($arrBoardDeleteInfo) { 성찬이 방법
