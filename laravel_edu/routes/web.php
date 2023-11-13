@@ -85,7 +85,8 @@ Route::get('/segment/{id}/{name}', function ($id, $name) {
 //세그먼트 파라미터 id, name을 Request $request, $id 받아서 id값을 두번 받아올 수도 있음
 Route::get('/segment/{id}/{name}', function (Request $request, $id) {
     // return '세그먼트 파라미터 22222: '.$request->id.', '.$id;
-    return '세그먼트 파라미터 22222: '.$request->id.', '.$request->name; // 주의 : $request 내에서 id, name 데이터 추출할 때에는 $붙이지 않음
+    return '세그먼트 파라미터 22222: '.$request->id.', '.$request->name; 
+    // 주의 : $request 내에서 id, name 데이터 추출할 때에는 $붙이지 않음
 }); 
 
 //URL 세그먼트로 지정 파라미터 획득 : 기본값 설정
@@ -112,7 +113,6 @@ Route::get('/name/home/php504/user', function () {
 
 
 
-
 //컨트롤러
 //커멘드로 컨트롤러 생성 : php artisan make:controller 컨트롤러명
 use App\Http\Controllers\TestController;
@@ -131,3 +131,26 @@ Route::get('/test', [TestController::class, 'index'])->name('test.index'); //라
 //DELETE          task/{task} ............. task.destroy › TaskController@destroy  
 //GET|HEAD        task/{task}/edit ........ task.edit › TaskController@edit
 
+
+// {task} 세그먼트 파라미터 
+// ex)?id=1 해당 value 값 저장
+
+
+// 블레이드 템플릿 이동 관련
+
+Route::get('/child1', function () {
+    $arr = [
+        'name' => '신호철'
+        ,'age' => 27
+        ,'gender' => '하남자'
+    ];
+    $arr2 = [];
+    return view('child1')
+            ->with('gender', '1')
+            ->with('data', $arr)
+            ->with('data2', $arr2);
+});
+
+Route::get('/child2', function () {
+    return view('child2');
+});
