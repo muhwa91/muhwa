@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,3 +155,6 @@ Route::get('/child1', function () {
 Route::get('/child2', function () {
     return view('child2');
 });
+
+// DB관련 실습용
+Route::get('/boards', [BoardController::class, 'index'])->name('board.index');
