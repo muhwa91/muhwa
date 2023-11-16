@@ -20,17 +20,19 @@ class UserController extends Controller
     }
     
     public function loginpost(Request $request) {
-            $validator = Validator::make( // 유효성 검사
-            $request->only('email', 'password') // 이메일, 비밀번호
-            , [
-                'email' => 'required|email|max:50' // 필수입력, email, 최대입력                
-                , 'password' => 'required' // 필수입력
-            ]
-        );
+        /* del 1116 미들웨어로 이관
+        //     $validator = Validator::make( // 유효성 검사
+        //     $request->only('email', 'password') // 이메일, 비밀번호
+        //     , [
+        //         'email' => 'required|email|max:50' // 필수입력, email, 최대입력                
+        //         , 'password' => 'required' // 필수입력
+        //     ]
+        // );
 
-        if($validator->fails()) { // 유효성 검사 실패 시 처리
-            return view('login')->withErrors($validator->errors());
-        }
+        // if($validator->fails()) { // 유효성 검사 실패 시 처리
+        //     return view('login')->withErrors($validator->errors());
+        // }
+        */
 
         // 유저정보 획득
         $result = User::where('email', $request->email)->first();
@@ -59,19 +61,21 @@ class UserController extends Controller
         // 회원가입시 리퀘스트 객체로 받아야함
         // var_dump($request); 파라미터 확인 가능
 
-        $validator = Validator::make( // 유효성 검사
-            $request->only('email', 'password', 'passwordchk', 'name') // 이메일, 비밀번호, 비밀번호확인, 이름
-            , [
-                'email' => 'required|email|max:50' // 필수입력, email, 최대입력
-                , 'name' => 'required|regex:/^[a-zA-Z가-힣]+$/|min:2|max:50' // 필수입력, 정규식, 최소입력, 최대입력
-                , 'password' => 'required|same:passwordchk' // 앞 비밀번호와 동일한지 비교
-            ]
-        );
-        // var_dump($validator->errors()); 유효성 검사 에러 체크(배열 리턴)
+        /* del 1116 미들웨어로 이관
+        // $validator = Validator::make( // 유효성 검사
+        //     $request->only('email', 'password', 'passwordchk', 'name') // 이메일, 비밀번호, 비밀번호확인, 이름
+        //     , [
+        //         'email' => 'required|email|max:50' // 필수입력, email, 최대입력
+        //         , 'name' => 'required|regex:/^[a-zA-Z가-힣]+$/|min:2|max:50' // 필수입력, 정규식, 최소입력, 최대입력
+        //         , 'password' => 'required|same:passwordchk' // 앞 비밀번호와 동일한지 비교
+        //     ]
+        // );
+        // // var_dump($validator->errors()); 유효성 검사 에러 체크(배열 리턴)
         
-        if($validator->fails()) { // 유효성 검사 실패 시 처리
-            return view('registration')->withErrors($validator->errors());
-        }
+        // if($validator->fails()) { // 유효성 검사 실패 시 처리
+        //     return view('registration')->withErrors($validator->errors());
+        // }
+        */
 
         $data = $request->only('email', 'password', 'name'); // 배열로 only 내 데이터 확인가능        
         // var_dump($data);

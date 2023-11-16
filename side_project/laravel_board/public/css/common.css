@@ -13,3 +13,7 @@ main {
 	gap: 1rem;
 	padding-bottom: 70px;
 }
+
+.form-control {
+	resize: none;
+}

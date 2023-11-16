@@ -21,13 +21,15 @@ Route::get('/', function () {
 
 // 유저관련
 Route::get('/user/login', [UserController::class, 'loginget'])->name('user.login.get'); // 로그인 화면 이동
-Route::post('/user/login', [UserController::class, 'loginpost'])->name('user.login.post'); // 로그인 처리
+Route::middleware('my.user.validation')->post('/user/login', [UserController::class, 'loginpost'])->name('user.login.post'); // 로그인 처리
 Route::get('/user/registration', [UserController::class, 'registrationget'])->name('user.registration.get'); // 회원가입 화면이동
-Route::post('/user/registration', [UserController::class, 'registrationpost'])->name('user.registration.post'); // 회원가입 화면이동
+Route::middleware('my.user.validation')->post('/user/registration', [UserController::class, 'registrationpost'])->name('user.registration.post'); // 회원가입 화면이동
 Route::get('/user/logout', [UserController::class, 'logoutget'])->name('user.logout.get');
 
 // 보드관련
-Route::resource('/board', BoardController::class);
+Route::middleware('auth')->resource('/board', BoardController::class);
+// 공통된 처리가 있을 때 미들웨어로 처리 가능 ex)로그인 체크, 로그인 화면에서 board url 입력 시 접속불가
+// 미들웨어 인증을 앞에 두면 http처리 전 체크, 뒤에 두면 처리 후에 체크
 
 //   GET|HEAD        board ...................................... board.index › BoardController@index 
 //   POST            board ...................................... board.store › BoardController@store  
@@ -50,3 +52,14 @@ Route::resource('/board', BoardController::class);
 //   PUT|PATCH       user/{user} ................... user.update › UserController@update  회원정보 수정 처리
 
 //   DELETE          user/{user} ................. user.destroy › UserController@destroy  회원 탈퇴 처리
+
+
+
+
+// 모델 생성 : php artisan make:model 모델명 -mfs
+// [-mfs] 옵션으로 migration, factory, seeder 한번에 생성
+// 컨트롤러 생성 : php artisan make:controller 컨트롤러명 --resource
+// 시더 생성 : php artisan make:seeder
+// 테이블 생성 : php artisan migrate
+// 팩토리 생성 : php artisan make:factory 팩토리명 --model=모델명
+// 미들웨어 생성 : php artisan make:middleware 미들웨어명

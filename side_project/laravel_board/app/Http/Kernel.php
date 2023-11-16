@@ -63,5 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'my.user.validation' => \App\Http\Middleware\MyUserValidation::class,
     ];
+    // 미들웨어 사용하고 싶을 때 'auth' 로 호출해서 사용하면 됨
 }
