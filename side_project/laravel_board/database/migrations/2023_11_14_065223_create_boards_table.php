@@ -13,13 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table) { // 컬럼 세팅
             $table->id('b_id');
+            // default : big_int, pk, auto_increment / id('컬럼명') 변경 가능
             $table->string('b_title', 30);
+            // var_char(30) 생성 / default : not null 
+            // cf)null 허용하고 싶을 때 ->nullable();
             $table->string('b_content', 2000);
+            // var_char(2000) 생성 / default : not null
             $table->integer('b_hits')->default(0);
+            // 조회수, int default 0으로 세팅
             $table->timestamps();
+            // created_at, updated_at 라라벨 내부 설정 값으로 자동생성
+            // default : null(라라벨 내부 설정 값)
             $table->softDeletes();
+            // deleted_at / default : nullable
         });
     }
 

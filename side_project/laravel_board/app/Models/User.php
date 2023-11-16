@@ -22,7 +22,12 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    // 대량 할당을 이용한 취약성 대책
+    // 1)화이트 리스트 : 수정 가능 컬럼 설정
+    // protected $fillable = ['컬럼1', '컬럼2'];
+    // 2)블랙 리스트 : 수정 불가능 컬럼 설정
+    // protected $guarded = ['컬럼1', '컬럼2'];
+    
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -12,7 +12,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function loginget() {
-        // 로그인 유저 board.list 이동
+        // 로그인 유저 board.index 이동
         if(Auth::check()) {
             return redirect()->route('board.index');
         }
@@ -36,6 +36,8 @@ class UserController extends Controller
 
         // 유저정보 획득
         $result = User::where('email', $request->email)->first();
+        // first() : 검색된 결과 중 첫번째 레코드 반환
+        // (조건에 맞는 결과 하나만 가져올 때 사용)
         if(!$result || !(Hash::check($request->password, $result->password))) {
             // 유저의 입력 비밀번호와 DB의 비밀번호 비교
             $errorMsg = '이메일과 비밀번호 다시 확인해주세요.';

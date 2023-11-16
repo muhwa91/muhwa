@@ -78,17 +78,20 @@ class BoardController extends Controller
      */
     public function show($id)
     {
+        /* del 231116 미들웨어로 이관
         // if(!Auth::check()) { // 로그인 체크(권한 없을 때는 board 주소 입력했을 때 리다이렉트)
         //     return redirect()->route('user.login.get');
         // }
-               
+        */
+
         $result = Board::find($id); // 게시글 데이터 획득
         // Board::where('b_id', '=', $id)->get(); 
         // cf) '=' 생략가능
 
         // 조회수 올리기
         $result->b_hits++; // 조회수 1 증가
-        $result->timestamps = false;
+        $result->timestamps = false; 
+        // timestamps 현재 시간 기준으로 처리되기 때문에 false 변경
 
         // 업데이트 처리
         $result->save(); // save 메소드 사용 시 변경 값 업데이트
