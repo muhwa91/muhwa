@@ -108,7 +108,8 @@ class BoardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $result = Board::find($id);
+        return view('update')->with('data', $result);
     }
 
     /**
@@ -119,8 +120,22 @@ class BoardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $data = $request->only('b_title', 'b_content');        
+        $result = Board::find($id);
+        $result->update($data);
+        return redirect()->route('board.show', ['board' => $id]);
+        // 리다이렉트도 라우트 세그먼트 파라미터 전달 가능
+        // 오토 커밋 on상태이므로, DB에 자동 저장되고 커밋
+        // 오토 커밋 off상태라면, try catch문 사용하여 save(), 
+        // 트랜잭션 및 롤백,커밋 처리해줘야함
+
+        // 강사님 방법 
+        // $result = Board::find($id);
+        // $result->b_title = $request->b_title;
+        // $result->b_title = $request->b_title;
+        // $result->save();
+        // return redirect()->route('board.show', ['board' => $result->b_id]);
     }
 
     /**

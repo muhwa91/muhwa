@@ -40,12 +40,12 @@ Route::middleware('auth')->resource('/board', BoardController::class);
 //   DELETE          user/{user} ................. user.destroy › UserController@destroy  회원 탈퇴 처리
 
 //   GET|HEAD        board ...................................... board.index › BoardController@index  게시판 화면이동
-//   POST            board ...................................... board.store › BoardController@store  게시글 insert 처리
 //   GET|HEAD        board/create ............................. board.create › BoardController@create  게시글 create 화면이동
+//   POST            board ...................................... board.store › BoardController@store  게시글 insert 처리
 //   GET|HEAD        board/{board} ................................ board.show › BoardController@show  게시글 detail 화면이동
-//   PUT|PATCH       board/{board} ............................ board.update › BoardController@update  게시글 update 처리
 //   DELETE          board/{board} .......................... board.destroy › BoardController@destroy  게시글 delete 처리
 //   GET|HEAD        board/{board}/edit ........................... board.edit › BoardController@edit  게시글 update 화면이동
+//   PUT|PATCH       board/{board} ............................ board.update › BoardController@update  게시글 update 처리
 
 // <생성 명령어>
 // 모델 생성 : php artisan make:model 모델명 -mfs

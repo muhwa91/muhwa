@@ -50,7 +50,8 @@
 			<p class="card-text">{{$data->updated_at}}</p>
 		</div>
 		<div class="text-center mt-5 mb-5">
-			<button type="submit" class="btn btn-primary">삭제</button>
+			<button type="submit" class="btn btn-danger">삭제</button>
+			<a class="btn btn-primary" href="{{route('board.edit', ['board' => $data->b_id])}}">수정</a>
 			<a class="btn btn-secondary" href="{{route('board.index')}}">취소</a>
 		</div>
 	</form>
