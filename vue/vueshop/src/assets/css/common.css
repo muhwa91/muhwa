@@ -15,6 +15,14 @@ h4 {
 	margin: 10px auto;
 }
 
+.discount {
+	background-color: beige;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 10px;
+	font-size: 1.5rem;
+}
+
 
 /* ##### 모달 ##### */
 .bg_black {
