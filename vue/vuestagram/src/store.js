@@ -42,7 +42,7 @@ const store = createStore({
 			// 작성을 하게 되면 리로딩 되지 않기 때문에 작성할때 마다 인덱스가 늘어남
 			// 새로고침으로 리로딩 하면 인덱스 3번까지만 출력
 		},
-		setPustBoard(state, data) {
+		setPushBoard(state, data) {
 			state.boardData.push(data);
 			state.lastBoardId = data.id;
 		},
@@ -64,9 +64,10 @@ const store = createStore({
 			};
 			axios.get(url, header)
 			.then(res => {
-				// console.log(res.data);
-				// console.log(res.status);
-				context.commit('setBoardList', res.data); 
+				// console.log(res);
+				console.log(res.status);
+				context.commit('setBoardList', res.data);
+				// res.data : array 내 객체로 데이터 전송
 				// commit() : mutations 호출용 메소드, state에는 자동세팅&data에 res.date 전달
 				// url에서 받아온 레스폰스 데이터를 setBoardList 파라미터 전달하여
 				// state 내 게시글 저장용으로 세팅해둔 배열 내에 데이터 저장
@@ -85,7 +86,7 @@ const store = createStore({
 				}
 			};
 			const data = {
-				name: '무당이이',
+				name: '외않돼는대',
 				img: context.state.postFileData,
 				content: document.getElementById('content').value,
 			};
@@ -114,7 +115,7 @@ const store = createStore({
 			
 			axios.get(url, header)
 			.then(res => {
-				context.commit('setPustBoard', res.data);
+				context.commit('setPushBoard', res.data);
 				// commit() : mutations 호출용 메소드, state에는 자동세팅&data에 res.date 전달
 				// url에서 받아온 레스폰스 데이터를 setBoardList 파라미터 전달하여
 				// state 내 게시글 저장용으로 세팅해둔 배열 내에 데이터 저장

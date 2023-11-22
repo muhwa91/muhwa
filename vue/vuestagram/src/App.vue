@@ -39,6 +39,18 @@ export default {
   created() {
     // store actions 함수 호출
     this.$store.dispatch('actionGetBoardList');
+    // 1. [APP]store 접근 위해 this 사용
+    // 2. [store]store 접근하여 dispatch 메소드 사용하여 action 영역 내 actionGetBoardList 메소드 호출
+    // 2-1. actionGetBoardList(context) : store 접근용으로 고정 파라미터 context 설정
+    // 2-2. url 선언, header 선언(권한 여부)
+    // 2-3. axios.get : get메소드 axios(서버&DB 송수신)
+    // 2-4. array 내 객체로 데이터 전송 받은 데이터를 res.data에 저장
+    // 2-5. store 접근, mutation 영역 내 setBoardList 메소드 호출하여 res.data 파라미터로 전달
+    // 2-6. setBoardList(state, data) : state 접근용으로 고정 파라미터 state 설정, 두번째 파라미터 res.data 전달
+    // 2-7. state 접근, boardData : [] 내 res.data 저장
+    // 2-8. state 접근, lastBoardId: 0 내 array로 넘어온 객체 총 3개, 길이3-1=2/ data[2].id 인덱스 2번의 id 값이 저장
+    // App 상속받는 ContainerComponent, ContainerComponent 상속받는 PostComponent 내 for문 실행
+    // [PostComponent]res.data 저장한 boardData img, likes, name, content, created_at 출력
   },
   methods: {
     updateImg(e) { // 작성 페이지 이동 및 이미지 관리
