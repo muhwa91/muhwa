@@ -58,6 +58,12 @@ export default {
       const file = e.target.files;
       const imgURL = URL.createObjectURL(file[0]); // 브라우저에 임시저장      
       this.$store.commit('setImgURL', imgURL); // 작성 영역에 이미지를 표시하기 위한 데이터 저장
+      // 1. [App]store 접근 위해 this 사용
+      // 2. [store]store 접근 하여 commit 메소드 사용하여 mutation 접근
+      // 2-1. mutation 영역 내 setImgURL 메소드 호출하여 url에 imgURL 파라미터로 전달
+      // 2-2. setImgURL(state, url) : state 접근용으로 고정 파라미터 state 설정, 두번째 파라미터 imgURL 전달
+      // 2-3. state 접근, 초기화 세팅해놓은 imgURL에 파라미터로 전달받은 imgURL을 저장
+      // 2-4. 
       this.$store.commit('setPostFileData', file[0]); // 작성 처리 시 보낼 파일 데이터 저장
       this.$store.commit('setFlgTabUI', 1); // 작성 ui 변경을 위한 플래그 수정
       e.target.value = ''; // 이벤트 타겟 초기화
