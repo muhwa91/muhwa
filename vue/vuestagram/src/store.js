@@ -10,6 +10,7 @@ const store = createStore({
 			imgURL: '', // 작성탭 표시용 이미지 URL 저장용
 			postFileData: null, // 글 작성 파일데이터 저장용
 			lastBoardId: 0, // 가장 마지막 로드 된 게시글 번호 저장용
+			flgBtnMoreView: true, // 더보기 버튼 활성여부 플래그
 		}
 	},
 
@@ -42,9 +43,14 @@ const store = createStore({
 			// 작성을 하게 되면 리로딩 되지 않기 때문에 작성할때 마다 인덱스가 늘어남
 			// 새로고침으로 리로딩 하면 인덱스 3번까지만 출력
 		},
+		// 더보기 데이터 추가
 		setPushBoard(state, data) {
 			state.boardData.push(data);
 			state.lastBoardId = data.id;
+		},
+		// 더보기 버튼 활성화
+		setflgBtnMoreView(state, boo) {
+			state.flgBtnMoreView = boo;
 		},
 		setClearAddData(state) {
 			state.imgURL = '';
@@ -111,12 +117,16 @@ const store = createStore({
 				headers: {
 					'Authorization': 'Bearer meerkat',
 				}
-			};
+			};			
 			
 			axios.get(url, header)
 			.then(res => {
-				context.commit('setPushBoard', res.data);
-				// commit() : mutations 호출용 메소드, state에는 자동세팅&data에 res.date 전달
+				if(res.data) { // 데이터가 있을 경우
+					context.commit('setPushBoard', res.data);
+				} else { // 데이터가 없을 경우
+					context.commit('setflgBtnMoreView', false);
+				}
+				// commit() : mutations 호출용 메소드, state에는 자동세팅&data에 res.data 전달
 				// url에서 받아온 레스폰스 데이터를 setBoardList 파라미터 전달하여
 				// state 내 게시글 저장용으로 세팅해둔 배열 내에 데이터 저장
 			})
