@@ -65,7 +65,19 @@ export default {
       // 2-3. state 접근, 초기화 세팅해놓은 imgURL에 파라미터로 전달받은 imgURL을 저장
       // 즉, 이미지파일을 선택하였을 때(change 이벤트) updateImg메소드 호출 
       this.$store.commit('setPostFileData', file[0]); // 작성 처리 시 보낼 파일 데이터 저장
+      // 1. [App]store 접근 위해 this 사용
+      // 2. [store]store 접근 하여 commit 메소드 사용하여 mutation 접근
+      // 2-1. mutation 영역 내 setPostFileData 메소드 호출하여 file에 file[0] 파라미터로 전달
+      // 2-2. setPostFileData(state, file) : state 접근용으로 고정 파라미터 state 설정, 두번째 파라미터 file[0] 전달
+      // 2-3. state 접근, null 세팅해놓은 postFileData에 파라미터로 전달받은 file[0]을 저장
+      // 즉, 이미지 파일을 file[0]에 저장하여 작성 처리 시 보낼 파일 데이터 저장
       this.$store.commit('setFlgTabUI', 1); // 작성 ui 변경을 위한 플래그 수정
+      // 1. [App]store 접근 위해 this 사용
+      // 2. [store]store 접근 하여 commit 메소드 사용하여 mutation 접근
+      // 2-1. mutation 영역 내 setFlgTabUI 메소드 호출하여 num에 1 파라미터로 전달
+      // 2-2. setFlgTabUI(state, num) : state 접근용으로 고정 파라미터 state 설정, 두번째 파라미터 1 전달
+      // 2-3. state 접근, 0 세팅해놓은 flgTabUI에 파라미터로 전달받은 1을 저장
+      // 플래그 설정하여 if문 실행 가능하도록 설정
       e.target.value = ''; // 이벤트 타겟 초기화
     },
     listMove() {
