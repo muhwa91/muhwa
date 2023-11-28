@@ -3,7 +3,7 @@
   <div class="header">
     <ul>     
       <li v-if="$store.state.flgTabUI !== 0" class="header-button header-button-left" @click="listMove()">취소</li>      
-      <li><img class="logo" alt="Vue logo" src="./assets/logo.png"></li>
+      <li><img class="logo" alt="Vue logo" src="/css/logo.png"></li>
       <li v-if="$store.state.flgTabUI === 1"
       @click="addBoard()"
       class="header-button header-button-right">작성</li>
@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import ContainerComponent from './components/ContainerComponent.vue';
+import ContainerComponent from './ContainerComponent.vue';
 
 export default {
-  name: 'App',
+  name: 'AppComponent',
   components: {
     ContainerComponent,
   },
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style>
-@import url('./assets/css/common.css');
+@import url('/css/common.css');
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
